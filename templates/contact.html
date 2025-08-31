@@ -1,0 +1,609 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Contact Us - Success with Us Driving School{% endblock %}
+{% block meta_description %}Contact Success with Us Driving School in Santa Clara, CA. Schedule lessons, ask questions, or visit our location. We're here to help with all your driving education needs.{% endblock %}
+{% block meta_keywords %}contact driving school, driving lessons contact, Santa Clara driving school, schedule driving lessons{% endblock %}
+
+{% block hero %}
+<!-- Hero Section -->
+<section class="hero hero-small">
+    <div class="hero-content">
+        <h1>Contact Us</h1>
+        <p>We're here to answer your questions and help you get started</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="contact-section">
+    <div class="container">
+        <div class="contact-grid">
+            <!-- Contact Information -->
+            <div class="contact-info animate-on-scroll">
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-map-marker-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Visit Us</h3>
+                        <p>1234 El Camino Real<br>Santa Clara, CA 95050</p>
+                        <p class="info-note">Office Hours: Mon-Fri 9am-6pm, Sat 10am-4pm</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-phone-alt"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Call Us</h3>
+                        <p>(408) 555-1234</p>
+                        <p class="info-note">Phone Hours: Mon-Sat 8am-8pm</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-envelope"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Email Us</h3>
+                        <p>info@successdriving.com</p>
+                        <p class="info-note">We typically respond within 24 hours</p>
+                    </div>
+                </div>
+                
+                <div class="info-card">
+                    <div class="info-icon">
+                        <i class="fas fa-comments"></i>
+                    </div>
+                    <div class="info-content">
+                        <h3>Follow Us</h3>
+                        <div class="social-links">
+                            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-instagram"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-twitter"></i></a>
+                            <a href="#" target="_blank"><i class="fab fa-youtube"></i></a>
+                        </div>
+                        <p class="info-note">Stay updated with tips and promotions</p>
+                    </div>
+                </div>
+                
+                <!-- Google Map -->
+                <div class="map-container">
+                    <h3>Our Location</h3>
+                    <div class="google-map">
+                        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d50758.56300868932!2d-122.05440866953123!3d37.35410999999999!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x808fb7815c08c193%3A0xe36c4d93cb751d89!2sSanta%20Clara%2C%20CA!5e0!3m2!1sen!2sus!4v1651234567890!5m2!1sen!2sus" width="100%" height="300" style="border:0;" allowfullscreen="" loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Form -->
+            <div class="contact-form-container animate-on-scroll">
+                <h2>Send Us a Message</h2>
+                <p>Have questions about our driving lessons or ready to schedule? Fill out the form below and we'll get back to you as soon as possible.</p>
+                
+                <form class="contact-form" method="post" action="{% url 'contact' %}">
+                    {% csrf_token %}
+                    
+                    {% if messages %}
+                    <div class="form-messages">
+                        {% for message in messages %}
+                        <div class="message {% if message.tags %}{{ message.tags }}{% endif %}">
+                            {{ message }}
+                        </div>
+                        {% endfor %}
+                    </div>
+                    {% endif %}
+                    
+                    <div class="form-group">
+                        <label for="name">Full Name *</label>
+                        <input type="text" id="name" name="name" required>
+                    </div>
+                    
+                    <div class="form-row">
+                        <div class="form-group">
+                            <label for="email">Email Address *</label>
+                            <input type="email" id="email" name="email" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label for="phone">Phone Number *</label>
+                            <input type="tel" id="phone" name="phone" required>
+                        </div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="subject">Subject *</label>
+                        <select id="subject" name="subject" required>
+                            <option value="" disabled selected>Select a subject</option>
+                            <option value="General Inquiry">General Inquiry</option>
+                            <option value="Schedule Lesson">Schedule Lesson</option>
+                            <option value="Package Information">Package Information</option>
+                            <option value="DMV Test">DMV Test</option>
+                            <option value="Other">Other</option>
+                        </select>
+                    </div>
+                    
+                    {% if request.GET.package %}
+                    <div class="form-group">
+                        <label for="package">Selected Package</label>
+                        <input type="text" id="package" name="package" value="{{ request.GET.package|title }} Package" readonly>
+                    </div>
+                    {% endif %}
+                    
+                    <div class="form-group">
+                        <label for="message">Message *</label>
+                        <textarea id="message" name="message" rows="5" required></textarea>
+                    </div>
+                    
+                    <div class="form-group form-checkbox">
+                        <input type="checkbox" id="consent" name="consent" required>
+                        <label for="consent">I consent to having this website store my submitted information so they can respond to my inquiry.</label>
+                    </div>
+                    
+                    <div class="form-submit">
+                        <button type="submit" class="btn btn-primary">Send Message</button>
+                    </div>
+                </form>
+            </div>
+        </div>
+        
+        <!-- FAQ Section -->
+        <div class="contact-faq animate-on-scroll">
+            <h2>Frequently Asked Questions</h2>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" id="faq1">
+                        <h4>How do I schedule a driving lesson?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>You can schedule a driving lesson by filling out our contact form, calling our office at (408) 555-1234, or visiting us in person. We recommend booking at least one week in advance to secure your preferred time slot.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" id="faq2">
+                        <h4>What should I bring to my first lesson?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>For your first lesson, please bring your learner's permit or driver's license, comfortable shoes suitable for driving, and any glasses or contacts if you require them for driving. We provide the vehicle for training.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" id="faq3">
+                        <h4>What is your cancellation policy?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We require 24 hours notice for cancellations to avoid charges. We understand emergencies happen, so please contact us as soon as possible if you need to reschedule.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" id="faq4">
+                        <h4>Do you offer pick-up and drop-off services?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes, we offer pick-up and drop-off services within a 10-mile radius of our office for an additional fee. This service must be arranged at least 48 hours in advance of your scheduled lesson.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Newsletter Signup -->
+        <div class="newsletter-signup animate-on-scroll">
+            <div class="newsletter-content">
+                <h3>Subscribe to Our Newsletter</h3>
+                <p>Stay updated with driving tips, special offers, and news from our driving school.</p>
+            </div>
+            <form class="newsletter-form">
+                <div class="form-group">
+                    <input type="email" placeholder="Your Email Address" required>
+                    <button type="submit" class="btn btn-primary">Subscribe</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-small {
+        height: 40vh;
+        min-height: 300px;
+    }
+    
+    .contact-section {
+        padding: 5rem 0;
+    }
+    
+    .contact-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        margin-bottom: 4rem;
+    }
+    
+    /* Contact Information Styles */
+    .contact-info {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .info-card {
+        display: flex;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .info-icon {
+        font-size: 2rem;
+        color: #ffd700;
+        margin-right: 1.5rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .info-content h3 {
+        margin: 0 0 0.75rem;
+    }
+    
+    .info-content p {
+        margin: 0;
+    }
+    
+    .info-note {
+        font-size: 0.9rem;
+        color: #666;
+        margin-top: 0.5rem !important;
+    }
+    
+    .social-links {
+        display: flex;
+        gap: 1rem;
+        margin: 0.75rem 0;
+    }
+    
+    .social-links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        background-color: #ffd700;
+        color: #333;
+        border-radius: 50%;
+        transition: all 0.3s ease;
+    }
+    
+    .social-links a:hover {
+        background-color: #333;
+        color: #ffd700;
+    }
+    
+    .map-container {
+        margin-top: 1.5rem;
+    }
+    
+    .map-container h3 {
+        margin-bottom: 1rem;
+    }
+    
+    .google-map {
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    /* Contact Form Styles */
+    .contact-form-container {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .contact-form-container h2 {
+        margin-bottom: 1rem;
+    }
+    
+    .contact-form-container > p {
+        margin-bottom: 2rem;
+        color: #666;
+    }
+    
+    .contact-form {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .form-messages {
+        margin-bottom: 1.5rem;
+    }
+    
+    .message {
+        padding: 1rem;
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+    
+    .message.success {
+        background-color: #d4edda;
+        color: #155724;
+    }
+    
+    .message.error {
+        background-color: #f8d7da;
+        color: #721c24;
+    }
+    
+    .form-group {
+        display: flex;
+        flex-direction: column;
+    }
+    
+    .form-row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+    
+    .form-group label {
+        margin-bottom: 0.5rem;
+        font-weight: 500;
+    }
+    
+    .form-group input,
+    .form-group select,
+    .form-group textarea {
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px;
+        font-family: inherit;
+        font-size: 1rem;
+    }
+    
+    .form-group input:focus,
+    .form-group select:focus,
+    .form-group textarea:focus {
+        outline: none;
+        border-color: #ffd700;
+        box-shadow: 0 0 0 2px rgba(255, 215, 0, 0.2);
+    }
+    
+    .form-checkbox {
+        flex-direction: row;
+        align-items: flex-start;
+    }
+    
+    .form-checkbox input {
+        margin-right: 0.75rem;
+        margin-top: 0.25rem;
+    }
+    
+    .form-submit {
+        margin-top: 1rem;
+    }
+    
+    /* FAQ Styles */
+    .contact-faq {
+        margin-bottom: 4rem;
+    }
+    
+    .contact-faq h2 {
+        margin-bottom: 2rem;
+        text-align: center;
+    }
+    
+    .accordion {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+    
+    .accordion-item {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .accordion-header {
+        background-color: #f9f9f9;
+        padding: 1.25rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .accordion-header h4 {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+    
+    .accordion-content {
+        padding: 0 1.25rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .accordion-item.active .accordion-content {
+        padding: 1.25rem;
+        max-height: 500px;
+    }
+    
+    .accordion-item.active .accordion-header i {
+        transform: rotate(45deg);
+    }
+    
+    /* Newsletter Styles */
+    .newsletter-signup {
+        background-color: #f0f8ff;
+        border-radius: 8px;
+        padding: 2.5rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .newsletter-content {
+        flex: 1;
+    }
+    
+    .newsletter-content h3 {
+        margin: 0 0 0.75rem;
+    }
+    
+    .newsletter-content p {
+        margin: 0;
+        color: #666;
+    }
+    
+    .newsletter-form {
+        flex: 1;
+        max-width: 500px;
+    }
+    
+    .newsletter-form .form-group {
+        display: flex;
+        flex-direction: row;
+    }
+    
+    .newsletter-form input {
+        flex: 1;
+        padding: 0.75rem;
+        border: 1px solid #ddd;
+        border-radius: 4px 0 0 4px;
+        font-family: inherit;
+        font-size: 1rem;
+    }
+    
+    .newsletter-form button {
+        border-radius: 0 4px 4px 0;
+    }
+    
+    /* Animation Classes */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+        .contact-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .accordion {
+            grid-template-columns: 1fr;
+        }
+        
+        .newsletter-signup {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .newsletter-content {
+            margin-bottom: 1.5rem;
+        }
+        
+        .newsletter-form {
+            width: 100%;
+            max-width: 100%;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .form-row {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Accordion functionality
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            
+            header.addEventListener('click', () => {
+                // Close all other items
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        
+        function checkIfInView() {
+            animateElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkIfInView);
+        checkIfInView(); // Check on load
+        
+        // Form validation
+        const contactForm = document.querySelector('.contact-form');
+        
+        if (contactForm) {
+            contactForm.addEventListener('submit', function(e) {
+                let valid = true;
+                const requiredFields = contactForm.querySelectorAll('[required]');
+                
+                requiredFields.forEach(field => {
+                    if (!field.value.trim()) {
+                        valid = false;
+                        field.classList.add('error');
+                    } else {
+                        field.classList.remove('error');
+                    }
+                });
+                
+                if (!valid) {
+                    e.preventDefault();
+                    alert('Please fill in all required fields.');
+                }
+            });
+        }
+    });
+</script>
+{% endblock %}

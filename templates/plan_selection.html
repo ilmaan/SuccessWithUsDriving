@@ -1,0 +1,162 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="text-center mb-5">
+                <h2>Choose Your Driving Plan</h2>
+                <p class="lead text-muted">Select the perfect package to start your driving journey</p>
+            </div>
+            
+            <form method="post">
+                {% csrf_token %}
+                <div class="row">
+                    {% for plan in plans %}
+                    <div class="col-md-4 mb-4">
+                        <div class="card h-100 plan-card{% if selected_plan_name and plan.name == selected_plan_name %} selected{% endif %}" data-plan-id="{{ plan.id }}">
+                            {% if plan.is_popular %}
+                            <div class="card-header bg-primary text-white text-center">
+                                <span class="badge badge-light">Most Popular</span>
+                            </div>
+                            {% endif %}
+                            <div class="card-body text-center">
+                                <h4 class="card-title">{{ plan.name }}</h4>
+                                <div class="price mb-3">
+                                    <span class="h2 text-primary">${{ plan.price }}</span>
+                                    <small class="text-muted">/ {{ plan.hours }} hours</small>
+                                </div>
+                                <ul class="list-unstyled">
+                                    <li><i class="fas fa-check text-success"></i> {{ plan.hours }} hours of instruction</li>
+                                    <li><i class="fas fa-check text-success"></i> Flexible scheduling</li>
+                                    <li><i class="fas fa-check text-success"></i> Progress tracking</li>
+                                    {% if plan.includes_test %}
+                                    <li><i class="fas fa-check text-success"></i> DMV test preparation</li>
+                                    {% endif %}
+                                    {% if plan.is_popular %}
+                                    <li><i class="fas fa-check text-success"></i> Priority booking</li>
+                                    {% endif %}
+                                </ul>
+                            </div>
+                            <div class="card-footer">
+                                <button type="button" class="btn btn-outline-primary btn-block select-plan-btn{% if selected_plan_name and plan.name == selected_plan_name %} selected{% endif %}" data-plan-id="{{ plan.id }}">
+                                    {% if selected_plan_name and plan.name == selected_plan_name %}
+                                        ✓ Selected Plan
+                                    {% else %}
+                                        Select This Plan
+                                    {% endif %}
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+                
+                <input type="hidden" name="plan_id" id="selected_plan_id" value="">
+                 
+                 <div class="text-center mt-4">
+                     <button type="submit" class="btn btn-success btn-lg" id="continue-btn" style="display: none;">
+                         Continue to Checkout
+                     </button>
+                 </div>
+            </form>
+            
+            <div class="text-center mt-3">
+                <p><small class="text-muted">You can change your plan later if needed</small></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.plan-card {
+    transition: all 0.3s ease;
+    cursor: pointer;
+}
+
+.plan-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+.plan-card.selected {
+    border: 2px solid #28a745;
+    background-color: #f8fff9;
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(40, 167, 69, 0.3);
+}
+
+.price {
+    border-bottom: 1px solid #eee;
+    padding-bottom: 15px;
+    margin-bottom: 15px;
+}
+
+.select-plan-btn {
+    transition: all 0.3s ease;
+}
+
+.select-plan-btn.selected {
+    background-color: #28a745;
+    border-color: #28a745;
+    color: white;
+}
+
+.selected-indicator {
+    position: absolute;
+    top: 10px;
+    right: 10px;
+    background-color: #28a745;
+    color: white;
+    border-radius: 50%;
+    width: 30px;
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+}
+</style>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const planCards = document.querySelectorAll('.plan-card');
+    const selectButtons = document.querySelectorAll('.select-plan-btn');
+    const selectedPlanInput = document.getElementById('selected_plan_id');
+    const continueBtn = document.getElementById('continue-btn');
+    
+    // Check if there's a pre-selected plan and auto-select it
+    const preSelectedCard = document.querySelector('.plan-card.selected');
+    if (preSelectedCard) {
+        const planId = preSelectedCard.getAttribute('data-plan-id');
+        selectedPlanInput.value = planId;
+        continueBtn.style.display = 'block';
+    }
+    
+    selectButtons.forEach(button => {
+        button.addEventListener('click', function() {
+            const planId = this.getAttribute('data-plan-id');
+            
+            // Remove selected class from all cards and buttons
+            planCards.forEach(card => card.classList.remove('selected'));
+            selectButtons.forEach(btn => {
+                btn.classList.remove('selected');
+                btn.textContent = 'Select This Plan';
+            });
+            
+            // Add selected class to clicked card and button
+            const selectedCard = document.querySelector(`[data-plan-id="${planId}"]`);
+            selectedCard.classList.add('selected');
+            this.classList.add('selected');
+            this.textContent = '✓ Selected Plan';
+            
+            // Set the hidden input value
+            selectedPlanInput.value = planId;
+            
+            // Show continue button
+            continueBtn.style.display = 'block';
+        });
+    });
+});
+</script>
+{% endblock %}

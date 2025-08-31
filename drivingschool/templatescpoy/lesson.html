@@ -1,0 +1,57 @@
+<!-- templates/lessons.html -->
+{% extends 'base.html' %}
+{% block title %}Driving Lessons - Success with Us{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Our Driving Lessons</h1>
+  <p>Flexible, personalized lessons to fit your schedule and skill level.</p>
+</section>
+
+<section class="lessons-section">
+  <div class="container">
+    <div class="lesson-cards">
+      <div class="lesson-card animate-up">
+        <h3><i class="fas fa-route"></i> Behind-the-Wheel Training</h3>
+        <p>Hands-on driving with certified instructors. Learn city driving, highways, parking, and night driving.</p>
+        <ul>
+          <li>Real-time feedback</li>
+          <li>Customized lesson plans</li>
+          <li>Free pickup & drop-off (within 10 miles)</li>
+        </ul>
+        <a href="{% url 'pricing' %}" class="btn-primary">View Packages</a>
+      </div>
+
+      <div class="lesson-card animate-up" style="animation-delay: 0.2s;">
+        <h3><i class="fas fa-laptop"></i> Online Theory Classes</h3>
+        <p>Virtual sessions covering road rules, signs, and permit test prep.</p>
+        <ul>
+          <li>Live or recorded sessions</li>
+          <li>Practice quizzes with instant feedback</li>
+          <li>Available in English & Spanish</li>
+        </ul>
+        <a href="#" class="btn-primary">Schedule a Class</a>
+      </div>
+
+      <div class="lesson-card animate-up" style="animation-delay: 0.4s;">
+        <h3><i class="fas fa-car-crash"></i> DMV Test Coaching</h3>
+        <p>Master the exact routes and maneuvers used in the DMV test.</p>
+        <ul>
+          <li>Mock test with scoring</li>
+          <li>Route familiarity training</li>
+          <li>Appointment scheduling help</li>
+        </ul>
+        <a href="{% url 'dmv_test_help' %}" class="btn-primary">Learn More</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Start Learning Today</h2>
+    <p>Sign up and book your first lesson in minutes.</p>
+    <a href="{% url 'pricing' %}" class="btn-primary">View Pricing</a>
+  </div>
+</section>
+{% endblock %}

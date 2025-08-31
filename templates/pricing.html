@@ -1,0 +1,807 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Pricing & Packages - Success with Us Driving School{% endblock %}
+{% block meta_description %}Affordable driving lesson packages in Santa Clara, CA. Choose from beginner, intermediate, and advanced packages to fit your needs and budget.{% endblock %}
+{% block meta_keywords %}driving lesson prices, driving school packages, affordable driving lessons, Santa Clara driving school pricing{% endblock %}
+
+{% block hero %}
+<!-- Hero Section -->
+<section class="hero hero-small">
+    <div class="hero-content">
+        <h1>Pricing & Packages</h1>
+        <p>Affordable driving instruction packages to fit your needs</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="pricing-section">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Our Driving Lesson Packages</h2>
+            <p>We offer a variety of packages designed to meet your specific needs and budget. All packages include professional instruction in our dual-control vehicles.</p>
+        </div>
+        
+        <div class="pricing-toggle animate-on-scroll">
+            <span class="toggle-label active">Standard Packages</span>
+            <label class="switch">
+                <input type="checkbox" id="package-toggle">
+                <span class="slider round"></span>
+            </label>
+            <span class="toggle-label">Specialized Packages</span>
+        </div>
+        
+        <!-- Standard Packages -->
+        <div class="pricing-container standard-packages active">
+            <div class="pricing-grid">
+                <div class="pricing-card animate-on-scroll" data-delay="100">
+                    <div class="pricing-header">
+                        <h3>Starter Package</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">299</span>
+                        </div>
+                        <p class="package-description">Perfect for beginners with little to no driving experience</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 6 hours of behind-the-wheel training</li>
+                            <li><i class="fas fa-check"></i> Basic vehicle operation</li>
+                            <li><i class="fas fa-check"></i> Residential driving practice</li>
+                            <li><i class="fas fa-check"></i> Parking fundamentals</li>
+                            <li><i class="fas fa-check"></i> Traffic sign recognition</li>
+                            <li><i class="fas fa-times"></i> Highway driving</li>
+                            <li><i class="fas fa-times"></i> Advanced maneuvers</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'select_plan' plan_name='starter' %}" class="btn btn-primary">Select This Plan</a>
+                        {% else %}
+                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="prifrom django.contrib.auth.models import AbstractUser
+                from django.db import models
+                
+                class Student(AbstractUser):
+                    phone_number = models.CharField(max_length=20, blank=True)
+                    address = models.TextField(blank=True)
+                    permit_number = models.CharField(max_length=50, blank=True, verbose_name="Permit/License Number")
+                    plan = models.CharField(max_length=50, blank=True, null=True)
+                
+                    def __str__(self):
+                        return self.get_full_name() or self.username
+                
+                cing-card popular animate-on-scroll" data-delay="200">
+                    <div class="popular-tag">Most Popular</div>
+                    <div class="pricing-header">
+                        <h3>Standard Package</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">499</span>
+                        </div>
+                        <p class="package-description">Comprehensive training for most student drivers</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 10 hours of behind-the-wheel training</li>
+                            <li><i class="fas fa-check"></i> All Starter Package features</li>
+                            <li><i class="fas fa-check"></i> City driving practice</li>
+                            <li><i class="fas fa-check"></i> Lane changing & merging</li>
+                            <li><i class="fas fa-check"></i> Defensive driving techniques</li>
+                            <li><i class="fas fa-check"></i> Basic highway driving</li>
+                            <li><i class="fas fa-times"></i> DMV test route practice</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'select_plan' plan_name='standard' %}" class="btn btn-primary">Select This Plan</a>
+                        {% else %}
+                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="pricing-card animate-on-scroll" data-delay="300">
+                    <div class="pricing-header">
+                        <h3>Premium Package</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">699</span>
+                        </div>
+                        <p class="package-description">Complete training from basics to test preparation</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 15 hours of behind-the-wheel training</li>
+                            <li><i class="fas fa-check"></i> All Standard Package features</li>
+                            <li><i class="fas fa-check"></i> Advanced highway driving</li>
+                            <li><i class="fas fa-check"></i> Night driving practice</li>
+                            <li><i class="fas fa-check"></i> DMV test route practice</li>
+                            <li><i class="fas fa-check"></i> Mock driving tests</li>
+                            <li><i class="fas fa-check"></i> Free retest if needed</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'select_plan' plan_name='premium' %}" class="btn btn-primary">Select This Plan</a>
+                        {% else %}
+                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Specialized Packages -->
+        <div class="pricing-container specialized-packages">
+            <div class="pricing-grid">
+                <div class="pricing-card animate-on-scroll" data-delay="100">
+                    <div class="pricing-header">
+                        <h3>Test Prep Package</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">249</span>
+                        </div>
+                        <p class="package-description">Focused preparation for your DMV driving test</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 5 hours of test-focused training</li>
+                            <li><i class="fas fa-check"></i> Actual DMV test route practice</li>
+                            <li><i class="fas fa-check"></i> Common test maneuvers</li>
+                            <li><i class="fas fa-check"></i> Test day strategies</li>
+                            <li><i class="fas fa-check"></i> Mock driving test</li>
+                            <li><i class="fas fa-check"></i> Examiner expectations review</li>
+                            <li><i class="fas fa-times"></i> Basic skills training</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'select_plan' plan_name='test-prep' %}" class="btn btn-primary">Select This Plan</a>
+                        {% else %}
+                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="pricing-card animate-on-scroll" data-delay="200">
+                    <div class="pricing-header">
+                        <h3>Refresher Package</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">199</span>
+                        </div>
+                        <p class="package-description">For licensed drivers who need to rebuild confidence</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 4 hours of personalized training</li>
+                            <li><i class="fas fa-check"></i> Skills assessment</li>
+                            <li><i class="fas fa-check"></i> Confidence building</li>
+                            <li><i class="fas fa-check"></i> Updated traffic laws review</li>
+                            <li><i class="fas fa-check"></i> Defensive driving refresher</li>
+                            <li><i class="fas fa-times"></i> Basic skills training</li>
+                            <li><i class="fas fa-times"></i> Test preparation</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'select_plan' plan_name='refresher' %}" class="btn btn-primary">Select This Plan</a>
+                        {% else %}
+                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
+                        {% endif %}
+                    </div>
+                </div>
+                
+                <div class="pricing-card animate-on-scroll" data-delay="300">
+                    <div class="pricing-header">
+                        <h3>Defensive Driving</h3>
+                        <div class="price">
+                            <span class="currency">$</span>
+                            <span class="amount">299</span>
+                        </div>
+                        <p class="package-description">Advanced safety techniques for licensed drivers</p>
+                    </div>
+                    <div class="pricing-features">
+                        <ul>
+                            <li><i class="fas fa-check"></i> 6 hours of specialized training</li>
+                            <li><i class="fas fa-check"></i> Hazard perception</li>
+                            <li><i class="fas fa-check"></i> Space management</li>
+                            <li><i class="fas fa-check"></i> Emergency maneuvers</li>
+                            <li><i class="fas fa-check"></i> Crash avoidance techniques</li>
+                            <li><i class="fas fa-check"></i> Adverse conditions driving</li>
+                            <li><i class="fas fa-times"></i> Basic skills training</li>
+                        </ul>
+                    </div>
+                    <div class="pricing-footer">
+                        {% if user.is_authenticated %}
+                            <a href="{% url 'select_plan' plan_name='defensive' %}" class="btn btn-primary">Select This Plan</a>
+                        {% else %}
+                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Additional Services -->
+        <div class="additional-services animate-on-scroll">
+            <h3>Additional Services</h3>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-car"></i>
+                    </div>
+                    <div class="service-info">
+                        <h4>Single Driving Lesson</h4>
+                        <p>One-hour driving lesson with a professional instructor</p>
+                        <div class="service-price">$60 per hour</div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-clipboard-check"></i>
+                    </div>
+                    <div class="service-info">
+                        <h4>DMV Road Test Service</h4>
+                        <p>Vehicle rental and warm-up lesson for your DMV test</p>
+                        <div class="service-price">$120</div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-book"></i>
+                    </div>
+                    <div class="service-info">
+                        <h4>Online Driver's Ed Course</h4>
+                        <p>Complete your required driver's education online</p>
+                        <div class="service-price">$49</div>
+                    </div>
+                </div>
+                
+                <div class="service-card">
+                    <div class="service-icon">
+                        <i class="fas fa-users"></i>
+                    </div>
+                    <div class="service-info">
+                        <h4>Group Classroom Session</h4>
+                        <p>Interactive classroom instruction (2 hours)</p>
+                        <div class="service-price">$30 per session</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Discounts -->
+        <div class="discounts animate-on-scroll">
+            <h3>Available Discounts</h3>
+            <div class="discount-cards">
+                <div class="discount-card">
+                    <div class="discount-badge">10% OFF</div>
+                    <h4>Student Discount</h4>
+                    <p>Valid student ID required. Applicable to all standard packages.</p>
+                </div>
+                
+                <div class="discount-card">
+                    <div class="discount-badge">15% OFF</div>
+                    <h4>Family Discount</h4>
+                    <p>When two or more family members sign up together.</p>
+                </div>
+                
+                <div class="discount-card">
+                    <div class="discount-badge">5% OFF</div>
+                    <h4>Referral Discount</h4>
+                    <p>When you refer a friend who purchases a package.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- FAQ -->
+        <div class="pricing-faq animate-on-scroll">
+            <h3>Frequently Asked Questions</h3>
+            
+            <div class="accordion">
+                <div class="accordion-item">
+                    <div class="accordion-header" id="faq1">
+                        <h4>How do I pay for my lessons?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We accept various payment methods including credit/debit cards, cash, checks, and online payments. You can pay in full or choose our convenient payment plan options for larger packages.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" id="faq2">
+                        <h4>Are there any hidden fees?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>No, our pricing is transparent with no hidden fees. The package prices include all instruction, vehicle use, fuel, and insurance during your lessons. The only additional cost might be the DMV testing fee if you choose to use our vehicle for your test.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" id="faq3">
+                        <h4>Can I customize a package?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Yes, we understand that everyone's needs are different. Contact us to discuss creating a custom package tailored to your specific requirements and budget.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" id="faq4">
+                        <h4>Do you offer refunds?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>We offer partial refunds for unused hours if you cancel with at least 7 days notice. A processing fee may apply. Please refer to our terms and conditions for complete refund policy details.</p>
+                    </div>
+                </div>
+                
+                <div class="accordion-item">
+                    <div class="accordion-header" id="faq5">
+                        <h4>How long are the lessons?</h4>
+                        <i class="fas fa-plus"></i>
+                    </div>
+                    <div class="accordion-content">
+                        <p>Standard lessons are 2 hours long, which provides enough time for instruction, practice, and feedback. We can also arrange 1-hour or 3-hour sessions based on your preference and schedule.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="cta-box animate-on-scroll">
+            <h3>Ready to Get Started?</h3>
+            <p>Choose the package that's right for you and begin your journey to becoming a confident, skilled driver.</p>
+            <div class="cta-buttons">
+                <a href="{% url 'contact' %}" class="btn btn-primary">Contact Us</a>
+                <a href="{% url 'lessons' %}" class="btn btn-secondary">Learn More About Our Lessons</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-small {
+        height: 40vh;
+        min-height: 300px;
+    }
+    
+    .pricing-section {
+        padding: 5rem 0;
+    }
+    
+    .pricing-toggle {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 2rem 0;
+    }
+    
+    .toggle-label {
+        font-weight: 500;
+        color: #777;
+        padding: 0 1rem;
+        cursor: pointer;
+    }
+    
+    .toggle-label.active {
+        color: #333;
+        font-weight: 700;
+    }
+    
+    .switch {
+        position: relative;
+        display: inline-block;
+        width: 60px;
+        height: 34px;
+    }
+    
+    .switch input {
+        opacity: 0;
+        width: 0;
+        height: 0;
+    }
+    
+    .slider {
+        position: absolute;
+        cursor: pointer;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background-color: #ccc;
+        transition: .4s;
+    }
+    
+    .slider:before {
+        position: absolute;
+        content: "";
+        height: 26px;
+        width: 26px;
+        left: 4px;
+        bottom: 4px;
+        background-color: white;
+        transition: .4s;
+    }
+    
+    input:checked + .slider {
+        background-color: #ffd700;
+    }
+    
+    input:focus + .slider {
+        box-shadow: 0 0 1px #ffd700;
+    }
+    
+    input:checked + .slider:before {
+        transform: translateX(26px);
+    }
+    
+    .slider.round {
+        border-radius: 34px;
+    }
+    
+    .slider.round:before {
+        border-radius: 50%;
+    }
+    
+    .pricing-container {
+        display: none;
+    }
+    
+    .pricing-container.active {
+        display: block;
+    }
+    
+    .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .pricing-card {
+        background-color: #fff;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        overflow: hidden;
+        transition: transform 0.3s ease, box-shadow 0.3s ease;
+        position: relative;
+    }
+    
+    .pricing-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 30px rgba(0,0,0,0.15);
+    }
+    
+    .pricing-card.popular {
+        border: 2px solid #ffd700;
+        transform: scale(1.05);
+    }
+    
+    .pricing-card.popular:hover {
+        transform: scale(1.05) translateY(-10px);
+    }
+    
+    .popular-tag {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background-color: #ffd700;
+        color: #333;
+        padding: 0.5rem 1rem;
+        font-weight: bold;
+        font-size: 0.9rem;
+        border-bottom-left-radius: 8px;
+    }
+    
+    .pricing-header {
+        padding: 2rem;
+        text-align: center;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .price {
+        font-size: 3rem;
+        font-weight: 700;
+        color: #333;
+        margin: 1rem 0;
+    }
+    
+    .currency {
+        font-size: 1.5rem;
+        vertical-align: super;
+    }
+    
+    .package-description {
+        color: #777;
+        font-style: italic;
+    }
+    
+    .pricing-features {
+        padding: 2rem;
+    }
+    
+    .pricing-features ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .pricing-features li {
+        padding: 0.75rem 0;
+        border-bottom: 1px solid #eee;
+        display: flex;
+        align-items: center;
+    }
+    
+    .pricing-features li:last-child {
+        border-bottom: none;
+    }
+    
+    .pricing-features i {
+        margin-right: 0.75rem;
+        font-size: 0.9rem;
+    }
+    
+    .pricing-features .fa-check {
+        color: #28a745;
+    }
+    
+    .pricing-features .fa-times {
+        color: #dc3545;
+    }
+    
+    .pricing-footer {
+        padding: 1.5rem 2rem 2rem;
+        text-align: center;
+    }
+    
+    .additional-services {
+        margin-top: 5rem;
+    }
+    
+    .services-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .service-card {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 1.5rem;
+        display: flex;
+        align-items: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .service-icon {
+        font-size: 2rem;
+        color: #ffd700;
+        margin-right: 1.5rem;
+    }
+    
+    .service-info h4 {
+        margin: 0 0 0.5rem;
+    }
+    
+    .service-info p {
+        margin: 0 0 0.75rem;
+        color: #666;
+    }
+    
+    .service-price {
+        font-weight: 700;
+        color: #333;
+    }
+    
+    .discounts {
+        margin-top: 5rem;
+    }
+    
+    .discount-cards {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+        margin-top: 2rem;
+    }
+    
+    .discount-card {
+        background-color: #f0f8ff;
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        position: relative;
+        overflow: hidden;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .discount-badge {
+        background-color: #ffd700;
+        color: #333;
+        font-weight: bold;
+        padding: 0.5rem 1.5rem;
+        position: absolute;
+        top: 1rem;
+        right: -2rem;
+        transform: rotate(45deg) translateX(1rem);
+        width: 10rem;
+        text-align: center;
+    }
+    
+    .discount-card h4 {
+        margin-top: 1.5rem;
+    }
+    
+    .pricing-faq {
+        margin-top: 5rem;
+    }
+    
+    .accordion {
+        margin-top: 2rem;
+    }
+    
+    .accordion-item {
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .accordion-header {
+        background-color: #f9f9f9;
+        padding: 1.25rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .accordion-header h4 {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+    
+    .accordion-content {
+        padding: 0 1.25rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .accordion-item.active .accordion-content {
+        padding: 1.25rem;
+        max-height: 500px;
+    }
+    
+    .accordion-item.active .accordion-header i {
+        transform: rotate(45deg);
+    }
+    
+    .cta-box {
+        background-color: #f0f8ff;
+        border-radius: 8px;
+        padding: 2.5rem;
+        text-align: center;
+        margin-top: 5rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .cta-buttons {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+        .pricing-grid,
+        .services-grid,
+        .discount-cards {
+            grid-template-columns: 1fr;
+        }
+        
+        .pricing-card.popular {
+            transform: scale(1);
+        }
+        
+        .pricing-card.popular:hover {
+            transform: translateY(-10px);
+        }
+        
+        .service-card {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .service-icon {
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Package toggle functionality
+        const packageToggle = document.getElementById('package-toggle');
+        const standardPackages = document.querySelector('.standard-packages');
+        const specializedPackages = document.querySelector('.specialized-packages');
+        const toggleLabels = document.querySelectorAll('.toggle-label');
+        
+        packageToggle.addEventListener('change', function() {
+            if (this.checked) {
+                standardPackages.classList.remove('active');
+                specializedPackages.classList.add('active');
+                toggleLabels[0].classList.remove('active');
+                toggleLabels[1].classList.add('active');
+            } else {
+                specializedPackages.classList.remove('active');
+                standardPackages.classList.add('active');
+                toggleLabels[1].classList.remove('active');
+                toggleLabels[0].classList.add('active');
+            }
+        });
+        
+        // Accordion functionality
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            
+            header.addEventListener('click', () => {
+                // Close all other items
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+        
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        
+        function checkIfInView() {
+            animateElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                const delay = element.dataset.delay || 0;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    setTimeout(() => {
+                        element.classList.add('visible');
+                    }, delay);
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkIfInView);
+        checkIfInView(); // Check on load
+    });
+</script>
+{% endblock %}

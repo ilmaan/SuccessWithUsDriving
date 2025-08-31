@@ -1,0 +1,123 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout - Success Driving School{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-8">
+            <div class="card shadow">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0"><i class="fas fa-credit-card me-2"></i>Checkout</h3>
+                </div>
+                <div class="card-body">
+                    <!-- Plan Details -->
+                    <div class="mb-4">
+                        <h5 class="text-primary">Selected Plan</h5>
+                        <div class="card bg-light">
+                            <div class="card-body">
+                                <h6 class="card-title">{{ plan.name }}</h6>
+                                <p class="card-text">{{ plan.description }}</p>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <strong>Duration:</strong> {{ plan.duration_hours }} hours
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <strong>Price:</strong> <span class="text-success">${{ plan.price }}</span>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Payment Form -->
+                    <form method="post" id="payment-form">
+                        {% csrf_token %}
+                        <div class="mb-4">
+                            <h5 class="text-primary">Payment Information</h5>
+                            
+                            <!-- Card Number -->
+                            <div class="mb-3">
+                                <label for="card-number" class="form-label">Card Number</label>
+                                <input type="text" class="form-control" id="card-number" placeholder="1234 5678 9012 3456" required>
+                            </div>
+                            
+                            <div class="row">
+                                <div class="col-md-6">
+                                    <label for="expiry-date" class="form-label">Expiry Date</label>
+                                    <input type="text" class="form-control" id="expiry-date" placeholder="MM/YY" required>
+                                </div>
+                                <div class="col-md-6">
+                                    <label for="cvv" class="form-label">CVV</label>
+                                    <input type="text" class="form-control" id="cvv" placeholder="123" required>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Billing Information -->
+                        <div class="mb-4">
+                            <h5 class="text-primary">Billing Information</h5>
+                            <div class="mb-3">
+                                <label for="billing-name" class="form-label">Full Name</label>
+                                <input type="text" class="form-control" id="billing-name" value="{{ user.first_name }} {{ user.last_name }}" required>
+                            </div>
+                            <div class="mb-3">
+                                <label for="billing-address" class="form-label">Address</label>
+                                <input type="text" class="form-control" id="billing-address" value="{{ user.student.address }}" required>
+                            </div>
+                        </div>
+
+                        <!-- Order Summary -->
+                        <div class="card bg-light mb-4">
+                            <div class="card-body">
+                                <h6 class="card-title">Order Summary</h6>
+                                <div class="d-flex justify-content-between">
+                                    <span>{{ plan.name }}</span>
+                                    <span>${{ plan.price }}</span>
+                                </div>
+                                <hr>
+                                <div class="d-flex justify-content-between fw-bold">
+                                    <span>Total</span>
+                                    <span class="text-success">${{ plan.price }}</span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Payment Buttons -->
+                        <div class="d-grid gap-2">
+                            <button type="submit" class="btn btn-success btn-lg">
+                                <i class="fas fa-lock me-2"></i>Complete Payment - ${{ plan.price }}
+                            </button>
+                            <a href="{% url 'plan_selection' %}" class="btn btn-outline-secondary">
+                                <i class="fas fa-arrow-left me-2"></i>Back to Plan Selection
+                            </a>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Basic form validation and formatting
+document.getElementById('card-number').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\s/g, '').replace(/[^0-9]/gi, '');
+    let formattedValue = value.match(/.{1,4}/g)?.join(' ') || value;
+    e.target.value = formattedValue;
+});
+
+document.getElementById('expiry-date').addEventListener('input', function(e) {
+    let value = e.target.value.replace(/\D/g, '');
+    if (value.length >= 2) {
+        value = value.substring(0, 2) + '/' + value.substring(2, 4);
+    }
+    e.target.value = value;
+});
+
+document.getElementById('cvv').addEventListener('input', function(e) {
+    e.target.value = e.target.value.replace(/\D/g, '').substring(0, 3);
+});
+</script>
+{% endblock %}

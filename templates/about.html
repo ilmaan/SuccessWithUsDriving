@@ -1,0 +1,862 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}About Us - Success with Us Driving School{% endblock %}
+{% block meta_description %}Learn about Success with Us Driving School in Santa Clara, CA. Our experienced instructors, mission, and commitment to creating safe, confident drivers.{% endblock %}
+{% block meta_keywords %}driving school, about us, driving instructors, Santa Clara driving school, driving school history{% endblock %}
+
+{% block hero %}
+<!-- Hero Section -->
+<section class="hero hero-small">
+    <div class="hero-content">
+        <h1>About Our Driving School</h1>
+        <p>Creating safe, confident drivers since 2005</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="about-section">
+    <div class="container">
+        <!-- Our Story -->
+        <div class="about-story animate-on-scroll">
+            <div class="section-title">
+                <h2>Our Story</h2>
+            </div>
+            <div class="story-content">
+                <div class="story-image">
+                    <img src="{% static 'images/about-story.jpg' %}" alt="Success with Us Driving School History">
+                </div>
+                <div class="story-text">
+                    <p>Success with Us Driving School was founded in 2005 by Michael Chen, a former driving instructor with a passion for road safety and driver education. After witnessing too many preventable accidents during his years as a traffic officer, Michael decided to make a difference by creating a driving school focused on safety, confidence, and excellence.</p>
+                    <p>What began as a small operation with just two vehicles has grown into one of Santa Clara's most trusted driving schools, with a fleet of modern training vehicles and a team of professional instructors dedicated to creating the next generation of safe, responsible drivers.</p>
+                    <p>Over the years, we've helped thousands of students from diverse backgrounds achieve their driving goals, from teenagers getting their first license to adults refreshing their skills after years off the road. Our commitment to personalized instruction and road safety has earned us recognition throughout the community.</p>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Our Mission -->
+        <div class="about-mission animate-on-scroll">
+            <div class="section-title">
+                <h2>Our Mission</h2>
+            </div>
+            <div class="mission-content">
+                <div class="mission-statement">
+                    <p class="highlight-text">"To create safe, confident, and responsible drivers through personalized instruction, modern teaching methods, and a supportive learning environment."</p>
+                </div>
+                <div class="mission-values">
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-shield-alt"></i>
+                        </div>
+                        <h3>Safety First</h3>
+                        <p>We prioritize safety in everything we do, teaching defensive driving techniques that help our students avoid accidents and make the roads safer for everyone.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-user-graduate"></i>
+                        </div>
+                        <h3>Quality Education</h3>
+                        <p>Our curriculum combines proven teaching methods with the latest in driver education research to provide comprehensive, effective training.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-hands-helping"></i>
+                        </div>
+                        <h3>Personalized Approach</h3>
+                        <p>We recognize that every student is unique, with different learning styles, challenges, and goals. Our instruction is tailored to meet individual needs.</p>
+                    </div>
+                    <div class="value-card">
+                        <div class="value-icon">
+                            <i class="fas fa-heart"></i>
+                        </div>
+                        <h3>Community Impact</h3>
+                        <p>We're committed to making our community safer through quality driver education and active participation in local safety initiatives.</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Our Team -->
+        <div class="about-team animate-on-scroll">
+            <div class="section-title">
+                <h2>Meet Our Team</h2>
+                <p>Our instructors are the heart of our driving school. Each brings years of experience, specialized training, and a passion for teaching safe driving practices.</p>
+            </div>
+            <div class="team-grid">
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="{% static 'images/team-michael.jpg' %}" alt="Michael Chen - Founder & Lead Instructor">
+                    </div>
+                    <div class="member-info">
+                        <h3>Michael Chen</h3>
+                        <p class="member-title">Founder & Lead Instructor</p>
+                        <p class="member-bio">With over 25 years of experience in driver education, Michael brings unparalleled expertise and a calm, patient teaching style that puts even the most anxious students at ease.</p>
+                        <div class="member-credentials">
+                            <span><i class="fas fa-certificate"></i> Certified Master Driving Instructor</span>
+                            <span><i class="fas fa-award"></i> Safety Education Award 2018</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="{% static 'images/team-sarah.jpg' %}" alt="Sarah Johnson - Senior Instructor">
+                    </div>
+                    <div class="member-info">
+                        <h3>Sarah Johnson</h3>
+                        <p class="member-title">Senior Instructor</p>
+                        <p class="member-bio">A former driving examiner, Sarah specializes in test preparation and helping students overcome test anxiety. Her knowledge of DMV requirements is second to none.</p>
+                        <div class="member-credentials">
+                            <span><i class="fas fa-certificate"></i> Certified Driving Instructor</span>
+                            <span><i class="fas fa-user-shield"></i> Defensive Driving Specialist</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="{% static 'images/team-david.jpg' %}" alt="David Rodriguez - Instructor">
+                    </div>
+                    <div class="member-info">
+                        <h3>David Rodriguez</h3>
+                        <p class="member-title">Instructor</p>
+                        <p class="member-bio">David excels at working with teenage drivers, combining a friendly approach with clear instruction to help young drivers develop good habits from the start.</p>
+                        <div class="member-credentials">
+                            <span><i class="fas fa-certificate"></i> Certified Driving Instructor</span>
+                            <span><i class="fas fa-graduation-cap"></i> Youth Education Specialist</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="{% static 'images/team-lisa.jpg' %}" alt="Lisa Patel - Instructor">
+                    </div>
+                    <div class="member-info">
+                        <h3>Lisa Patel</h3>
+                        <p class="member-title">Instructor</p>
+                        <p class="member-bio">Lisa specializes in working with anxious adult learners and those returning to driving after a long break. Her patient, methodical approach builds confidence step by step.</p>
+                        <div class="member-credentials">
+                            <span><i class="fas fa-certificate"></i> Certified Driving Instructor</span>
+                            <span><i class="fas fa-brain"></i> Specialized in Anxiety Management</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="{% static 'images/team-james.jpg' %}" alt="James Wilson - Instructor">
+                    </div>
+                    <div class="member-info">
+                        <h3>James Wilson</h3>
+                        <p class="member-title">Instructor</p>
+                        <p class="member-bio">A former commercial driver, James brings extensive knowledge of advanced vehicle handling and defensive driving techniques to his instruction.</p>
+                        <div class="member-credentials">
+                            <span><i class="fas fa-certificate"></i> Certified Driving Instructor</span>
+                            <span><i class="fas fa-truck"></i> Commercial Driving Experience</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="team-member">
+                    <div class="member-image">
+                        <img src="{% static 'images/team-emily.jpg' %}" alt="Emily Zhang - Office Manager">
+                    </div>
+                    <div class="member-info">
+                        <h3>Emily Zhang</h3>
+                        <p class="member-title">Office Manager</p>
+                        <p class="member-bio">Emily keeps our operations running smoothly, handling scheduling, customer service, and administrative tasks with efficiency and a friendly smile.</p>
+                        <div class="member-credentials">
+                            <span><i class="fas fa-clock"></i> 10+ Years in Customer Service</span>
+                            <span><i class="fas fa-calendar-check"></i> Scheduling Specialist</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Our Achievements -->
+        <div class="about-achievements animate-on-scroll">
+            <div class="section-title">
+                <h2>Our Achievements</h2>
+            </div>
+            <div class="achievements-content">
+                <div class="achievement-stats">
+                    <div class="stat-card">
+                        <div class="stat-number">15,000+</div>
+                        <div class="stat-label">Students Trained</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">98%</div>
+                        <div class="stat-label">Pass Rate</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">4.9/5</div>
+                        <div class="stat-label">Customer Rating</div>
+                    </div>
+                    <div class="stat-card">
+                        <div class="stat-number">18</div>
+                        <div class="stat-label">Years of Excellence</div>
+                    </div>
+                </div>
+                <div class="achievement-awards">
+                    <h3>Awards & Recognition</h3>
+                    <ul class="awards-list">
+                        <li>
+                            <div class="award-icon"><i class="fas fa-trophy"></i></div>
+                            <div class="award-info">
+                                <h4>Best Driving School in Santa Clara</h4>
+                                <p>Santa Clara Community Choice Awards, 2020-2023</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="award-icon"><i class="fas fa-medal"></i></div>
+                            <div class="award-info">
+                                <h4>Excellence in Driver Education</h4>
+                                <p>California Driver Education Association, 2019</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="award-icon"><i class="fas fa-shield-alt"></i></div>
+                            <div class="award-info">
+                                <h4>Road Safety Advocate Award</h4>
+                                <p>Santa Clara County Traffic Safety Coalition, 2018</p>
+                            </div>
+                        </li>
+                        <li>
+                            <div class="award-icon"><i class="fas fa-star"></i></div>
+                            <div class="award-info">
+                                <h4>Top Rated Driving School</h4>
+                                <p>Bay Area Consumer Choice, 2017-2023</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        
+        <!-- Testimonials -->
+        <div class="about-testimonials animate-on-scroll">
+            <div class="section-title">
+                <h2>What Our Students Say</h2>
+            </div>
+            <div class="testimonial-carousel">
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p>"I was terrified of driving before I came to Success with Us. Michael was incredibly patient and helped me build confidence step by step. I went from being afraid to get behind the wheel to passing my test with flying colors!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="{% static 'images/testimonial-1.jpg' %}" alt="Jennifer L.">
+                        <div>
+                            <h4>Jennifer L.</h4>
+                            <p>Adult Learner</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p>"As a parent, I was concerned about finding the right driving school for my teenager. The instructors at Success with Us were professional, thorough, and genuinely cared about teaching safe driving habits. My son passed his test on the first try!"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="{% static 'images/testimonial-2.jpg' %}" alt="Robert T.">
+                        <div>
+                            <h4>Robert T.</h4>
+                            <p>Parent of Teen Driver</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-slide">
+                    <div class="testimonial-content">
+                        <p>"After not driving for over 10 years, I needed to refresh my skills. Lisa was amazing at helping me regain my confidence and update my knowledge of current road rules. The personalized approach made all the difference."</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <img src="{% static 'images/testimonial-3.jpg' %}" alt="Maria G.">
+                        <div>
+                            <h4>Maria G.</h4>
+                            <p>Returning Driver</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="testimonial-controls">
+                <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
+                <div class="testimonial-dots">
+                    <span class="dot active"></span>
+                    <span class="dot"></span>
+                    <span class="dot"></span>
+                </div>
+                <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
+            </div>
+        </div>
+        
+        <!-- Community Involvement -->
+        <div class="about-community animate-on-scroll">
+            <div class="section-title">
+                <h2>Community Involvement</h2>
+            </div>
+            <div class="community-content">
+                <div class="community-text">
+                    <p>At Success with Us Driving School, we believe in giving back to the community that has supported us for over 18 years. We're actively involved in local road safety initiatives and educational programs that promote responsible driving.</p>
+                    <h3>Our Community Programs:</h3>
+                    <ul class="community-programs">
+                        <li>
+                            <i class="fas fa-graduation-cap"></i>
+                            <div>
+                                <h4>High School Safety Workshops</h4>
+                                <p>Free defensive driving workshops for local high school students</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-users"></i>
+                            <div>
+                                <h4>Senior Refresher Courses</h4>
+                                <p>Discounted refresher lessons for senior citizens</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-hand-holding-heart"></i>
+                            <div>
+                                <h4>Scholarship Program</h4>
+                                <p>Annual driving instruction scholarships for underprivileged students</p>
+                            </div>
+                        </li>
+                        <li>
+                            <i class="fas fa-calendar-alt"></i>
+                            <div>
+                                <h4>Safety Awareness Events</h4>
+                                <p>Participation in local traffic safety fairs and community events</p>
+                            </div>
+                        </li>
+                    </ul>
+                </div>
+                <div class="community-images">
+                    <img src="{% static 'images/community-1.jpg' %}" alt="Community Workshop">
+                    <img src="{% static 'images/community-2.jpg' %}" alt="Safety Fair">
+                </div>
+            </div>
+        </div>
+        
+        <!-- Call to Action -->
+        <div class="cta-box animate-on-scroll">
+            <h3>Ready to Start Your Driving Journey?</h3>
+            <p>Join thousands of satisfied students who have learned to drive with confidence at Success with Us Driving School.</p>
+            <div class="cta-buttons">
+                <a href="{% url 'pricing' %}" class="btn btn-primary">View Our Packages</a>
+                <a href="{% url 'contact' %}" class="btn btn-secondary">Contact Us</a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-small {
+        height: 40vh;
+        min-height: 300px;
+    }
+    
+    .about-section {
+        padding: 5rem 0;
+    }
+    
+    .about-story,
+    .about-mission,
+    .about-team,
+    .about-achievements,
+    .about-testimonials,
+    .about-community {
+        margin-bottom: 5rem;
+    }
+    
+    /* Story Section */
+    .story-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        margin-top: 2rem;
+    }
+    
+    .story-image img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    .story-text p {
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+    }
+    
+    /* Mission Section */
+    .mission-statement {
+        text-align: center;
+        margin-bottom: 3rem;
+    }
+    
+    .highlight-text {
+        font-size: 1.5rem;
+        font-style: italic;
+        color: #333;
+        line-height: 1.6;
+        position: relative;
+        padding: 0 2rem;
+    }
+    
+    .highlight-text::before,
+    .highlight-text::after {
+        content: '"';
+        font-size: 3rem;
+        color: #ffd700;
+        position: absolute;
+        line-height: 1;
+    }
+    
+    .highlight-text::before {
+        left: 0;
+        top: -10px;
+    }
+    
+    .highlight-text::after {
+        right: 0;
+        bottom: -10px;
+    }
+    
+    .mission-values {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+        gap: 2rem;
+    }
+    
+    .value-card {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        transition: transform 0.3s ease;
+    }
+    
+    .value-card:hover {
+        transform: translateY(-10px);
+    }
+    
+    .value-icon {
+        font-size: 2.5rem;
+        color: #ffd700;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Team Section */
+    .team-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+        gap: 2.5rem;
+        margin-top: 2.5rem;
+    }
+    
+    .team-member {
+        background-color: #fff;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+        transition: transform 0.3s ease;
+    }
+    
+    .team-member:hover {
+        transform: translateY(-10px);
+    }
+    
+    .member-image img {
+        width: 100%;
+        height: 250px;
+        object-fit: cover;
+    }
+    
+    .member-info {
+        padding: 1.5rem;
+    }
+    
+    .member-title {
+        color: #666;
+        font-style: italic;
+        margin-bottom: 1rem;
+    }
+    
+    .member-bio {
+        margin-bottom: 1.5rem;
+        line-height: 1.6;
+    }
+    
+    .member-credentials {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    
+    .member-credentials span {
+        display: flex;
+        align-items: center;
+        color: #555;
+        font-size: 0.9rem;
+    }
+    
+    .member-credentials i {
+        color: #ffd700;
+        margin-right: 0.5rem;
+    }
+    
+    /* Achievements Section */
+    .achievements-content {
+        margin-top: 2.5rem;
+    }
+    
+    .achievement-stats {
+        display: grid;
+        grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+        gap: 2rem;
+        margin-bottom: 3rem;
+    }
+    
+    .stat-card {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 2rem;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: 700;
+        color: #ffd700;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+        font-size: 1.1rem;
+        color: #555;
+    }
+    
+    .achievement-awards {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+    }
+    
+    .achievement-awards h3 {
+        margin-bottom: 1.5rem;
+        text-align: center;
+    }
+    
+    .awards-list {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .awards-list li {
+        display: flex;
+        align-items: center;
+        margin-bottom: 1.5rem;
+        padding-bottom: 1.5rem;
+        border-bottom: 1px solid #eee;
+    }
+    
+    .awards-list li:last-child {
+        margin-bottom: 0;
+        padding-bottom: 0;
+        border-bottom: none;
+    }
+    
+    .award-icon {
+        font-size: 2rem;
+        color: #ffd700;
+        margin-right: 1.5rem;
+    }
+    
+    .award-info h4 {
+        margin: 0 0 0.5rem;
+    }
+    
+    .award-info p {
+        color: #666;
+        margin: 0;
+    }
+    
+    /* Testimonials Section */
+    .testimonial-carousel {
+        position: relative;
+        overflow: hidden;
+        margin-top: 2.5rem;
+    }
+    
+    .testimonial-slide {
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 2rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-content {
+        font-style: italic;
+        margin-bottom: 1.5rem;
+        line-height: 1.8;
+    }
+    
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+    }
+    
+    .testimonial-author img {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        margin-right: 1rem;
+    }
+    
+    .testimonial-author h4 {
+        margin: 0;
+    }
+    
+    .testimonial-author p {
+        color: #666;
+        margin: 0;
+    }
+    
+    .testimonial-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 1.5rem;
+    }
+    
+    .prev-btn,
+    .next-btn {
+        background-color: #ffd700;
+        color: #333;
+        border: none;
+        border-radius: 50%;
+        width: 40px;
+        height: 40px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .prev-btn:hover,
+    .next-btn:hover {
+        background-color: #e6c200;
+    }
+    
+    .testimonial-dots {
+        display: flex;
+        align-items: center;
+        margin: 0 1rem;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background-color: #ddd;
+        margin: 0 5px;
+        cursor: pointer;
+        transition: background-color 0.3s ease;
+    }
+    
+    .dot.active {
+        background-color: #ffd700;
+    }
+    
+    /* Community Section */
+    .community-content {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 3rem;
+        align-items: center;
+        margin-top: 2.5rem;
+    }
+    
+    .community-text h3 {
+        margin: 2rem 0 1.5rem;
+    }
+    
+    .community-programs {
+        list-style: none;
+        padding: 0;
+    }
+    
+    .community-programs li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1.5rem;
+    }
+    
+    .community-programs i {
+        font-size: 1.5rem;
+        color: #ffd700;
+        margin-right: 1rem;
+        margin-top: 0.25rem;
+    }
+    
+    .community-programs h4 {
+        margin: 0 0 0.5rem;
+    }
+    
+    .community-programs p {
+        margin: 0;
+        color: #666;
+    }
+    
+    .community-images {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 1.5rem;
+    }
+    
+    .community-images img {
+        width: 100%;
+        border-radius: 8px;
+        box-shadow: 0 5px 15px rgba(0,0,0,0.1);
+    }
+    
+    /* CTA Box */
+    .cta-box {
+        background-color: #f0f8ff;
+        border-radius: 8px;
+        padding: 2.5rem;
+        text-align: center;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .cta-buttons {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    /* Responsive Styles */
+    @media (max-width: 992px) {
+        .story-content,
+        .community-content {
+            grid-template-columns: 1fr;
+        }
+        
+        .story-image {
+            order: -1;
+        }
+        
+        .community-images {
+            margin-top: 2rem;
+        }
+    }
+    
+    @media (max-width: 768px) {
+        .mission-values,
+        .team-grid,
+        .achievement-stats {
+            grid-template-columns: 1fr;
+        }
+        
+        .community-images {
+            grid-template-columns: 1fr;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+        }
+    }
+    
+    /* Animation Classes */
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.6s ease, transform 0.6s ease;
+    }
+    
+    .animate-on-scroll.visible {
+        opacity: 1;
+        transform: translateY(0);
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Testimonial carousel functionality
+        const slides = document.querySelectorAll('.testimonial-slide');
+        const dots = document.querySelectorAll('.dot');
+        const prevBtn = document.querySelector('.prev-btn');
+        const nextBtn = document.querySelector('.next-btn');
+        let currentSlide = 0;
+        
+        // Hide all slides except the first one
+        for (let i = 1; i < slides.length; i++) {
+            slides[i].style.display = 'none';
+        }
+        
+        // Function to show a specific slide
+        function showSlide(index) {
+            // Hide all slides
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = 'none';
+                dots[i].classList.remove('active');
+            }
+            
+            // Show the selected slide
+            slides[index].style.display = 'block';
+            dots[index].classList.add('active');
+            currentSlide = index;
+        }
+        
+        // Event listeners for dots
+        dots.forEach((dot, index) => {
+            dot.addEventListener('click', () => {
+                showSlide(index);
+            });
+        });
+        
+        // Event listeners for prev/next buttons
+        prevBtn.addEventListener('click', () => {
+            let newIndex = currentSlide - 1;
+            if (newIndex < 0) newIndex = slides.length - 1;
+            showSlide(newIndex);
+        });
+        
+        nextBtn.addEventListener('click', () => {
+            let newIndex = currentSlide + 1;
+            if (newIndex >= slides.length) newIndex = 0;
+            showSlide(newIndex);
+        });
+        
+        // Animation on scroll
+        const animateElements = document.querySelectorAll('.animate-on-scroll');
+        
+        function checkIfInView() {
+            animateElements.forEach(element => {
+                const elementTop = element.getBoundingClientRect().top;
+                const elementVisible = 150;
+                
+                if (elementTop < window.innerHeight - elementVisible) {
+                    element.classList.add('visible');
+                }
+            });
+        }
+        
+        window.addEventListener('scroll', checkIfInView);
+        checkIfInView(); // Check on load
+    });
+</script>
+{% endblock %}

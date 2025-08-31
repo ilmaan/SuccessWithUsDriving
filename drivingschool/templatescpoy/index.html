@@ -1,0 +1,73 @@
+<!-- templates/index.html -->
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}Home - Success with Us Driving School{% endblock %}
+
+{% block content %}
+<section class="hero">
+  <div class="hero-content">
+    <h1>Learn to Drive with Confidence</h1>
+    <p>Top-rated driving school in Santa Clara. Flexible scheduling, expert instructors, and proven success.</p>
+    <div class="hero-btns">
+      <a href="{% url 'lessons' %}" class="btn-primary">Book a Lesson</a>
+      <a href="#features" class="btn-secondary">Learn More</a>
+    </div>
+  </div>
+  <div class="hero-image">
+    <img src="{% static 'images/car-driving.png' %}" alt="Student driving with instructor">
+  </div>
+</section>
+
+<section id="features" class="features">
+  <div class="container">
+    <h2 class="section-title">Why Choose Us?</h2>
+    <div class="features-grid">
+      <div class="feature-card animate-up">
+        <i class="fas fa-user-graduate"></i>
+        <h3>Certified Instructors</h3>
+        <p>Experienced, background-checked instructors with 5-star ratings.</p>
+      </div>
+      <div class="feature-card animate-up" style="animation-delay: 0.2s;">
+        <i class="fas fa-video"></i>
+        <h3>Online Learning</h3>
+        <p>Study permit test material with videos and quizzes anytime.</p>
+      </div>
+      <div class="feature-card animate-up" style="animation-delay: 0.4s;">
+        <i class="fas fa-calendar-check"></i>
+        <h3>Easy Scheduling</h3>
+        <p>Book, reschedule, or cancel lessons online with real-time availability.</p>
+      </div>
+      <div class="feature-card animate-up" style="animation-delay: 0.6s;">
+        <i class="fas fa-car"></i>
+        <h3>DMV Test Ready</h3>
+        <p>We coach you on real DMV test routes and procedures.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="stats">
+  <div class="container">
+    <div class="stat-box">
+      <span class="stat-number">98%</span>
+      <p>Pass Rate on First Attempt</p>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number">5,000+</span>
+      <p>Students Trained</p>
+    </div>
+    <div class="stat-box">
+      <span class="stat-number">15+</span>
+      <p>Years of Excellence</p>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Ready to Get Your License?</h2>
+    <p>Start your journey with flexible lessons and expert coaching.</p>
+    <a href="{% url 'lessons' %}" class="btn-primary">Get Started Today</a>
+  </div>
+</section>
+{% endblock %}

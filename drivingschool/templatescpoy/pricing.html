@@ -1,0 +1,75 @@
+<!-- templates/pricing.html -->
+{% extends 'base.html' %}
+{% block title %}Pricing - Success with Us Driving School{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Flexible Lesson Packages</h1>
+  <p>Choose the plan that fits your needs. All plans include progress tracking and support.</p>
+</section>
+
+<section class="pricing-section">
+  <div class="container">
+    <div class="pricing-cards">
+      <div class="pricing-card basic">
+        <h3>Basic 2</h3>
+        <div class="price">$160 <span>/ 2 Hours</span></div>
+        <ul>
+          <li>2 Driving Credits</li>
+          <li>Flexible scheduling</li>
+          <li>Basic progress tracking</li>
+        </ul>
+        <a href="#" class="btn-outline">Select Plan</a>
+      </div>
+
+      <div class="pricing-card basic">
+        <h3>Basic 1</h3>
+        <div class="price">$300 <span>/ 4 Hours</span></div>
+        <ul>
+          <li>4 Driving Credits</li>
+          <li>Flexible scheduling</li>
+          <li>Progress dashboard</li>
+        </ul>
+        <a href="#" class="btn-outline">Select Plan</a>
+      </div>
+
+      <div class="pricing-card popular">
+        <span class="tag">Most Popular</span>
+        <h3>8 Hours</h3>
+        <div class="price">$560 <span>/ 8 Hours</span></div>
+        <ul>
+          <li>8 Driving Credits</li>
+          <li>Preferred instructor selection</li>
+          <li>DMV test route practice</li>
+          <li>Free rescheduling</li>
+        </ul>
+        <a href="#" class="btn-primary">Select Plan</a>
+      </div>
+
+      <div class="pricing-card premium">
+        <h3>Advanced 10</h3>
+        <div class="price">$650 <span>/ 10 Hours</span></div>
+        <ul>
+          <li>10 Driving Credits</li>
+          <li>All 8-hour features</li>
+          <li>Night & highway mastery</li>
+          <li>Personalized feedback reports</li>
+        </ul>
+        <a href="#" class="btn-outline">Select Plan</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="credit-info">
+  <div class="container">
+    <h2>How Credits Work</h2>
+    <p>Each lesson (1 hour) uses 1 credit. Unused credits expire in 6 months. Cancel anytime.</p>
+    <ul>
+      <li>✅ Book anytime via online portal</li>
+      <li>🔁 Reschedule free (24+ hours notice)</li>
+      <li>❌ Cancellations within 24 hours: 50% credit fee</li>
+    </ul>
+  </div>
+</section>
+{% endblock %}

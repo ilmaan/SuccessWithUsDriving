@@ -1,0 +1,52 @@
+<!-- templates/dmv-test-help.html -->
+{% extends 'base.html' %}
+{% block title %}DMV Test Help - Success with Us{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Pass Your DMV Test on the First Try</h1>
+  <p>We prepare you thoroughly with real routes, mock tests, and paperwork help.</p>
+</section>
+
+<section class="dmv-section">
+  <div class="container">
+    <div class="dmv-grid">
+      <div class="dmv-card animate-up">
+        <i class="fas fa-map"></i>
+        <h3>Test Route Training</h3>
+        <p>We practice on the exact streets used by the DMV in Santa Clara.</p>
+      </div>
+      <div class="dmv-card animate-up" style="animation-delay: 0.2s;">
+        <i class="fas fa-clipboard-check"></i>
+        <h3>Mock Test & Scoring</h3>
+        <p>Simulate the real test with instructor feedback and scoring.</p>
+      </div>
+      <div class="dmv-card animate-up" style="animation-delay: 0.4s;">
+        <i class="fas fa-file-alt"></i>
+        <h3>Paperwork Assistance</h3>
+        <p>We help you prepare all required documents for your DMV appointment.</p>
+      </div>
+      <div class="dmv-card animate-up" style="animation-delay: 0.6s;">
+        <i class="fas fa-calendar-plus"></i>
+        <h3>DMV Scheduling Help</h3>
+        <p>We guide you through booking your official test appointment.</p>
+      </div>
+    </div>
+
+    <div class="testimonials">
+      <h2>What Our Students Say</h2>
+      <div class="testimonial">
+        <p>"I passed my DMV test on the first try thanks to the mock test and route practice!"</p>
+        <strong>— Maria S., Santa Clara</strong>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta">
+  <div class="container">
+    <h2>Need DMV Test Help?</h2>
+    <a href="{% url 'lessons' %}" class="btn-primary">Book a Coaching Session</a>
+  </div>
+</section>
+{% endblock %}

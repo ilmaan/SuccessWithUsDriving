@@ -1,0 +1,422 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}DMV Test Help - Success with Us Driving School{% endblock %}
+{% block meta_description %}Prepare for your DMV written and driving tests with our comprehensive resources and expert guidance. Increase your chances of passing on the first try.{% endblock %}
+{% block meta_keywords %}DMV test prep, driving test help, written test preparation, behind-the-wheel test, California DMV test{% endblock %}
+
+{% block hero %}
+<!-- Hero Section -->
+<section class="hero hero-small">
+    <div class="hero-content">
+        <h1>DMV Test Preparation</h1>
+        <p>Expert resources and guidance to help you pass your DMV tests with confidence</p>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<section class="dmv-help-section">
+    <div class="container">
+        <div class="section-title animate-on-scroll">
+            <h2>Comprehensive DMV Test Preparation</h2>
+            <p>At Success with Us Driving School, we're committed to helping you succeed on both the written and behind-the-wheel DMV tests. Our resources and expert guidance will prepare you for test day.</p>
+        </div>
+        
+        <div class="dmv-help-content">
+            <!-- Written Test Section -->
+            <div class="test-prep-card animate-on-scroll">
+                <div class="test-prep-icon">
+                    <i class="fas fa-book"></i>
+                </div>
+                <div class="test-prep-info">
+                    <h3>Written Test Preparation</h3>
+                    <p>The California DMV written test covers road rules, traffic signs, and safe driving practices. Our comprehensive resources will help you master the material and pass with confidence.</p>
+                    
+                    <h4>Study Resources</h4>
+                    <ul class="resource-list">
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>California Driver Handbook - Review the official handbook thoroughly</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Online Practice Tests - Take our practice tests to familiarize yourself with the format</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Road Sign Flashcards - Learn to identify all traffic signs quickly</span>
+                        </li>
+                        <li>
+                            <i class="fas fa-check-circle"></i>
+                            <span>Study Guides - Our condensed guides focus on the most commonly tested topics</span>
+                        </li>
+                    </ul>
+                    
+                    <h4>Written Test Tips</h4>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <div class="tip-number">1</div>
+                            <p>Study the California Driver Handbook thoroughly, focusing on road rules and signs</p>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-number">2</div>
+                            <p>Take multiple practice tests until you consistently score 90% or higher</p>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-number">3</div>
+                            <p>Pay special attention to questions about traffic signs, right-of-way rules, and DUI laws</p>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-number">4</div>
+                            <p>Get a good night's sleep before your test and arrive early to the DMV</p>
+                        </div>
+                    </div>
+                    
+                    <a href="#" class="btn btn-secondary">Access Practice Tests</a>
+                </div>
+            </div>
+            
+            <!-- Behind-the-Wheel Test Section -->
+            <div class="test-prep-card animate-on-scroll">
+                <div class="test-prep-icon">
+                    <i class="fas fa-car"></i>
+                </div>
+                <div class="test-prep-info">
+                    <h3>Behind-the-Wheel Test Preparation</h3>
+                    <p>The driving test evaluates your ability to safely operate a vehicle in various traffic situations. Our instructors will help you master all the skills needed to pass your test on the first attempt.</p>
+                    
+                    <h4>Skills Covered</h4>
+                    <div class="skills-grid">
+                        <div class="skill-item">
+                            <i class="fas fa-parking"></i>
+                            <h5>Parking</h5>
+                            <p>Parallel parking, parking on hills, entering/exiting parking spaces</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-traffic-light"></i>
+                            <h5>Intersections</h5>
+                            <p>Right-of-way rules, traffic signals, stop signs, uncontrolled intersections</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-exchange-alt"></i>
+                            <h5>Lane Changes</h5>
+                            <p>Proper signaling, mirror checks, blind spot awareness</p>
+                        </div>
+                        <div class="skill-item">
+                            <i class="fas fa-road"></i>
+                            <h5>Road Positioning</h5>
+                            <p>Maintaining proper lane position and following distance</p>
+                        </div>
+                    </div>
+                    
+                    <h4>Common Test Routes</h4>
+                    <p>Our instructors are familiar with the common test routes used by local DMV offices. We'll practice on these routes to help you become comfortable with the specific challenges you'll face on test day.</p>
+                    
+                    <h4>Behind-the-Wheel Test Tips</h4>
+                    <div class="tips-grid">
+                        <div class="tip-card">
+                            <div class="tip-number">1</div>
+                            <p>Always check mirrors and blind spots before changing lanes or turning</p>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-number">2</div>
+                            <p>Come to a complete stop at stop signs and red lights</p>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-number">3</div>
+                            <p>Maintain appropriate speed - neither too fast nor too slow</p>
+                        </div>
+                        <div class="tip-card">
+                            <div class="tip-number">4</div>
+                            <p>Practice in the vehicle you'll use for the test to become familiar with it</p>
+                        </div>
+                    </div>
+                    
+                    <a href="{% url 'pricing' %}" class="btn btn-primary">Book Practice Sessions</a>
+                </div>
+            </div>
+            
+            <!-- DMV Test FAQ Section -->
+            <div class="dmv-faq animate-on-scroll">
+                <h3>Frequently Asked Questions</h3>
+                
+                <div class="accordion">
+                    <div class="accordion-item">
+                        <div class="accordion-header" id="faq1">
+                            <h4>How many questions are on the California DMV written test?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>The California DMV written test consists of 36 questions. You need to answer at least 30 correctly (83%) to pass.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" id="faq2">
+                            <h4>How long does the behind-the-wheel test take?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>The driving test typically takes about 20 minutes. During this time, the examiner will evaluate your driving skills in various traffic situations.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" id="faq3">
+                            <h4>What documents do I need to bring to the DMV for my tests?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>You'll need to bring your permit, proof of insurance for the vehicle you're testing in, registration for that vehicle, and a form of identification. If you're under 18, a parent or guardian must accompany you.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" id="faq4">
+                            <h4>What are the most common reasons people fail the driving test?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>Common reasons include not checking blind spots, improper lane changes, rolling through stop signs, driving too fast or too slow for conditions, and improper parking techniques.</p>
+                        </div>
+                    </div>
+                    
+                    <div class="accordion-item">
+                        <div class="accordion-header" id="faq5">
+                            <h4>How many times can I take the DMV tests if I fail?</h4>
+                            <i class="fas fa-plus"></i>
+                        </div>
+                        <div class="accordion-content">
+                            <p>You can take the written test up to 3 times with one application fee. For the behind-the-wheel test, you can take it up to 3 times, but you'll need to wait at least 2 weeks between attempts and pay a retest fee each time.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Call to Action -->
+            <div class="cta-box animate-on-scroll">
+                <h3>Ready to Ace Your DMV Tests?</h3>
+                <p>Our experienced instructors will help you prepare for both the written and behind-the-wheel tests with personalized instruction and proven strategies.</p>
+                <div class="cta-buttons">
+                    <a href="{% url 'pricing' %}" class="btn btn-primary">Book Lessons</a>
+                    <a href="{% url 'contact' %}" class="btn btn-secondary">Contact Us</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+    .hero-small {
+        height: 40vh;
+        min-height: 300px;
+    }
+    
+    .dmv-help-section {
+        padding: 5rem 0;
+    }
+    
+    .dmv-help-content {
+        margin-top: 3rem;
+    }
+    
+    .test-prep-card {
+        display: flex;
+        background-color: #f9f9f9;
+        border-radius: 8px;
+        padding: 2rem;
+        margin-bottom: 3rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .test-prep-icon {
+        flex: 0 0 80px;
+        font-size: 2.5rem;
+        color: #ffd700;
+        margin-right: 2rem;
+        text-align: center;
+    }
+    
+    .test-prep-info {
+        flex: 1;
+    }
+    
+    .resource-list {
+        list-style: none;
+        padding: 0;
+        margin: 1.5rem 0;
+    }
+    
+    .resource-list li {
+        display: flex;
+        align-items: flex-start;
+        margin-bottom: 1rem;
+    }
+    
+    .resource-list i {
+        color: #ffd700;
+        margin-right: 0.75rem;
+        margin-top: 0.25rem;
+    }
+    
+    .tips-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .tip-card {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        position: relative;
+    }
+    
+    .tip-number {
+        position: absolute;
+        top: -15px;
+        left: -15px;
+        width: 30px;
+        height: 30px;
+        background-color: #ffd700;
+        color: #333;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        font-weight: bold;
+    }
+    
+    .skills-grid {
+        display: grid;
+        grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+        gap: 1.5rem;
+        margin: 1.5rem 0;
+    }
+    
+    .skill-item {
+        background-color: #fff;
+        border-radius: 8px;
+        padding: 1.5rem;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+        text-align: center;
+    }
+    
+    .skill-item i {
+        font-size: 2rem;
+        color: #ffd700;
+        margin-bottom: 1rem;
+    }
+    
+    .dmv-faq {
+        margin-top: 3rem;
+    }
+    
+    .accordion {
+        margin-top: 1.5rem;
+    }
+    
+    .accordion-item {
+        margin-bottom: 1rem;
+        border-radius: 8px;
+        overflow: hidden;
+        box-shadow: 0 2px 5px rgba(0,0,0,0.05);
+    }
+    
+    .accordion-header {
+        background-color: #f9f9f9;
+        padding: 1.25rem;
+        cursor: pointer;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+    }
+    
+    .accordion-header h4 {
+        margin: 0;
+        font-size: 1.1rem;
+    }
+    
+    .accordion-content {
+        padding: 0 1.25rem;
+        max-height: 0;
+        overflow: hidden;
+        transition: max-height 0.3s ease;
+    }
+    
+    .accordion-item.active .accordion-content {
+        padding: 1.25rem;
+        max-height: 500px;
+    }
+    
+    .accordion-item.active .accordion-header i {
+        transform: rotate(45deg);
+    }
+    
+    .cta-box {
+        background-color: #f0f8ff;
+        border-radius: 8px;
+        padding: 2.5rem;
+        text-align: center;
+        margin-top: 3rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+    }
+    
+    .cta-buttons {
+        margin-top: 1.5rem;
+        display: flex;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    @media (max-width: 768px) {
+        .test-prep-card {
+            flex-direction: column;
+        }
+        
+        .test-prep-icon {
+            margin-bottom: 1.5rem;
+            margin-right: 0;
+        }
+        
+        .tips-grid,
+        .skills-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+        }
+    }
+</style>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Accordion functionality
+        const accordionItems = document.querySelectorAll('.accordion-item');
+        
+        accordionItems.forEach(item => {
+            const header = item.querySelector('.accordion-header');
+            
+            header.addEventListener('click', () => {
+                // Close all other items
+                accordionItems.forEach(otherItem => {
+                    if (otherItem !== item && otherItem.classList.contains('active')) {
+                        otherItem.classList.remove('active');
+                    }
+                });
+                
+                // Toggle current item
+                item.classList.toggle('active');
+            });
+        });
+    });
+</script>
+{% endblock %}

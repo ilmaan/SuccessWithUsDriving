@@ -1,0 +1,50 @@
+<!-- templates/careers.html -->
+{% extends 'base.html' %}
+{% block title %}Careers - Success with Us Driving School{% endblock %}
+
+{% block content %}
+<section class="page-header">
+  <h1>Join Our Team</h1>
+  <p>Become a certified driving instructor and help shape safer drivers.</p>
+</section>
+
+<section class="careers-section">
+  <div class="container">
+    <div class="job-listing">
+      <h3>Driving Instructor</h3>
+      <p><strong>Location:</strong> Santa Clara, CA</p>
+      <p><strong>Type:</strong> Full-time / Part-time</p>
+      <h4>Responsibilities:</h4>
+      <ul>
+        <li>Teach safe driving techniques to new drivers</li>
+        <li>Maintain student progress records</li>
+        <li>Ensure vehicle safety and cleanliness</li>
+      </ul>
+      <h4>Requirements:</h4>
+      <ul>
+        <li>Valid CA Driver’s License</li>
+        <li>Background check clearance</li>
+        <li>Teaching or coaching experience (preferred)</li>
+      </ul>
+    </div>
+
+    <form class="job-application" id="instructorForm">
+      <h3>Apply Now</h3>
+      <input type="text" name="first_name" placeholder="First Name" required/>
+      <input type="text" name="last_name" placeholder="Last Name" required/>
+      <input type="email" name="email" placeholder="Email" required/>
+      <input type="tel" name="phone" placeholder="Phone"/>
+      <input type="file" name="cv" accept=".pdf,.doc,.docx" required/>
+      <button type="submit" class="btn-primary">Submit Application</button>
+    </form>
+  </div>
+</section>
+{% endblock %}
+
+{% block extra_css %}
+<style>
+  .job-application { max-width: 500px; margin: 0 auto; }
+  .job-application input { width: 100%; padding: 12px; margin: 8px 0; border: 1px solid #ccc; border-radius: 6px; }
+  .job-application button { width: 100%; }
+</style>
+{% endblock %}

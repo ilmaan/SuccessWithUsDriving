@@ -1,0 +1,421 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}Success with Us Driving School - Santa Clara, CA{% endblock %}
+{% block meta_description %}Success with Us Driving School offers professional driving lessons in Santa Clara, CA. Learn to drive with confidence from experienced instructors.{% endblock %}
+{% block meta_keywords %}driving school, driving lessons, Santa Clara driving school, learn to drive, driving instructor{% endblock %}
+
+
+  <!-- Styles -->
+  <link rel="stylesheet" href="{% static 'css/indexstyle.css' %}"/>
+
+
+{% block extra_css %}
+
+{% endblock %}
+
+{% block hero %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="hero-overlay"></div>
+    <div class="hero-content animate-fade-in">
+        <h1 class="animate-slide-up">Learn to Drive with <span class="highlight">Confidence</span></h1>
+        <p class="animate-slide-up-delay">Professional driving instruction in Santa Clara, CA</p>
+        <div class="hero-buttons animate-slide-up-delay-2">
+            <a href="{% url 'pricing' %}" class="btn btn-primary btn-glow">
+                <i class="fas fa-calendar-check"></i> Book Your Lesson
+            </a>
+            <a href="{% url 'about' %}" class="btn btn-secondary btn-outline">
+                <i class="fas fa-info-circle"></i> Learn More
+            </a>
+        </div>
+    </div>
+    <div class="hero-scroll-indicator">
+        <div class="mouse">
+            <div class="wheel"></div>
+        </div>
+        <div class="arrow-scroll-down">
+            <span></span>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block features %}
+<!-- Features Section -->
+<section class="features" id="features">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Why Choose <span class="highlight">Us</span></h2>
+        <div class="section-subtitle animate-on-scroll">Experience the difference with our modern approach to driving education</div>
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-car-side"></i>
+                </div>
+                <h3>Modern Vehicles</h3>
+                <p>Learn in our fleet of safe, dual-control vehicles equipped with the latest technology and safety features.</p>
+                <div class="feature-hover-effect"></div>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="200">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-user-tie"></i>
+                </div>
+                <h3>Expert Instructors</h3>
+                <p>Our certified instructors have years of experience and excellent teaching skills tailored to your learning style.</p>
+                <div class="feature-hover-effect"></div>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="400">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-trophy"></i>
+                </div>
+                <h3>High Pass Rate</h3>
+                <p><span class="highlight-text">{{ pass_rate }}</span> of our students pass their driving test on the first attempt, well above the state average.</p>
+                <div class="feature-hover-effect"></div>
+            </div>
+            <div class="feature-card animate-on-scroll" data-delay="600">
+                <div class="feature-icon-wrapper">
+                    <i class="fas fa-calendar-alt"></i>
+                </div>
+                <h3>Flexible Scheduling</h3>
+                <p>Choose from weekday, evening, and weekend lessons with our easy online booking system to fit your busy schedule.</p>
+                <div class="feature-hover-effect"></div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block plans %}
+<!-- Plans Section -->
+<section class="plans" id="pricing">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">Our <span class="highlight">Driving Packages</span></h2>
+        <div class="section-subtitle animate-on-scroll">Choose the perfect package for your driving journey</div>
+        <div class="plans-grid">
+            {% for plan in plans %}
+            <div class="plan-card animate-on-scroll" data-delay="{{ forloop.counter0|multiply:200 }}">
+                <div class="plan-badge">{% if plan.is_popular %}Most Popular{% endif %}</div>
+                <div class="plan-header">
+                    <h3>{{ plan.name }}</h3>
+                    <div class="plan-price">
+                        <span class="currency">$</span>{{ plan.price }}
+                    </div>
+                </div>
+                <div class="plan-features">
+                    <ul>
+                        <li><i class="fas fa-check-circle"></i> {{ plan.hours }} hours of instruction</li>
+                        {% if plan.includes_test %}  
+                        <li><i class="fas fa-check-circle"></i> DMV test included</li>
+                        {% endif %}
+                        <li><i class="fas fa-check-circle"></i> {{ plan.description }}</li>
+                    </ul>
+                </div>
+                <div class="plan-footer">
+                    <a href="{% url 'contact' %}?package={{ plan.name|lower }}" class="btn btn-primary btn-full-width">
+                        <i class="fas fa-check"></i> Select Package
+                    </a>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        <div class="plans-footer animate-on-scroll">
+            <a href="{% url 'pricing' %}" class="btn btn-secondary btn-with-icon">
+                <i class="fas fa-th-list"></i> View All Packages
+            </a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block about %}
+<!-- About Section -->
+<section class="about" id="about-us">
+    <div class="container">
+        <div class="about-grid">
+            <div class="about-content animate-on-scroll">
+                <h2 class="section-title">About <span class="highlight">Our School</span></h2>
+                <p class="about-description">Success with Us Driving School has been teaching people to drive safely in Santa Clara since 2005. Our mission is to create confident, skilled, and responsible drivers who are prepared for any situation on the road.</p>
+                <div class="about-stats">
+                    <div class="stat animate-on-scroll" data-delay="200">
+                        <div class="stat-number counter" data-target="{{ total_students }}">0</div>
+                        <div class="stat-label">Students Taught</div>
+                    </div>
+                    <div class="stat animate-on-scroll" data-delay="400">
+                        <div class="stat-number" data-target="{{ pass_rate }}">0</div>
+                        <div class="stat-label">Pass Rate</div>
+                    </div>
+                    <div class="stat animate-on-scroll" data-delay="600">
+                        <div class="stat-number counter" data-target="15">0</div>
+                        <div class="stat-label">Years Experience</div>
+                    </div>
+                </div>
+                <a href="{% url 'about' %}" class="btn btn-primary btn-with-icon animate-on-scroll" data-delay="800">
+                    <i class="fas fa-users"></i> Learn More About Us
+                </a>
+            </div>
+            <div class="about-image animate-on-scroll">
+                <div class="image-frame">
+                    <img src="{% static 'images/driving-instructor.jpg' %}" alt="Driving instructor with student">
+                </div>
+                <div class="floating-badge">
+                    <div class="badge-content">
+                        <span class="badge-number" data-target="15">0</span>
+                        <span class="badge-text">Years of Excellence</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block content %}
+<!-- Testimonials Section -->
+<section class="testimonials" id="testimonials">
+    <div class="container">
+        <h2 class="section-title animate-on-scroll">What Our <span class="highlight">Students Say</span></h2>
+        <div class="section-subtitle animate-on-scroll">Real experiences from our graduates</div>
+        
+        <div class="testimonials-carousel animate-on-scroll">
+            <div class="testimonial-card">
+                <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                <div class="testimonial-content">
+                    <p>"My instructor was patient and knowledgeable. I passed my test on the first try thanks to their excellent teaching! The structured approach made learning to drive much less stressful than I expected."</p>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-image">
+                        <img src="{% static 'images/testimonial-1.jpg' %}" alt="Student testimonial">
+                    </div>
+                    <div class="testimonial-author-info">
+                        <h4>Sarah Johnson</h4>
+                        <p>New Driver</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                <div class="testimonial-content">
+                    <p>"After failing my test twice with another school, I switched to Success with Us and passed on my next attempt. The instructors here truly understand how to teach driving skills effectively. Highly recommended!"</p>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-image">
+                        <img src="{% static 'images/testimonial-2.jpg' %}" alt="Student testimonial">
+                    </div>
+                    <div class="testimonial-author-info">
+                        <h4>Michael Chen</h4>
+                        <p>Licensed Driver</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                <div class="testimonial-content">
+                    <p>"The defensive driving techniques I learned here have already helped me avoid several potential accidents. The instructors focus on real-world scenarios that actually happen on the road. Worth every penny!"</p>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-image">
+                        <img src="{% static 'images/testimonial-3.jpg' %}" alt="Student testimonial">
+                    </div>
+                    <div class="testimonial-author-info">
+                        <h4>Jessica Rodriguez</h4>
+                        <p>Defensive Driving Graduate</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="testimonial-controls animate-on-scroll">
+            <button class="testimonial-prev"><i class="fas fa-chevron-left"></i></button>
+            <div class="testimonial-dots">
+                <span class="dot active"></span>
+                <span class="dot"></span>
+                <span class="dot"></span>
+            </div>
+            <button class="testimonial-next"><i class="fas fa-chevron-right"></i></button>
+        </div>
+    </div>
+</section>
+
+
+
+<!-- Call to Action -->
+<section class="cta" id="get-started">
+    <div class="cta-overlay"></div>
+    <div class="container">
+        <div class="cta-content animate-on-scroll">
+            <h2>Ready to Get <span class="highlight">Behind the Wheel?</span></h2>
+            <p>Start your journey to becoming a confident driver today with our expert instructors.</p>
+            <div class="cta-buttons">
+                <a href="{% url 'contact' %}" class="btn btn-primary btn-large btn-glow">
+                    <i class="fas fa-envelope"></i> Contact Us Now
+                </a>
+                <a href="{% url 'pricing' %}" class="btn btn-secondary btn-large btn-outline">
+                    <i class="fas fa-tags"></i> View Pricing
+                </a>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block extra_js %}
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        // Animate elements when they come into view
+        const animateOnScroll = function() {
+            const elements = document.querySelectorAll('.animate-on-scroll');
+            
+            elements.forEach(element => {
+                const elementPosition = element.getBoundingClientRect().top;
+                const windowHeight = window.innerHeight;
+                
+                if (elementPosition < windowHeight - 100) {
+                    element.classList.add('animated');
+                }
+            });
+        };
+        
+        // Run once on page load
+        animateOnScroll();
+        
+        // Run on scroll
+        window.addEventListener('scroll', animateOnScroll);
+        
+        // Counter animation for statistics
+        const statNumbers = document.querySelectorAll('.stat-number');
+        
+        statNumbers.forEach(stat => {
+            const target = parseInt(stat.getAttribute('data-target'));
+            const duration = 2000; // 2 seconds
+            const step = target / (duration / 16); // 60fps
+            let current = 0;
+            
+            const updateCounter = () => {
+                current += step;
+                if (current < target) {
+                    stat.textContent = Math.floor(current);
+                    requestAnimationFrame(updateCounter);
+                } else {
+                    stat.textContent = target;
+                }
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                if (entries[0].isIntersecting) {
+                    updateCounter();
+                    observer.disconnect();
+                }
+            }, { threshold: 0.5 });
+            
+            observer.observe(stat);
+        });
+        
+        // Testimonials carousel
+        const testimonialCarousel = document.querySelector('.testimonials-carousel');
+        const testimonialCards = document.querySelectorAll('.testimonial-card');
+        const prevButton = document.querySelector('.testimonial-prev');
+        const nextButton = document.querySelector('.testimonial-next');
+        const dots = document.querySelectorAll('.dot');
+        
+        if (testimonialCarousel && testimonialCards.length > 0) {
+            let currentIndex = 0;
+            const cardWidth = testimonialCards[0].offsetWidth + 30; // card width + margin
+            
+            const updateCarousel = (index) => {
+                testimonialCarousel.style.transform = `translateX(-${index * cardWidth}px)`;
+                
+                // Update dots
+                dots.forEach((dot, i) => {
+                    dot.classList.toggle('active', i === index);
+                });
+            };
+            
+            // Initialize dots
+            dots.forEach((dot, i) => {
+                dot.addEventListener('click', () => {
+                    currentIndex = i;
+                    updateCarousel(currentIndex);
+                });
+            });
+            
+            // Previous button
+            if (prevButton) {
+                prevButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex > 0) ? currentIndex - 1 : testimonialCards.length - 1;
+                    updateCarousel(currentIndex);
+                });
+            }
+            
+            // Next button
+            if (nextButton) {
+                nextButton.addEventListener('click', () => {
+                    currentIndex = (currentIndex < testimonialCards.length - 1) ? currentIndex + 1 : 0;
+                    updateCarousel(currentIndex);
+                });
+            }
+            
+            // Auto slide every 5 seconds
+            setInterval(() => {
+                currentIndex = (currentIndex < testimonialCards.length - 1) ? currentIndex + 1 : 0;
+                updateCarousel(currentIndex);
+            }, 5000);
+        }
+        
+        // Add data-target attributes to stat numbers if not already present
+        document.querySelectorAll('.stat-number').forEach(stat => {
+            if (!stat.getAttribute('data-target')) {
+                stat.setAttribute('data-target', stat.textContent.trim());
+                stat.textContent = '0';
+            }
+        });
+        
+        // Smooth scrolling for Get Started buttons
+        const getStartedButtons = document.querySelectorAll('.get-started-btn');
+        getStartedButtons.forEach(button => {
+            button.addEventListener('click', function(e) {
+                e.preventDefault();
+                const target = document.querySelector('#registration');
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+        
+        // Registration form handling
+        const registrationForm = document.querySelector('#quick-registration-form');
+        if (registrationForm) {
+            registrationForm.addEventListener('submit', function(e) {
+                // Add any client-side validation here if needed
+                console.log('Registration form submitted');
+            });
+        }
+    });
+</script>
+{% endblock %}
