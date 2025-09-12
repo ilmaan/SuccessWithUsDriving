@@ -6,19 +6,656 @@
 {% block meta_description %}Success with Us Driving School offers professional driving lessons in Santa Clara, CA. Learn to drive with confidence from experienced instructors.{% endblock %}
 {% block meta_keywords %}driving school, driving lessons, Santa Clara driving school, learn to drive, driving instructor{% endblock %}
 
-
-  <!-- Styles -->
-  <link rel="stylesheet" href="{% static 'css/indexstyle.css' %}"/>
-
-
 {% block extra_css %}
+<style>
+    /* Hero Section Enhancements */
+    .hero {
+        position: relative;
+        overflow: hidden;
+    }
+    
+    .hero-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.3));
+        z-index: 1;
+    }
+    
+    .hero-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        text-align: center;
+    }
+    
+    .hero h1 {
+        font-size: 3.5rem;
+        margin-bottom: 1.5rem;
+        text-shadow: 0 2px 10px rgba(0, 0, 0, 0.2);
+    }
+    
+    .highlight {
+        color: #ffd700;
+        position: relative;
+        display: inline-block;
+    }
+    
+    .highlight::after {
+        content: '';
+        position: absolute;
+        bottom: 5px;
+        left: 0;
+        width: 100%;
+        height: 8px;
+        background-color: rgba(255, 215, 0, 0.3);
+        z-index: -1;
+        transform: skewX(-15deg);
+    }
+    
+    .hero-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        margin-top: 2rem;
+    }
+    
+    .btn-glow {
+        box-shadow: 0 0 15px rgba(255, 215, 0, 0.5);
+        transition: all 0.3s ease;
+    }
+    
+    .btn-glow:hover {
+        box-shadow: 0 0 20px rgba(255, 215, 0, 0.8);
+        transform: translateY(-3px);
+    }
+    
+    .btn-outline {
+        background: transparent;
+        border: 2px solid white;
+        transition: all 0.3s ease;
+    }
+    
+    .btn-outline:hover {
+        background: rgba(255, 255, 255, 0.1);
+        transform: translateY(-3px);
+    }
+    
+    .btn-with-icon i {
+        margin-right: 0.5rem;
+    }
+    
+    /* Scroll Indicator */
+    .hero-scroll-indicator {
+        position: absolute;
+        bottom: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 3;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        opacity: 0.8;
+    }
+    
+    .mouse {
+        width: 30px;
+        height: 50px;
+        border: 2px solid white;
+        border-radius: 20px;
+        position: relative;
+    }
+    
+    .wheel {
+        width: 6px;
+        height: 6px;
+        background: white;
+        border-radius: 50%;
+        position: absolute;
+        top: 10px;
+        left: 50%;
+        transform: translateX(-50%);
+        animation: scroll 1.5s infinite;
+    }
+    
+    @keyframes scroll {
+        0% {
+            transform: translateX(-50%) translateY(0);
+            opacity: 1;
+        }
+        100% {
+            transform: translateX(-50%) translateY(20px);
+            opacity: 0;
+        }
+    }
+    
+    .arrow-scroll-down {
+        margin-top: 10px;
+    }
+    
+    .arrow-scroll-down span {
+        display: block;
+        width: 10px;
+        height: 10px;
+        border-bottom: 2px solid white;
+        border-right: 2px solid white;
+        transform: rotate(45deg);
+        margin: -5px;
+        animation: arrow 1.5s infinite;
+    }
+    
+    @keyframes arrow {
+        0% {
+            opacity: 0;
+        }
+        50% {
+            opacity: 1;
+        }
+        100% {
+            opacity: 0;
+        }
+    }
+    
+    /* Feature Cards */
+    .section-subtitle {
+        text-align: center;
+        font-size: 1.2rem;
+        color: #666;
+        margin-bottom: 3rem;
+        color: black;
+    }
+    
+    .feature-card {
+        background: white;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        position: relative;
+        overflow: hidden;
+        z-index: 1;
+    }
+    
+    .feature-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 15px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .feature-icon-wrapper {
+        width: 70px;
+        height: 70px;
+        background: linear-gradient(45deg, #ffd700, #ffed4e);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 1.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .feature-card:hover .feature-icon-wrapper {
+        transform: scale(1.1) rotate(10deg);
+    }
+    
+    .feature-icon-wrapper i {
+        font-size: 2rem;
+        color: white;
+    }
+    
+    .feature-hover-effect {
+        position: absolute;
+        top: -100px;
+        right: -100px;
+        width: 200px;
+        height: 200px;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        border-radius: 50%;
+        z-index: -1;
+        transition: all 0.5s ease;
+        opacity: 0;
 
+        
+    }
+    
+    .feature-card:hover .feature-hover-effect {
+        transform: scale(3);
+        opacity: 1;
+    }
+    
+    .highlight-text {
+        color: #764ba2;
+        font-weight: bold;
+    }
+    
+    /* Plan Cards */
+    .plan-card {
+        background: white;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.3s ease;
+        position: relative;
+        border: 1px solid #eee;
+    }
+    
+    .plan-card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+        border-color: #ddd;
+    }
+    
+    .plan-badge {
+        position: absolute;
+        top: 0;
+        right: 0;
+        background: #ffd700;
+        color: #333;
+        padding: 0.5rem 1rem;
+        font-size: 0.8rem;
+        font-weight: bold;
+        transform: translateX(30%) translateY(0%) rotate(45deg);
+        transform-origin: top left;
+        width: 150px;
+        text-align: center;
+    }
+    
+    .plan-header {
+        padding: 2rem;
+        background: linear-gradient(135deg, #f5f7fa, #c3cfe2);
+        text-align: center;
+    }
+    
+    .plan-price {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #333;
+        margin: 1rem 0;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+    }
+    
+    .currency {
+        font-size: 1.5rem;
+        margin-right: 0.25rem;
+        vertical-align: top;
+    }
+    
+    .plan-features {
+        padding: 2rem;
+    }
+    
+    .plan-features ul {
+        list-style: none;
+        padding: 0;
+        margin: 0;
+    }
+    
+    .plan-features li {
+        margin-bottom: 1rem;
+        display: flex;
+        align-items: center;
+    }
+    
+    .plan-features i {
+        color: #667eea;
+        margin-right: 0.75rem;
+    }
+    
+    .plan-footer {
+        padding: 0 2rem 2rem;
+    }
+    
+    .btn-full-width {
+        width: 100%;
+        text-align: center;
+    }
+    
+    /* About Section */
+    .about-description {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 2rem;
+    }
+    
+    .about-stats {
+        display: flex;
+        gap: 2rem;
+        margin-bottom: 2rem;
+    }
+    
+    .stat {
+        text-align: center;
+    }
+    
+    .stat-number {
+        font-size: 2.5rem;
+        font-weight: bold;
+        color: #667eea;
+        margin-bottom: 0.5rem;
+    }
+    
+    .stat-label {
+        font-size: 1rem;
+        color: #666;
+    }
+    
+    .image-frame {
+        position: relative;
+        border-radius: 10px;
+        overflow: hidden;
+        box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+    
+    .image-frame img {
+        width: 100%;
+        height: auto;
+        display: block;
+        transition: all 0.5s ease;
+    }
+    
+    .about-image:hover .image-frame img {
+        transform: scale(1.05);
+    }
+    
+    .floating-badge {
+        position: absolute;
+        bottom: 30px;
+        right: -20px;
+        background: #ffd700;
+        color: #333;
+        padding: 1rem;
+        border-radius: 50%;
+        width: 100px;
+        height: 100px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+        animation: float 3s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+        0%, 100% {
+            transform: translateY(0);
+        }
+        50% {
+            transform: translateY(-10px);
+        }
+    }
+    
+    .badge-content {
+        text-align: center;
+    }
+    
+    .badge-number {
+        font-size: 1.5rem;
+        font-weight: bold;
+        display: block;
+    }
+    
+    .badge-text {
+        font-size: 0.7rem;
+        display: block;
+    }
+    
+    /* Testimonials */
+    .testimonials {
+        background: #f9f9f9;
+        padding: 5rem 0;
+    }
+    
+    .testimonials-carousel {
+        position: relative;
+        height: 350px;
+        overflow: hidden;
+        margin: 3rem 0;
+    }
+    
+    .testimonial-card {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: white;
+        border-radius: 10px;
+        padding: 2rem;
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        transition: all 0.5s ease;
+    }
+    
+    .testimonial-quote {
+        font-size: 2rem;
+        color: #667eea;
+        margin-bottom: 1rem;
+        opacity: 0.5;
+    }
+    
+    .testimonial-content {
+        font-size: 1.1rem;
+        line-height: 1.8;
+        margin-bottom: 1.5rem;
+        font-style: italic;
+    }
+    
+    .testimonial-rating {
+        color: #ffd700;
+        font-size: 1.2rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .testimonial-author {
+        display: flex;
+        align-items: center;
+    }
+    
+    .testimonial-author-image {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        overflow: hidden;
+        margin-right: 1rem;
+    }
+    
+    .testimonial-author-image img {
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+    }
+    
+    .testimonial-controls {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 1rem;
+    }
+    
+    .testimonial-prev,
+    .testimonial-next {
+        background: white;
+        border: none;
+        width: 40px;
+        height: 40px;
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        transition: all 0.3s ease;
+    }
+    
+    .testimonial-prev:hover,
+    .testimonial-next:hover {
+        background: #667eea;
+        color: white;
+    }
+    
+    .testimonial-dots {
+        display: flex;
+        gap: 0.5rem;
+    }
+    
+    .dot {
+        width: 10px;
+        height: 10px;
+        border-radius: 50%;
+        background: #ddd;
+        cursor: pointer;
+        transition: all 0.3s ease;
+    }
+    
+    .dot.active {
+        background: #667eea;
+        transform: scale(1.3);
+    }
+    
+    /* CTA Section */
+    .cta {
+        position: relative;
+        padding: 5rem 0;
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23764ba2" d="M0,300L50,280C100,260,200,220,300,200C400,180,500,180,600,190C700,200,800,220,900,240C1000,260,1100,280,1150,290L1200,300V600H1150C1100,600,1000,600,900,600C800,600,700,600,600,600C500,600,400,600,300,600C200,600,100,600,50,600H0V300Z"/></svg>');
+        background-size: cover;
+        color: white;
+        text-align: center;
+    }
+    
+    .cta-overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+    }
+    
+    .cta-content {
+        position: relative;
+        z-index: 2;
+        max-width: 800px;
+        margin: 0 auto;
+    }
+    
+    .cta h2 {
+        font-size: 2.5rem;
+        margin-bottom: 1rem;
+    }
+    
+    .cta p {
+        font-size: 1.2rem;
+        margin-bottom: 2rem;
+        opacity: 0.9;
+    }
+    
+    .cta-buttons {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+    }
+    
+    .btn-large {
+        padding: 1rem 2rem;
+        font-size: 1.1rem;
+    }
+    
+    /* Animations */
+    .animate-fade-in {
+        opacity: 0;
+        animation: fadeIn 1s forwards;
+    }
+    
+    .animate-slide-up {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: slideUp 1s forwards;
+    }
+    
+    .animate-slide-up-delay {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: slideUp 1s 0.3s forwards;
+    }
+    
+    .animate-slide-up-delay-2 {
+        opacity: 0;
+        transform: translateY(30px);
+        animation: slideUp 1s 0.6s forwards;
+    }
+    
+    .animate-on-scroll {
+        opacity: 0;
+        transform: translateY(30px);
+        transition: opacity 0.8s ease, transform 0.8s ease;
+    }
+    
+    .animate-on-scroll.animated {
+        opacity: 1;
+        transform: translateY(0);
+    }
+    
+    @keyframes fadeIn {
+        from { opacity: 0; }
+        to { opacity: 1; }
+    }
+    
+    @keyframes slideUp {
+        from { 
+            opacity: 0;
+            transform: translateY(30px);
+        }
+        to { 
+            opacity: 1;
+            transform: translateY(0);
+        }
+    }
+    
+    /* Responsive Adjustments */
+    @media (max-width: 768px) {
+        .hero h1 {
+            font-size: 2.5rem;
+        }
+        
+        .hero-buttons {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .features-grid,
+        .plans-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .about-grid {
+            grid-template-columns: 1fr;
+        }
+        
+        .about-stats {
+            flex-direction: column;
+            gap: 1rem;
+        }
+        
+        .floating-badge {
+            right: 50%;
+            transform: translateX(50%);
+        }
+        
+        .cta-buttons {
+            flex-direction: column;
+        }
+    }
+</style>
 {% endblock %}
 
 {% block hero %}
 <!-- Hero Section -->
 <section class="hero">
     <div class="hero-overlay"></div>
+    <video autoplay muted loop playsinline class="hero-video">
+        <source src="https://www.successwithusdrivingschool.com/wp-content/uploads/2024/04/5124696_Car_Vehicle_Transportation_1280x720.mp4" type="video/mp4">
+    </video>
     <div class="hero-content animate-fade-in">
         <h1 class="animate-slide-up">Learn to Drive with <span class="highlight">Confidence</span></h1>
         <p class="animate-slide-up-delay">Professional driving instruction in Santa Clara, CA</p>
@@ -31,6 +668,27 @@
             </a>
         </div>
     </div>
+
+    <style>
+        .hero-video {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            z-index: 0;
+        }
+        
+        .hero-overlay {
+            background: linear-gradient(135deg, rgba(102, 126, 234, 0.85), rgba(165, 82, 247, 0.35));
+        }
+        
+        .hero-content {
+            position: relative;
+            z-index: 2;
+        }
+    </style>
     <div class="hero-scroll-indicator">
         <div class="mouse">
             <div class="wheel"></div>
@@ -160,7 +818,7 @@
                 </div>
                 <div class="floating-badge">
                     <div class="badge-content">
-                        <span class="badge-number" data-target="15">0</span>
+                        <span class="badge-number" data-target="15">20</span>
                         <span class="badge-text">Years of Excellence</span>
                     </div>
                 </div>
