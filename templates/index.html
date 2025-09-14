@@ -314,6 +314,32 @@
     }
     
     /* About Section */
+    .about {
+        position: relative;
+        background-image: url('{% static "images/driving1.jpg" %}');
+        background-size: cover;
+        background-position: center;
+        background-attachment: fixed;
+    }
+    
+    .about::before {
+        content: '';
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: rgba(255, 255, 255, 0.85);
+        backdrop-filter: blur(8px);
+        -webkit-backdrop-filter: blur(8px);
+        z-index: 1;
+    }
+    
+    .about .container {
+        position: relative;
+        z-index: 2;
+    }
+    
     .about-description {
         font-size: 1.1rem;
         line-height: 1.8;
@@ -407,24 +433,27 @@
         padding: 5rem 0;
     }
     
-    .testimonials-carousel {
+    .testimonials-container {
         position: relative;
-        height: 350px;
         overflow: hidden;
         margin: 3rem 0;
     }
     
+    .testimonials-carousel {
+        display: flex;
+        transition: transform 0.5s ease;
+        margin: 3rem 0;
+        gap: 2rem;
+    }
+    
     .testimonial-card {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
+        flex: 0 0 100%;
         background: white;
         border-radius: 10px;
         padding: 2rem;
         box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
         transition: all 0.5s ease;
+        min-height: 350px;
     }
     
     .testimonial-quote {
@@ -439,6 +468,7 @@
         line-height: 1.8;
         margin-bottom: 1.5rem;
         font-style: italic;
+        width: 80%;
     }
     
     .testimonial-rating {
@@ -793,18 +823,22 @@
         <div class="about-grid">
             <div class="about-content animate-on-scroll">
                 <h2 class="section-title">About <span class="highlight">Our School</span></h2>
-                <p class="about-description">Success with Us Driving School has been teaching people to drive safely in Santa Clara since 2005. Our mission is to create confident, skilled, and responsible drivers who are prepared for any situation on the road.</p>
+                <!-- <img src="{% static 'images/driving1.jpg' %}" alt="About Us"> -->
+                <p class="about-description">Welcome to Success with Us Driving School—where your journey to safe, confident driving begins. We’re proud to be the trusted name in driver education, offering the personalized service and expert guidance you deserve.
+Specializing in behind-the-wheel training, our school has helped over 2,500 students become licensed drivers who now contribute positively to their communities. Each lesson is designed to build not just skill, but confidence and responsibility on the road.
+Our instructors bring years of specialized experience and a deep commitment to student success. With a strong track record of satisfaction, we’re here to support every learner with patience, professionalism, and care.
+Success with Us Driving School has been teaching people to drive safely in Santa Clara since 2005. Our mission is to create confident, skilled, and responsible drivers who are prepared for any situation on the road.</p>
                 <div class="about-stats">
                     <div class="stat animate-on-scroll" data-delay="200">
-                        <div class="stat-number counter" data-target="{{ total_students }}">0</div>
+                        <div class="stat-number counter" data-target="500+">0</div>
                         <div class="stat-label">Students Taught</div>
                     </div>
                     <div class="stat animate-on-scroll" data-delay="400">
-                        <div class="stat-number" data-target="{{ pass_rate }}">0</div>
+                        <div class="stat-number" data-target="99%">0</div>
                         <div class="stat-label">Pass Rate</div>
                     </div>
                     <div class="stat animate-on-scroll" data-delay="600">
-                        <div class="stat-number counter" data-target="15">0</div>
+                        <div class="stat-number counter" data-target="23">0</div>
                         <div class="stat-label">Years Experience</div>
                     </div>
                 </div>
@@ -814,11 +848,11 @@
             </div>
             <div class="about-image animate-on-scroll">
                 <div class="image-frame">
-                    <img src="{% static 'images/driving-instructor.jpg' %}" alt="Driving instructor with student">
+                    <img src="{% static 'images/driving1.jpg' %}" alt="Driving instructor with student">
                 </div>
                 <div class="floating-badge">
                     <div class="badge-content">
-                        <span class="badge-number" data-target="15">20</span>
+                        <span class="badge-number" data-target="15">23</span>
                         <span class="badge-text">Years of Excellence</span>
                     </div>
                 </div>
@@ -835,52 +869,56 @@
         <h2 class="section-title animate-on-scroll">What Our <span class="highlight">Students Say</span></h2>
         <div class="section-subtitle animate-on-scroll">Real experiences from our graduates</div>
         
-        <div class="testimonials-carousel animate-on-scroll">
-            <div class="testimonial-card">
-                <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
-                <div class="testimonial-content">
-                    <p>"My instructor was patient and knowledgeable. I passed my test on the first try thanks to their excellent teaching! The structured approach made learning to drive much less stressful than I expected."</p>
-                </div>
-                <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="testimonial-author">
-                    <div class="testimonial-author-image">
-                        <img src="{% static 'images/testimonial-1.jpg' %}" alt="Student testimonial">
-                    </div>
-                    <div class="testimonial-author-info">
-                        <h4>Sarah Johnson</h4>
-                        <p>New Driver</p>
-                    </div>
-                </div>
-            </div>
+        <div class="testimonials-container animate-on-scroll">
+            <div class="testimonials-carousel">
+            
             
             <div class="testimonial-card">
                 <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
                 <div class="testimonial-content">
-                    <p>"After failing my test twice with another school, I switched to Success with Us and passed on my next attempt. The instructors here truly understand how to teach driving skills effectively. Highly recommended!"</p>
+                    <p>"The defensive driving techniques I learned here have already helped me avoid several potential accidents. The instructors focus on real-world scenarios that actually happen on the road. Worth every penny!"</p>
                 </div>
                 <div class="testimonial-rating">
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
                     <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
                 </div>
                 <div class="testimonial-author">
                     <div class="testimonial-author-image">
-                        <img src="{% static 'images/testimonial-2.jpg' %}" alt="Student testimonial">
+                        <img src="{% static 'images/testimonial-3.jpg' %}" alt="Student testimonial">
                     </div>
                     <div class="testimonial-author-info">
-                        <h4>Michael Chen</h4>
-                        <p>Licensed Driver</p>
+                        <h4>Jessicaaaaa Rodriguez</h4>
+                        <p>Defensive Driving Graduate</p>
                     </div>
                 </div>
             </div>
+
+            <div class="testimonial-card">
+                <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                <div class="testimonial-content">
+                    <p>"The defensive driving techniques I learned here have already helped me avoid several potential accidents. The instructors focus on real-world scenarios that actually happen on the road. Worth every penny!"</p>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star-half-alt"></i>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-image">
+                        <img src="{% static 'images/testimonial-3.jpg' %}" alt="Student testimonial">
+                    </div>
+                    <div class="testimonial-author-info">
+                        <h4>ROMENA Rodriguez</h4>
+                        <p>Defensive Driving Graduate</p>
+                    </div>
+                </div>
+            </div>
+        
             
             <div class="testimonial-card">
                 <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
@@ -903,6 +941,7 @@
                         <p>Defensive Driving Graduate</p>
                     </div>
                 </div>
+            </div>
             </div>
         </div>
         
@@ -1001,10 +1040,10 @@
         
         if (testimonialCarousel && testimonialCards.length > 0) {
             let currentIndex = 0;
-            const cardWidth = testimonialCards[0].offsetWidth + 30; // card width + margin
             
             const updateCarousel = (index) => {
-                testimonialCarousel.style.transform = `translateX(-${index * cardWidth}px)`;
+                const translateX = -index * 100; // Move by 100% for each card
+                testimonialCarousel.style.transform = `translateX(${translateX}%)`;
                 
                 // Update dots
                 dots.forEach((dot, i) => {
