@@ -12,12 +12,12 @@ from django.http import JsonResponse, HttpResponseForbidden
 from django.shortcuts import render, redirect, get_object_or_404
 from django.utils import timezone
 from django.views.decorators.csrf import csrf_exempt
-from twilio.rest import Client
+# from twilio.rest import Client
 from .models import *
 from .forms import *
 
 # Twilio setup
-twilio_client = Client(settings.TWILIO_SID, settings.TWILIO_AUTH_TOKEN)
+# twilio_client = Client(settings.TWILIO_SID, settings.TWILIO_AUTH_TOKEN)
 
 # Stripe setup
 # stripe.api_key = settings.STRIPE_SECRET_KEY
@@ -196,11 +196,11 @@ def book_lesson(request):
                 return redirect('book_lesson')
             appt.save()
             # SMS Reminder
-            twilio_client.messages.create(
-                body=f"Hi {student.user.first_name}, your lesson is on {appt.scheduled_time.strftime('%b %d, %I:%M %p')}. See you soon!",
-                from_=settings.TWILIO_PHONE,
-                to=f"+1{student.phone}"
-            )
+            # twilio_client.messages.create(
+            #     body=f"Hi {student.user.first_name}, your lesson is on {appt.scheduled_time.strftime('%b %d, %I:%M %p')}. See you soon!",
+            #     from_=settings.TWILIO_PHONE,
+            #     to=f"+1{student.phone}"
+            # )
             messages.success(request, "Lesson booked!")
             return redirect('student_portal')
     else:
