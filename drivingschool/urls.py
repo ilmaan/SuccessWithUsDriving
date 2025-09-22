@@ -16,14 +16,25 @@ urlpatterns = [
     # Auth
     path('register/', views.register, name='register'),
     path('login/', views.login_view, name='login'),
-    path('logout/', auth_views.LogoutView.as_view(next_page='home'), name='logout'),
+    path('logout/', views.logout_view, name='logout'),
     path('dashboard/', views.dashboard, name='dashboard'),
     path('plan-selection/', views.plan_selection, name='plan_selection'),
 
     # Student
     path('student/', views.student_portal, name='student_portal'),
+    path('student/booking/', views.booking_page, name='booking_page'),
     path('student/book/', views.book_lesson, name='book_lesson'),
     path('student/cancel/<int:appt_id>/', views.cancel_appointment, name='cancel_appointment'),
+    path('student/cancel-appointment/', views.cancel_appointment, name='cancel_appointment_ajax'),
+    path('student/reschedule-appointment/', views.reschedule_appointment, name='reschedule_appointment'),
+    path('add-to-cart/<int:plan_id>/', views.add_to_cart, name='add_to_cart'),
+    path('add-to-cart-checkout/<str:plan_name>/', views.add_to_cart_and_checkout, name='add_to_cart_and_checkout'),
+    path('cart/', views.view_cart, name='view_cart'),
+    path('cart/remove/<int:item_id>/', views.remove_from_cart, name='remove_from_cart'),
+    path('cart/checkout/', views.checkout_cart, name='checkout_cart'),
+    path('cart/payment/', views.process_cart_payment, name='process_cart_payment'),
+    path('purchase-plan/<int:plan_id>/', views.purchase_plan, name='purchase_plan'),
+    path('payment/<int:purchase_id>/', views.payment_page, name='payment_page'),
 
     # Payment
     path('select-plan/<str:plan_name>/', views.select_plan, name='select_plan'),
@@ -41,4 +52,5 @@ urlpatterns = [
 
     # API
     path('api/chatbot/', views.chatbot_api, name='chatbot_api'),
+    path('api/available-slots/', views.get_available_slots, name='get_available_slots'),
 ]

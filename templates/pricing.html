@@ -55,7 +55,7 @@
                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'select_plan' plan_name='quick-start' %}" class="btn btn-primary">Select This Plan</a>
+                            <a href="{% url 'add_to_cart_and_checkout' 'quick-start' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}
@@ -82,7 +82,7 @@
                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'select_plan' plan_name='momentum-drive' %}" class="btn btn-primary">Select This Plan</a>
+                            <a href="{% url 'add_to_cart_and_checkout' 'momentum-drive' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}
@@ -110,7 +110,7 @@
                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'select_plan' plan_name='confidence-cruise' %}" class="btn btn-primary">Select This Plan</a>
+                            <a href="{% url 'add_to_cart_and_checkout' 'confidence-cruise' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}
@@ -137,7 +137,7 @@
                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'select_plan' plan_name='master-the-road' %}" class="btn btn-primary">Select This Plan</a>
+                            <a href="{% url 'add_to_cart_and_checkout' 'master-the-road' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}
@@ -164,7 +164,7 @@
                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'select_plan' plan_name='driven-to-succeed' %}" class="btn btn-primary">Select This Plan</a>
+                            <a href="{% url 'add_to_cart_and_checkout' 'driven-to-succeed' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}
@@ -191,7 +191,7 @@
                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'select_plan' plan_name='test-day-champion' %}" class="btn btn-primary">Select This Plan</a>
+                            <a href="{% url 'add_to_cart_and_checkout' 'test-day-champion' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}
@@ -225,7 +225,7 @@
                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'select_plan' plan_name='test-prep' %}" class="btn btn-primary">Select This Plan</a>
+                            <a href="{% url 'add_to_cart_and_checkout' 'test-prep' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}
@@ -254,7 +254,7 @@
                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'select_plan' plan_name='refresher' %}" class="btn btn-primary">Select This Plan</a>
+                            <a href="{% url 'add_to_cart_and_checkout' 'refresher' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}
@@ -283,7 +283,7 @@
                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'select_plan' plan_name='defensive' %}" class="btn btn-primary">Select This Plan</a>
+                            <a href="{% url 'add_to_cart_and_checkout' 'defensive' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}

@@ -1,6 +1,6 @@
 from django.contrib import admin
 from .models import (
-    Student, Instructor, LessonPlan, Appointment, 
+    Student, Instructor, LessonPlan, PlanFeature, Appointment, 
     Review, JobApplication, GiftCard, Referral
 )
 
@@ -20,12 +20,25 @@ class InstructorAdmin(admin.ModelAdmin):
     search_fields = ('user__username', 'user__first_name', 'user__last_name', 'phone')
     list_editable = ('is_available',)
 
+class PlanFeatureInline(admin.TabularInline):
+    model = PlanFeature
+    extra = 3
+    fields = ('feature_text', 'order')
+
 @admin.register(LessonPlan)
 class LessonPlanAdmin(admin.ModelAdmin):
-    list_display = ('name', 'hours', 'price', 'is_popular')
-    list_filter = ('is_popular', 'hours')
-    search_fields = ('name', 'description')
-    list_editable = ('is_popular', 'price')
+    list_display = ('name', 'hours', 'price', 'is_popular', 'includes_test')
+    list_filter = ('is_popular', 'includes_test', 'hours')
+    search_fields = ('name',)
+    list_editable = ('is_popular', 'includes_test', 'price')
+    inlines = [PlanFeatureInline]
+
+@admin.register(PlanFeature)
+class PlanFeatureAdmin(admin.ModelAdmin):
+    list_display = ('plan', 'feature_text', 'order')
+    list_filter = ('plan',)
+    search_fields = ('feature_text', 'plan__name')
+    list_editable = ('order',)
 
 @admin.register(Appointment)
 class AppointmentAdmin(admin.ModelAdmin):

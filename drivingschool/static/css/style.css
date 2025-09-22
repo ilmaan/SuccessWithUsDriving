@@ -120,6 +120,12 @@
     box-shadow: 0 10px 30px rgba(0,0,0,0.1);
   }
   
+
+  
+
+
+
+
   /* Buttons */
   .btn-primary {
     display: inline-block;
@@ -340,4 +346,5 @@
       padding: 1rem;
       box-shadow: 0 5px 10px rgba(0,0,0,0.1);
     }
+    
   }

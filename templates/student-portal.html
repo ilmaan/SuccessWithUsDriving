@@ -1,0 +1,785 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Student Portal - Success with Us Driving School{% endblock %}
+
+{% block extra_css %}
+<!-- Bootstrap CSS -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+<style>
+.dashboard-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 2rem 0;
+    margin-bottom: 2rem;
+    border-radius: 15px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+}
+
+.dashboard-card {
+    border: none;
+    border-radius: 15px;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    margin: 0.75rem;
+    padding: 1rem;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 15px 40px rgba(0,0,0,0.15);
+}
+
+.stat-card {
+    border: none;
+    border-radius: 20px;
+    color: white;
+    padding: 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+}
+
+.stat-card.primary {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+}
+
+.stat-card.success {
+    background: linear-gradient(135deg, #56ab2f 0%, #a8e6cf 100%);
+}
+
+.stat-card.info {
+    background: linear-gradient(135deg, #3ca55c 0%, #b5ac49 100%);
+}
+
+.stat-card.warning {
+    background: linear-gradient(135deg, #f093fb 0%, #f5576c 100%);
+}
+
+.stat-card:hover {
+    transform: scale(1.05);
+}
+
+.plan-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.1);
+    transition: all 0.3s ease;
+    overflow: hidden;
+    position: relative;
+    margin: 0.75rem;
+}
+
+.plan-card::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    height: 4px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+}
+
+.plan-card:hover {
+    transform: translateY(-10px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.15);
+}
+
+.modern-table {
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 5px 20px rgba(0,0,0,0.08);
+}
+
+.modern-table thead {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+}
+
+.modern-table tbody tr:hover {
+    background-color: #f8f9ff;
+    transform: scale(1.01);
+    transition: all 0.2s ease;
+}
+
+.status-badge {
+    padding: 0.5rem 1rem;
+    border-radius: 20px;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.75rem;
+    letter-spacing: 0.5px;
+}
+
+.welcome-section {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    color: white;
+    padding: 3rem 2rem;
+    border-radius: 20px;
+    margin-bottom: 2rem;
+    position: relative;
+    overflow: hidden;
+}
+
+.welcome-section::before {
+    content: '';
+    position: absolute;
+    top: -50%;
+    right: -50%;
+    width: 100%;
+    height: 100%;
+    background: rgba(255,255,255,0.1);
+    border-radius: 50%;
+    transform: rotate(45deg);
+}
+
+.section-title {
+    color: #2d3748;
+    font-weight: 700;
+    margin-bottom: 1rem;
+    position: relative;
+}
+
+.section-title::after {
+    content: '';
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 50px;
+    height: 3px;
+    background: linear-gradient(90deg, #667eea, #764ba2);
+    border-radius: 2px;
+}
+
+.cart-btn {
+    background: linear-gradient(45deg, #ffd700, #ffed4e);
+    border: none;
+    color: #333;
+    font-weight: 600;
+    padding: 12px 30px;
+    border-radius: 25px;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 15px rgba(255, 215, 0, 0.3);
+}
+
+.cart-btn:hover {
+    transform: translateY(-2px);
+    box-shadow: 0 6px 20px rgba(255, 215, 0, 0.4);
+    color: #333;
+}
+
+/* Enhanced Status Badges */
+.status-badge {
+    padding: 8px 16px;
+    border-radius: 20px;
+    font-size: 0.85rem;
+    font-weight: 600;
+    border: none;
+    display: inline-flex;
+    align-items: center;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.status-badge.bg-success {
+    background: linear-gradient(45deg, #28a745, #20c997) !important;
+    color: white;
+}
+
+.status-badge.bg-primary {
+    background: linear-gradient(45deg, #007bff, #6610f2) !important;
+    color: white;
+}
+
+.status-badge.bg-secondary {
+    background: linear-gradient(45deg, #6c757d, #495057) !important;
+    color: white;
+}
+
+/* Enhanced Modern Table */
+.modern-table thead th {
+    background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+    color: #495057;
+    font-weight: 600;
+    text-transform: uppercase;
+    font-size: 0.85rem;
+    letter-spacing: 0.5px;
+}
+
+.modern-table tbody tr {
+    border-bottom: 1px solid #f1f3f4;
+    transition: all 0.2s ease;
+}
+
+.sidebar-card {
+    border: none;
+    border-radius: 20px;
+    box-shadow: 0 8px 25px rgba(0,0,0,0.08);
+    overflow: hidden;
+    margin: 0.75rem;
+    padding: 0.5rem;
+}
+
+.sidebar-card .card-header {
+    background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+    border: none;
+    color: white;
+    padding: 1.5rem;
+    font-weight: 600;
+}
+
+.purchase-item {
+    border-left: 4px solid #667eea;
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.05), transparent);
+    padding: 1rem;
+    margin-bottom: 1rem;
+    border-radius: 0 10px 10px 0;
+    transition: all 0.3s ease;
+}
+
+.purchase-item:hover {
+    background: linear-gradient(90deg, rgba(102, 126, 234, 0.1), transparent);
+    transform: translateX(5px);
+}
+
+@media (max-width: 768px) {
+    .welcome-section {
+        padding: 2rem 1rem;
+        text-align: center;
+    }
+    
+    .stat-card {
+        margin-bottom: 1rem;
+    }
+}
+</style>
+{% endblock %}
+
+{% block content %}
+<div class="container-fluid px-4 py-4">
+    <!-- Welcome Header -->
+    <div class="welcome-section">
+        <div class="row align-items-center">
+            <div class="col-md-8">
+                <h1 class="display-4 mb-2">Welcome back, {{ student.user.first_name }}! 👋</h1>
+                <p class="lead mb-0">Ready to continue your driving journey? Let's make today count!</p>
+            </div>
+            <div class="col-md-4 text-md-right mt-3 mt-md-0">
+                <a href="{% url 'view_cart' %}" class="cart-btn">
+                    <i class="fas fa-shopping-cart me-2"></i>
+                    Cart ({{ cart_items_count|default:0 }})
+                </a>
+            </div>
+        </div>
+    </div>
+    
+    <!-- Statistics Cards -->
+
+
+    <section class="features" id="services">
+        <div class="container">
+            
+            <div class="features-grid">
+                
+                <div class=" animate-on-scroll">
+                  <div class="stat-card primary rounded-4 mx-2">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="mb-1">Available Credits</h5>
+                        <h2 class="display-4 mb-0">{{ available_credits }}</h2>
+                        <small class="opacity-75">Hours remaining</small>
+                    </div>
+                    <div class="text-right">
+                        <i class="fas fa-clock fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>  
+                </div>
+
+
+                <div class=" animate-on-scroll">
+                     <div class="stat-card success rounded-4 mx-2">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="mb-1">Total Credits</h5>
+                        <h2 class="display-4 mb-0">{{ total }}</h2>
+                        <small class="opacity-75">Hours purchased</small>
+                    </div>
+                    <div class="text-right">
+                        <i class="fas fa-graduation-cap fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+                </div>
+
+
+                <div class=" animate-on-scroll">
+                  <div class="stat-card warning rounded-4 mx-2">
+                <div class="d-flex align-items-center justify-content-between">
+                    <div>
+                        <h5 class="mb-1">Completed Lessons</h5>
+                        <h2 class="display-4 mb-0">{{ completed }}</h2>
+                        <small class="opacity-75">Lessons finished</small>
+                    </div>
+                    <div class="text-right">
+                        <i class="fas fa-check-circle fa-3x opacity-50"></i>
+                    </div>
+                </div>
+            </div>
+
+                </div>
+   
+            </div>
+        </div>
+    </section>
+
+
+    <!-- Main Content Area -->
+    <div class="row mb-5 g-4">
+        <div class="col-lg-8">
+            <!-- Available Plans section will go here -->
+        </div>
+        <div class="col-lg-4">
+            <!-- Account Summary -->
+            <div class="sidebar-card mx-2 mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-user-circle me-2"></i>Account Summary</h5>
+                </div>
+                <div class="card-body">
+                    <div class="row text-center mb-3">
+                        <div class="col-6">
+                            <div class="p-3 bg-light rounded-3">
+                                <h4 class="text-primary mb-1">{{ student.available_credits }}</h4>
+                                <small class="text-muted">Available</small>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="p-3 bg-light rounded-3">
+                                <h4 class="text-success mb-1">{{ student.total_credits }}</h4>
+                                <small class="text-muted">Total</small>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="text-center p-3 bg-gradient rounded-3" style="background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));">
+                        <i class="fas fa-calendar-alt text-primary mb-2"></i>
+                        <div class="small text-muted">Member since</div>
+                        <div class="fw-bold">{{ user.date_joined|date:"M Y" }}</div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Purchased Plans -->
+            <div class="sidebar-card mx-2 mb-4">
+                <div class="card-header">
+                    <h5 class="mb-0"><i class="fas fa-shopping-bag me-2"></i>My Purchased Plans</h5>
+                </div>
+                <div class="card-body">
+                    {% if purchased_plans %}
+                        {% for purchase in purchased_plans %}
+                        <div class="purchase-item">
+                            <div class="d-flex justify-content-between align-items-start">
+                                <div class="flex-grow-1">
+                                    <h6 class="text-primary mb-1 fw-bold">{{ purchase.plan.name }}</h6>
+                                    <div class="small text-muted mb-1">
+                                        <i class="fas fa-clock me-1"></i>{{ purchase.credits_granted }} credits
+                                    </div>
+                                    <div class="small text-muted">
+                                        <i class="fas fa-calendar me-1"></i>{{ purchase.purchase_date|date:"M d, Y" }}
+                                    </div>
+                                </div>
+                                <span class="badge bg-success rounded-pill">{{ purchase.payment_status|title }}</span>
+                            </div>
+                        </div>
+                        {% endfor %}
+                    {% else %}
+                        <div class="text-center py-4">
+                            <i class="fas fa-shopping-cart fa-3x text-muted mb-3"></i>
+                            <p class="text-muted mb-2">No plans purchased yet</p>
+                            <small class="text-muted">Browse our lesson plans below to get started!</small>
+                        </div>
+                    {% endif %}
+                </div>
+            </div>
+        </div>
+    </div>
+            <!-- Available Plans
+            <div class="mb-5">
+                <h2 class="section-title"><i class="fas fa-graduation-cap me-2"></i>Available Lesson Plans</h2>
+                <p class="text-muted mb-4">Purchase additional lesson plans to add more credits to your account and continue your driving journey.</p>
+                
+                <div class="row g-4">
+                    {% for plan in plans %}
+                    <div class="col-md-6 col-lg-4">
+                        <div class="plan-card h-100 mx-2">
+                            <div class="card-body p-4">
+                                <div class="text-center mb-3">
+                                    <div class="bg-light rounded-circle d-inline-flex align-items-center justify-content-center" style="width: 60px; height: 60px;">
+                                        <i class="fas fa-car text-primary fa-2x"></i>
+                                    </div>
+                                </div>
+                                <h5 class="card-title text-center mb-3 fw-bold">{{ plan.name }}</h5>
+                                <div class="text-center mb-3">
+                                    <span class="display-6 fw-bold text-primary">${{ plan.price }}</span>
+                                </div>
+                                <div class="text-center mb-3">
+                                    <span class="badge bg-light text-dark rounded-pill px-3 py-2">
+                                        <i class="fas fa-clock me-1"></i>{{ plan.hours }} hours
+                                    </span>
+                                </div>
+                                <p class="card-text text-muted text-center">{{ plan.description }}</p>
+                            </div>
+                            <div class="card-footer bg-transparent border-0 p-4 pt-0">
+                                <a href="{% url 'purchase_plan' plan.id %}" class="btn w-100 py-3 fw-bold" style="background: linear-gradient(135deg, #667eea 0%, #764ba2 100%); border: none; color: white; border-radius: 15px; transition: all 0.3s ease;" onmouseover="this.style.transform='translateY(-2px)'; this.style.boxShadow='0 8px 25px rgba(102, 126, 234, 0.4)'" onmouseout="this.style.transform='translateY(0)'; this.style.boxShadow='0 5px 15px rgba(102, 126, 234, 0.3)'">
+                                    <i class="fas fa-rocket me-2"></i>Get Started
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div> -->
+    
+    <!-- Recent Appointments -->
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="section-title"><i class="fas fa-calendar-check me-2"></i>Recent Appointments</h2>
+            <p class="text-muted mb-4">Track your lesson progress and upcoming sessions.</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            {% if appointments %}
+            <div class="dashboard-card mx-2 mb-4">
+                <div class="table-responsive">
+                    <table class="table modern-table mb-0">
+                        <thead>
+                            <tr>
+                                <th class="border-0 py-3"><i class="fas fa-calendar me-2"></i>Date & Time</th>
+                                <th class="border-0 py-3"><i class="fas fa-user-tie me-2"></i>Instructor</th>
+                                <th class="border-0 py-3"><i class="fas fa-info-circle me-2"></i>Status</th>
+                                <th class="border-0 py-3"><i class="fas fa-coins me-2"></i>Credits Used</th>
+                                <th class="border-0 py-3"><i class="fas fa-sticky-note me-2"></i>Notes</th>
+                                <th class="border-0 py-3"><i class="fas fa-cogs me-2"></i>Actions</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for appointment in appointments|slice:":5" %}
+                            <tr>
+                                <td class="py-3">
+                                    <div class="fw-bold">{{ appointment.scheduled_time|date:"M d, Y" }}</div>
+                                    <small class="text-muted">{{ appointment.scheduled_time|date:"H:i" }}</small>
+                                </td>
+                                <td class="py-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-light rounded-circle d-flex align-items-center justify-content-center me-2" style="width: 35px; height: 35px;">
+                                            <i class="fas fa-user text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold">{{ appointment.instructor.user.get_full_name }}</div>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3">
+                                    <span class="status-badge bg-{% if appointment.status == 'Completed' %}success{% elif appointment.status == 'Scheduled' %}primary{% else %}secondary{% endif %}">
+                                        <i class="fas fa-{% if appointment.status == 'Completed' %}check{% elif appointment.status == 'Scheduled' %}clock{% else %}question{% endif %} me-1"></i>
+                                        {{ appointment.status }}
+                                    </span>
+                                </td>
+                                <td class="py-3">
+                                    <span class="badge bg-light text-dark rounded-pill px-3 py-2">
+                                        <i class="fas fa-coins me-1"></i>{{ appointment.credits_used }}
+                                    </span>
+                                </td>
+                                <td class="py-3">
+                                    <span class="text-muted">{{ appointment.notes|truncatewords:8|default:"No notes" }}</span>
+                                </td>
+                                <td class="py-3">
+                                    <div class="btn-group" role="group">
+                                        {% if appointment.status == 'Scheduled' %}
+                                            <button type="button" class="btn btn-sm btn-outline-primary me-1" 
+                                                    onclick="rescheduleAppointment({{ appointment.id }}, '{{ appointment.scheduled_time|date:"Y-m-d" }}', '{{ appointment.scheduled_time|date:"H:i" }}', {{ appointment.instructor.id }})"
+                                                    title="Reschedule Appointment">
+                                                <i class="fas fa-calendar-alt"></i>
+                                            </button>
+                                            <button type="button" class="btn btn-sm btn-outline-danger" 
+                                                    onclick="cancelAppointment({{ appointment.id }})"
+                                                    title="Cancel Appointment">
+                                                <i class="fas fa-times"></i>
+                                            </button>
+                                        {% else %}
+                                            <span class="text-muted small">No actions available</span>
+                                        {% endif %}
+                                    </div>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            {% else %}
+            <div class="dashboard-card mx-2 mb-4 text-center py-5">
+                <i class="fas fa-calendar-times fa-4x text-muted mb-3"></i>
+                <h4 class="text-muted mb-3">No appointments yet</h4>
+                <p class="text-muted mb-4">Once you purchase a plan and book lessons, they will appear here.</p>
+                <a href="{% url 'booking_page' %}" class="btn cart-btn">
+                    <i class="fas fa-plus me-2"></i>Book Your First Lesson
+                </a>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+    
+    <!-- Plan Purchase History -->
+    {% if plan_purchases %}
+    <div class="row mt-5">
+        <div class="col-12">
+            <h2 class="section-title"><i class="fas fa-history me-2"></i>Plan Purchase History</h2>
+            <p class="text-muted mb-4">Review your past plan purchases and transaction history.</p>
+        </div>
+    </div>
+    
+    <div class="row">
+        <div class="col-12">
+            <div class="dashboard-card mx-2 mb-4">
+                <div class="table-responsive">
+                    <table class="table modern-table mb-0">
+                        <thead>
+                            <tr>
+                                <th class="border-0 py-3"><i class="fas fa-tag me-2"></i>Plan</th>
+                                <th class="border-0 py-3"><i class="fas fa-coins me-2"></i>Credits Granted</th>
+                                <th class="border-0 py-3"><i class="fas fa-calendar-alt me-2"></i>Purchase Date</th>
+                                <th class="border-0 py-3"><i class="fas fa-check-circle me-2"></i>Status</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            {% for purchase in plan_purchases %}
+                            <tr>
+                                <td class="py-3">
+                                    <div class="d-flex align-items-center">
+                                        <div class="bg-primary bg-opacity-10 rounded-circle d-flex align-items-center justify-content-center me-3" style="width: 40px; height: 40px;">
+                                            <i class="fas fa-graduation-cap text-primary"></i>
+                                        </div>
+                                        <div>
+                                            <div class="fw-bold">{{ purchase.plan.name }}</div>
+                                            <small class="text-muted">{{ purchase.plan.description|truncatewords:5 }}</small>
+                                        </div>
+                                    </div>
+                                </td>
+                                <td class="py-3">
+                                    <span class="badge bg-light text-dark rounded-pill px-3 py-2">
+                                        <i class="fas fa-coins me-1"></i>{{ purchase.credits_granted }}
+                                    </span>
+                                </td>
+                                <td class="py-3">
+                                    <div class="fw-bold">{{ purchase.purchase_date|date:"M d, Y" }}</div>
+                                    <small class="text-muted">{{ purchase.purchase_date|date:"H:i" }}</small>
+                                </td>
+                                <td class="py-3">
+                                    <span class="status-badge bg-success">
+                                        <i class="fas fa-check-circle me-1"></i>{{ purchase.get_payment_status_display }}
+                                    </span>
+                                </td>
+                            </tr>
+                            {% endfor %}
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    {% endif %}
+</div>
+
+<!-- Reschedule Modal -->
+<div class="modal fade" id="rescheduleModal" tabindex="-1" aria-labelledby="rescheduleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="rescheduleModalLabel">
+                    <i class="fas fa-calendar-alt me-2"></i>Reschedule Appointment
+                </h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="rescheduleForm" method="post">
+                    {% csrf_token %}
+                    <input type="hidden" id="reschedule_appointment_id" name="appointment_id">
+                    
+                    <div class="row mb-3">
+                        <div class="col-md-6">
+                            <label for="reschedule_date" class="form-label">New Date</label>
+                            <input type="date" class="form-control" id="reschedule_date" name="new_date" required>
+                        </div>
+                        <div class="col-md-6">
+                            <label for="reschedule_time" class="form-label">New Time</label>
+                            <select class="form-select" id="reschedule_time" name="new_time" required>
+                                <option value="">Select time...</option>
+                            </select>
+                        </div>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="reschedule_instructor" class="form-label">Instructor</label>
+                        <select class="form-select" id="reschedule_instructor" name="instructor_id" required>
+                            <option value="">Select instructor...</option>
+                            {% for instructor in instructors %}
+                            <option value="{{ instructor.id }}">{{ instructor.user.get_full_name }}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                    
+                    <div class="mb-3">
+                        <label for="reschedule_reason" class="form-label">Reason for Reschedule (Optional)</label>
+                        <textarea class="form-control" id="reschedule_reason" name="reason" rows="3" placeholder="Please provide a reason for rescheduling..."></textarea>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancel</button>
+                <button type="button" class="btn btn-primary" onclick="submitReschedule()">
+                    <i class="fas fa-calendar-check me-2"></i>Reschedule Appointment
+                </button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script>
+// Cancel appointment function
+function cancelAppointment(appointmentId) {
+    if (confirm('Are you sure you want to cancel this appointment? This action cannot be undone.')) {
+        fetch(`/student/cancel-appointment/`, {
+            method: 'POST',
+            headers: {
+                'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+                'Content-Type': 'application/x-www-form-urlencoded',
+            },
+            body: `appointment_id=${appointmentId}`,
+        })
+        .then(response => response.json())
+        .then(data => {
+            if (data.success) {
+                alert('Appointment cancelled successfully!');
+                location.reload();
+            } else {
+                alert('Error cancelling appointment: ' + (data.error || 'Unknown error'));
+            }
+        })
+        .catch(error => {
+            console.error('Error:', error);
+            alert('Error cancelling appointment. Please try again.');
+        });
+    }
+}
+
+// Reschedule appointment function
+function rescheduleAppointment(appointmentId, currentDate, currentTime, currentInstructorId) {
+    document.getElementById('reschedule_appointment_id').value = appointmentId;
+    document.getElementById('reschedule_date').value = currentDate;
+    document.getElementById('reschedule_instructor').value = currentInstructorId;
+    
+    // Load available time slots for current instructor and date
+    loadAvailableTimeSlotsForReschedule(currentInstructorId, currentDate);
+    
+    // Show modal
+    const modal = new bootstrap.Modal(document.getElementById('rescheduleModal'));
+    modal.show();
+}
+
+// Load available time slots for reschedule
+function loadAvailableTimeSlotsForReschedule(instructorId, date) {
+    const timeSelect = document.getElementById('reschedule_time');
+    timeSelect.innerHTML = '<option value="">Loading...</option>';
+    
+    if (!instructorId || !date) {
+        timeSelect.innerHTML = '<option value="">Select instructor and date first</option>';
+        return;
+    }
+    
+    fetch(`/api/available-slots/?instructor_id=${instructorId}&date=${date}`)
+        .then(response => response.json())
+        .then(data => {
+            timeSelect.innerHTML = '<option value="">Select time...</option>';
+            
+            if (data.error) {
+                timeSelect.innerHTML = '<option value="">Error loading times</option>';
+                return;
+            }
+            
+            if (data.available_slots.length === 0) {
+                timeSelect.innerHTML = '<option value="">No available slots</option>';
+                return;
+            }
+            
+            data.available_slots.forEach(time => {
+                const option = document.createElement('option');
+                option.value = time;
+                option.textContent = time;
+                timeSelect.appendChild(option);
+            });
+        })
+        .catch(error => {
+            console.error('Error loading time slots:', error);
+            timeSelect.innerHTML = '<option value="">Error loading times</option>';
+        });
+}
+
+// Handle instructor change in reschedule modal
+document.getElementById('reschedule_instructor').addEventListener('change', function() {
+    const instructorId = this.value;
+    const date = document.getElementById('reschedule_date').value;
+    if (instructorId && date) {
+        loadAvailableTimeSlotsForReschedule(instructorId, date);
+    }
+});
+
+// Handle date change in reschedule modal
+document.getElementById('reschedule_date').addEventListener('change', function() {
+    const date = this.value;
+    const instructorId = document.getElementById('reschedule_instructor').value;
+    if (instructorId && date) {
+        loadAvailableTimeSlotsForReschedule(instructorId, date);
+    }
+});
+
+// Submit reschedule form
+function submitReschedule() {
+    const form = document.getElementById('rescheduleForm');
+    const formData = new FormData(form);
+    
+    // Validate form
+    if (!formData.get('new_date') || !formData.get('new_time') || !formData.get('instructor_id')) {
+        alert('Please fill in all required fields.');
+        return;
+    }
+    
+    fetch('/student/reschedule-appointment/', {
+        method: 'POST',
+        body: formData,
+        headers: {
+            'X-CSRFToken': document.querySelector('[name=csrfmiddlewaretoken]').value,
+        },
+    })
+    .then(response => response.json())
+    .then(data => {
+        if (data.success) {
+            alert('Appointment rescheduled successfully!');
+            location.reload();
+        } else {
+            alert('Error rescheduling appointment: ' + (data.error || 'Unknown error'));
+        }
+    })
+    .catch(error => {
+        console.error('Error:', error);
+        alert('Error rescheduling appointment. Please try again.');
+    });
+}
+</script>
+{% endblock %}
+
+{% block extra_js %}
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

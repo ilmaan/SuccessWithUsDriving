@@ -1,0 +1,144 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Checkout - Success with Us Driving School{% endblock %}
+
+{% block content %}
+<div class="container mt-5">
+    <div class="row justify-content-center">
+        <div class="col-md-10">
+            <div class="card">
+                <div class="card-header bg-primary text-white">
+                    <h3 class="mb-0">Complete Your Purchase</h3>
+                </div>
+                <div class="card-body">
+                    <div class="row">
+                        <div class="col-md-7">
+                            <h4>Order Details</h4>
+                            <div class="order-details">
+                                {% for item in cart_items %}
+                                <div class="order-item border-bottom pb-2 mb-2">
+                                    <div class="row align-items-center">
+                                        <div class="col-md-6">
+                                            <h6 class="text-primary mb-1">{{ item.plan.name }}</h6>
+                                            <small class="text-muted">{{ item.plan.description|truncatewords:8 }}</small>
+                                        </div>
+                                        <div class="col-md-3 text-center">
+                                            <span class="badge badge-info">{{ item.plan.hours }} hours</span>
+                                        </div>
+                                        <div class="col-md-3 text-right">
+                                            <strong>${{ item.plan.price }}</strong>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                                
+                                <div class="order-summary mt-3 p-3 bg-light rounded">
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Total Items:</span>
+                                        <span>{{ cart_items.count }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Total Credits:</span>
+                                        <span><strong>{{ total_credits }} hours</strong></span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Subtotal:</span>
+                                        <span>${{ total_price }}</span>
+                                    </div>
+                                    <div class="d-flex justify-content-between mb-2">
+                                        <span>Tax:</span>
+                                        <span>$0.00</span>
+                                    </div>
+                                    <hr>
+                                    <div class="d-flex justify-content-between mb-0">
+                                        <strong>Total:</strong>
+                                        <strong class="text-success">${{ total_price }}</strong>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <div class="col-md-5">
+                            <h4>Payment Information</h4>
+                            <div class="alert alert-info">
+                                <i class="fas fa-info-circle"></i>
+                                <strong>Demo Mode:</strong> This is a demonstration payment page. No actual payment will be processed.
+                            </div>
+                            
+                            <form method="post" action="{% url 'process_cart_payment' %}">
+                                {% csrf_token %}
+                                <div class="form-group">
+                                    <label for="card_number">Card Number</label>
+                                    <input type="text" class="form-control" id="card_number" placeholder="4111 1111 1111 1111" value="4111 1111 1111 1111" readonly>
+                                </div>
+                                <div class="row">
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="expiry">Expiry Date</label>
+                                            <input type="text" class="form-control" id="expiry" placeholder="MM/YY" value="12/25" readonly>
+                                        </div>
+                                    </div>
+                                    <div class="col-md-6">
+                                        <div class="form-group">
+                                            <label for="cvv">CVV</label>
+                                            <input type="text" class="form-control" id="cvv" placeholder="123" value="123" readonly>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="form-group">
+                                    <label for="cardholder_name">Cardholder Name</label>
+                                    <input type="text" class="form-control" id="cardholder_name" value="{{ user.get_full_name }}" readonly>
+                                </div>
+                                
+                                <button type="submit" class="btn btn-success btn-lg btn-block mt-4">
+                                    <i class="fas fa-credit-card"></i>
+                                    Complete Payment (Demo) - ${{ total_price }}
+                                </button>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+                <div class="card-footer text-muted">
+                    <div class="row">
+                        <div class="col-md-6">
+                            <small>
+                                <i class="fas fa-lock"></i>
+                                Your payment information is secure and encrypted.
+                            </small>
+                        </div>
+                        <div class="col-md-6 text-right">
+                            <a href="{% url 'view_cart' %}" class="btn btn-secondary">
+                                <i class="fas fa-arrow-left"></i>
+                                Back to Cart
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+.order-item:last-child {
+    border-bottom: none !important;
+    margin-bottom: 0 !important;
+    padding-bottom: 0 !important;
+}
+
+.order-details {
+    max-height: 400px;
+    overflow-y: auto;
+}
+
+.form-control[readonly] {
+    background-color: #e9ecef;
+    opacity: 1;
+}
+
+.card-header {
+    border-bottom: none;
+}
+</style>
+{% endblock %}

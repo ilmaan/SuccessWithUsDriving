@@ -1,0 +1,390 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Shopping Cart - Success Driving School{% endblock %}
+
+{% block content %}
+<!-- Top Section with Cart -->
+<div class="cart-hero">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-12">
+                <!-- Header Section -->
+                <div class="text-center mb-5">
+                    <div class="cart-icon mb-4">
+                        <i class="fas fa-shopping-cart"></i>
+                    </div>
+                    <h1 class="cart-title mb-3">Shopping Cart</h1>
+                    <p class="cart-subtitle">Review your selected plans</p>
+                </div>
+                
+                <!-- Cart Content -->
+                {% if cart_items %}
+                <div class="row">
+                    <div class="col-lg-8">
+                        <div class="cart-items-container">
+                            <div class="cart-items-header">
+                                <h3 class="cart-section-title">Items</h3>
+                            </div>
+                            <div class="cart-items-list">
+                                {% for item in cart_items %}
+                                <div class="cart-item">
+                                    <div class="item-content">
+                                        <div class="item-info">
+                                            <h4 class="item-name">{{ item.plan.name }}</h4>
+                                            <p class="item-description">{{ item.plan.description }}</p>
+                                            <span class="item-duration">{{ item.plan.hours }} hours</span>
+                                        </div>
+                                        <div class="item-price">
+                                            <span class="price">${{ item.plan.price }}</span>
+                                        </div>
+                                        <div class="item-actions">
+                                            <form method="post" action="{% url 'remove_from_cart' item.id %}">
+                                                {% csrf_token %}
+                                                <button type="submit" class="remove-btn" title="Remove">
+                                                    <i class="fas fa-times"></i>
+                                                </button>
+                                            </form>
+                                        </div>
+                                    </div>
+                                </div>
+                                {% endfor %}
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-4">
+                        <div class="order-summary">
+                            <div class="summary-header">
+                                <h3 class="cart-section-title">Summary</h3>
+                            </div>
+                            <div class="summary-content">
+                                <div class="summary-breakdown">
+                                    <div class="summary-line">
+                                        <span>Subtotal ({{ cart_items|length }} item{{ cart_items|length|pluralize }})</span>
+                                        <span>${{ total_price }}</span>
+                                    </div>
+                                    <div class="summary-line">
+                                        <span>Tax & Fees</span>
+                                        <span>FREE</span>
+                                    </div>
+                                    <div class="summary-divider"></div>
+                                    <div class="summary-total">
+                                        <span>Total</span>
+                                        <span>${{ total_price }}</span>
+                                    </div>
+                                </div>
+                                
+                                <div class="checkout-actions">
+                                    <a href="{% url 'checkout_cart' %}" class="checkout-btn primary">
+                                        Proceed to Checkout
+                                    </a>
+                                    <a href="{% url 'pricing' %}" class="checkout-btn secondary">
+                                        Add More Plans
+                                    </a>
+                                    <a href="{% url 'student_portal' %}" class="checkout-btn tertiary">
+                                        Back to Dashboard
+                                    </a>
+                                </div>
+                            </div>
+            </div>
+                        </div>
+                    </div>
+                </div>
+                {% else %}
+                <!-- Empty Cart State -->
+                <div class="row justify-content-center">
+                    <div class="col-lg-6">
+                        <div class="empty-cart">
+                            <div class="empty-cart-content">
+                                <div class="empty-icon">
+                                    <i class="fas fa-shopping-cart"></i>
+                                </div>
+                                <h3 class="empty-title">Your cart is empty</h3>
+                                <p class="empty-description">Start adding driving lesson plans to get started.</p>
+                                <div class="empty-actions">
+                                    <a href="{% url 'pricing' %}" class="checkout-btn primary">
+                                        Browse Plans
+                                    </a>
+                                    <a href="{% url 'student_portal' %}" class="checkout-btn secondary">
+                                        Go to Dashboard
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    /* Modern Cart Styling */
+    .cart-hero {
+        background: #f8fafc;
+        padding: 3rem 0;
+        margin-bottom: 2rem;
+    }
+    
+    .cart-icon i {
+        font-size: 2.5rem;
+        color: #64748b;
+    }
+    
+    .cart-title {
+        font-size: 2rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0;
+    }
+    
+    .cart-subtitle {
+        color: #64748b;
+        font-size: 1rem;
+        margin: 0;
+    }
+    
+    .cart-section-title {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 1.5rem;
+    }
+    
+    /* Cart Items */
+    .cart-items-container {
+        margin-bottom: 2rem;
+    }
+    
+    .cart-item {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        margin-bottom: 1rem;
+        transition: all 0.2s ease;
+    }
+    
+    .cart-item:hover {
+        border-color: #cbd5e1;
+        box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+    }
+    
+    .item-content {
+        display: flex;
+        align-items: center;
+        gap: 1.5rem;
+    }
+    
+    .item-info {
+        flex: 1;
+    }
+    
+    .item-name {
+        font-size: 1.125rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin: 0 0 0.5rem 0;
+    }
+    
+    .item-description {
+        color: #64748b;
+        margin: 0 0 0.5rem 0;
+        font-size: 0.875rem;
+    }
+    
+    .item-duration {
+        background: #f1f5f9;
+        color: #475569;
+        padding: 0.25rem 0.75rem;
+        border-radius: 20px;
+        font-size: 0.75rem;
+        font-weight: 500;
+    }
+    
+    .item-price {
+        text-align: right;
+    }
+    
+    .price {
+        font-size: 1.25rem;
+        font-weight: 600;
+        color: #1e293b;
+    }
+    
+    .remove-btn {
+        background: #f8fafc;
+        border: 1px solid #e2e8f0;
+        color: #64748b;
+        width: 32px;
+        height: 32px;
+        border-radius: 8px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        cursor: pointer;
+        transition: all 0.2s ease;
+    }
+    
+    .remove-btn:hover {
+        background: #fee2e2;
+        border-color: #fecaca;
+        color: #dc2626;
+    }
+    
+    /* Order Summary */
+    .order-summary {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 1.5rem;
+        position: sticky;
+        top: 2rem;
+    }
+    
+    .summary-breakdown {
+        margin-bottom: 1.5rem;
+    }
+    
+    .summary-line {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 0.75rem 0;
+        color: #64748b;
+        font-size: 0.875rem;
+    }
+    
+    .summary-divider {
+        height: 1px;
+        background: #e2e8f0;
+        margin: 1rem 0;
+    }
+    
+    .summary-total {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        font-weight: 600;
+        font-size: 1.125rem;
+        color: #1e293b;
+    }
+    
+    /* Buttons */
+    .checkout-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+    }
+    
+    .checkout-btn {
+        padding: 0.75rem 1.5rem;
+        border-radius: 8px;
+        font-weight: 500;
+        text-decoration: none;
+        text-align: center;
+        transition: all 0.2s ease;
+        border: none;
+        cursor: pointer;
+        display: block;
+    }
+    
+    .checkout-btn.primary {
+        background: #3b82f6;
+        color: white;
+    }
+    
+    .checkout-btn.primary:hover {
+        background: #2563eb;
+        color: white;
+        text-decoration: none;
+    }
+    
+    .checkout-btn.secondary {
+        background: #f8fafc;
+        color: #475569;
+        border: 1px solid #e2e8f0;
+    }
+    
+    .checkout-btn.secondary:hover {
+        background: #f1f5f9;
+        color: #334155;
+        text-decoration: none;
+    }
+    
+    .checkout-btn.tertiary {
+        background: transparent;
+        color: #64748b;
+    }
+    
+    .checkout-btn.tertiary:hover {
+        color: #475569;
+        text-decoration: none;
+    }
+    
+    /* Empty Cart */
+    .empty-cart {
+        background: white;
+        border: 1px solid #e2e8f0;
+        border-radius: 12px;
+        padding: 3rem 2rem;
+        text-align: center;
+    }
+    
+    .empty-icon i {
+        font-size: 3rem;
+        color: #cbd5e1;
+        margin-bottom: 1.5rem;
+    }
+    
+    .empty-title {
+        font-size: 1.5rem;
+        font-weight: 600;
+        color: #1e293b;
+        margin-bottom: 0.5rem;
+    }
+    
+    .empty-description {
+        color: #64748b;
+        margin-bottom: 2rem;
+    }
+    
+    .empty-actions {
+        display: flex;
+        flex-direction: column;
+        gap: 0.75rem;
+        max-width: 200px;
+        margin: 0 auto;
+    }
+    
+    /* Responsive */
+    @media (max-width: 768px) {
+        .cart-hero {
+            padding: 2rem 0;
+        }
+        
+        .cart-title {
+            font-size: 1.75rem;
+        }
+        
+        .item-content {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 1rem;
+        }
+        
+        .item-price {
+            text-align: left;
+            width: 100%;
+        }
+        
+        .order-summary {
+            position: static;
+            margin-top: 2rem;
+        }
+    }
+</style>
+
+{% endblock %}

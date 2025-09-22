@@ -1,0 +1,399 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}Payment - Success with Us Driving School{% endblock %}
+
+{% block content %}
+<!-- Payment Hero Section -->
+<div class="payment-hero">
+    <div class="container">
+        <div class="row justify-content-center text-center">
+            <div class="col-lg-8">
+                <div class="hero-icon">
+                    <i class="fas fa-credit-card"></i>
+                </div>
+                <h1 class="fw-bold">Secure Payment</h1>
+                <p class="lead">Complete your purchase safely and securely</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="container">
+    <div class="row justify-content-center">
+        <div class="col-lg-10">
+            <div class="payment-card card shadow-lg border-0">
+                <div class="card-header bg-transparent border-0 text-center py-4">
+                    <h4 class="fw-bold text-dark mb-0">Complete Your Purchase</h4>
+                    <p class="text-muted mb-0">Review your order and payment details</p>
+                </div>
+                <div class="card-body p-5">
+                    <div class="row">
+                        <!-- Plan Details Section -->
+                        <div class="col-lg-6">
+                            <div class="plan-summary-card">
+                                <div class="plan-header mb-4">
+                                    <div class="plan-icon-large">
+                                        <i class="fas fa-graduation-cap"></i>
+                                    </div>
+                                    <div class="plan-info">
+                                        <h5 class="fw-bold text-dark mb-1">{{ plan.name }}</h5>
+                                        <p class="text-muted mb-0">{{ plan.description }}</p>
+                                    </div>
+                                </div>
+                                
+                                <div class="plan-features">
+                                    <div class="feature-grid">
+                                        <div class="feature-item">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-clock"></i>
+                                            </div>
+                                            <div class="feature-content">
+                                                <h6 class="fw-bold mb-0">{{ plan.hours }} Hours</h6>
+                                                <small class="text-muted">Driving Time</small>
+                                            </div>
+                                        </div>
+                                        <div class="feature-item">
+                                            <div class="feature-icon">
+                                                <i class="fas fa-star"></i>
+                                            </div>
+                                            <div class="feature-content">
+                                                <h6 class="fw-bold mb-0">{{ plan.credits }} Credits</h6>
+                                                <small class="text-muted">Learning Credits</small>
+                                            </div>
+                                        </div>
+                                        <div class="feature-item">
+                                            <div class="feature-icon price-icon">
+                                                <i class="fas fa-dollar-sign"></i>
+                                            </div>
+                                            <div class="feature-content">
+                                                <h6 class="fw-bold mb-0 text-success">${{ plan.price }}</h6>
+                                                <small class="text-muted">Total Price</small>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+                        <!-- Payment Form Section -->
+                        <div class="col-lg-6">
+                            <div class="payment-form-section">
+                                <div class="payment-header mb-4">
+                                    <h4 class="fw-bold text-dark mb-2">Payment Information</h4>
+                                    <div class="demo-alert">
+                                        <i class="fas fa-info-circle"></i>
+                                        <span><strong>Demo Mode:</strong> No real payment will be processed</span>
+                                    </div>
+                                </div>
+                                
+                                <form method="post" class="payment-form">
+                                    {% csrf_token %}
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control demo-input" id="card_number" name="card_number" value="4111 1111 1111 1111" readonly>
+                                        <label for="card_number"><i class="fas fa-credit-card me-2"></i>Card Number</label>
+                                    </div>
+                                    
+                                    <div class="row">
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control demo-input" id="expiry_date" name="expiry_date" value="12/25" readonly>
+                                                <label for="expiry_date"><i class="fas fa-calendar me-2"></i>Expiry Date</label>
+                                            </div>
+                                        </div>
+                                        <div class="col-md-6">
+                                            <div class="form-floating mb-3">
+                                                <input type="text" class="form-control demo-input" id="cvv" name="cvv" value="123" readonly>
+                                                <label for="cvv"><i class="fas fa-lock me-2"></i>CVV</label>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="form-floating mb-4">
+                                        <input type="text" class="form-control demo-input" id="cardholder_name" name="cardholder_name" value="{{ user.get_full_name }}" readonly>
+                                        <label for="cardholder_name"><i class="fas fa-user me-2"></i>Cardholder Name</label>
+                                    </div>
+                                
+                                    
+                                    <div class="payment-summary-section">
+                                        <h5 class="fw-bold mb-3">Payment Summary</h5>
+                                        <div class="summary-breakdown">
+                                            <div class="summary-item d-flex justify-content-between mb-2">
+                                                <span class="fw-medium">Plan Cost:</span>
+                                                <span class="fw-bold">${{ plan.price }}</span>
+                                            </div>
+                                            <div class="summary-item d-flex justify-content-between mb-2">
+                                                <span class="fw-medium">Processing Fee:</span>
+                                                <span class="text-success fw-bold">FREE</span>
+                                            </div>
+                                            <div class="summary-item d-flex justify-content-between mb-2">
+                                                <span class="fw-medium">Tax:</span>
+                                                <span class="text-success fw-bold">$0.00</span>
+                                            </div>
+                                            <hr class="my-3">
+                                            <div class="summary-item d-flex justify-content-between mb-4">
+                                                <h5 class="fw-bold mb-0">Total:</h5>
+                                                <h4 class="text-success fw-bold mb-0">${{ plan.price }}</h4>
+                                            </div>
+                                        </div>
+                                    </div>
+                                    
+                                    <div class="payment-actions">
+                                        <button type="submit" class="btn btn-success btn-lg w-100 mb-3 rounded-pill">
+                                            <i class="fas fa-lock me-2"></i>Complete Secure Payment
+                                        </button>
+                                        <a href="{% url 'student_portal' %}" class="btn btn-outline-secondary w-100 rounded-pill">
+                                            <i class="fas fa-arrow-left me-2"></i>Back to Portal
+                                        </a>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="card-footer bg-transparent border-0 text-center py-4">
+                    <div class="security-badge">
+                        <i class="fas fa-shield-alt me-2"></i>
+                        <span class="fw-medium">Your payment information is secure and encrypted</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<style>
+    .payment-hero {
+        background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+        color: white;
+        padding: 4rem 0 2rem;
+        margin-bottom: 2rem;
+        border-radius: 0 0 2rem 2rem;
+    }
+    
+    .payment-hero .hero-icon {
+        font-size: 3rem;
+        margin-bottom: 1rem;
+        opacity: 0.9;
+    }
+    
+    .payment-hero h1 {
+        font-weight: 700;
+        font-size: 2.5rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .payment-hero .lead {
+        font-size: 1.1rem;
+        opacity: 0.9;
+    }
+    
+    .payment-card {
+        border-radius: 1.5rem;
+        overflow: hidden;
+        transition: transform 0.3s ease;
+    }
+    
+    .payment-card:hover {
+        transform: translateY(-2px);
+    }
+    
+    .plan-summary-card {
+        background: linear-gradient(135deg, #f8f9ff, #ffffff);
+        border-radius: 1rem;
+        padding: 2rem;
+        height: 100%;
+        border: 1px solid rgba(102, 126, 234, 0.1);
+    }
+    
+    .plan-header {
+        display: flex;
+        align-items: center;
+        margin-bottom: 2rem;
+    }
+    
+    .plan-icon-large {
+        width: 60px;
+        height: 60px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        font-size: 1.5rem;
+        margin-right: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .plan-info h5 {
+        color: #2d3748;
+        margin-bottom: 0.25rem;
+    }
+    
+    .feature-grid {
+        display: flex;
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .feature-item {
+        display: flex;
+        align-items: center;
+        padding: 1rem;
+        background: white;
+        border-radius: 0.75rem;
+        box-shadow: 0 2px 10px rgba(0,0,0,0.05);
+        transition: all 0.3s ease;
+    }
+    
+    .feature-item:hover {
+        box-shadow: 0 4px 20px rgba(0,0,0,0.1);
+        transform: translateY(-1px);
+    }
+    
+    .feature-icon {
+        width: 40px;
+        height: 40px;
+        background: linear-gradient(135deg, #667eea, #764ba2);
+        border-radius: 50%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: white;
+        margin-right: 1rem;
+        flex-shrink: 0;
+    }
+    
+    .feature-icon.price-icon {
+        background: linear-gradient(135deg, #11998e, #38ef7d);
+    }
+    
+    .feature-content h6 {
+        color: #2d3748;
+        margin-bottom: 0.25rem;
+    }
+    
+    .payment-form-section {
+        padding: 1rem;
+    }
+    
+    .payment-header h4 {
+        color: #2d3748;
+    }
+    
+    .demo-alert {
+        background: linear-gradient(135deg, #e3f2fd, #f3e5f5);
+        color: #1565c0;
+        padding: 0.75rem 1rem;
+        border-radius: 0.5rem;
+        border: 1px solid rgba(21, 101, 192, 0.2);
+        display: flex;
+        align-items: center;
+        gap: 0.5rem;
+    }
+    
+    .demo-alert i {
+        color: #1565c0;
+    }
+    
+    .payment-form .form-floating {
+        margin-bottom: 1rem;
+    }
+    
+    .demo-input {
+        background: linear-gradient(135deg, #f8f9ff, #ffffff);
+        border: 2px solid rgba(102, 126, 234, 0.1);
+        border-radius: 0.75rem;
+        padding: 1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+    }
+    
+    .demo-input:focus {
+        background: white;
+        border-color: #667eea;
+        box-shadow: 0 0 0 0.2rem rgba(102, 126, 234, 0.25);
+    }
+    
+    .form-floating > label {
+        color: #6c757d;
+        font-weight: 500;
+    }
+    
+    .payment-summary-section {
+        background: linear-gradient(135deg, #f8f9ff, #ffffff);
+        border-radius: 1rem;
+        padding: 1.5rem;
+        margin-bottom: 2rem;
+        border: 1px solid rgba(102, 126, 234, 0.1);
+    }
+    
+    .summary-breakdown .summary-item {
+        padding: 0.5rem 0;
+        border-bottom: 1px solid rgba(0,0,0,0.05);
+    }
+    
+    .summary-breakdown .summary-item:last-child {
+        border-bottom: none;
+    }
+    
+    .payment-actions .btn {
+        font-weight: 600;
+        padding: 0.75rem 1.5rem;
+        transition: all 0.3s ease;
+    }
+    
+    .payment-actions .btn-success {
+        background: linear-gradient(135deg, #11998e, #38ef7d);
+        border: none;
+        box-shadow: 0 4px 15px rgba(17, 153, 142, 0.3);
+    }
+    
+    .payment-actions .btn-success:hover {
+        background: linear-gradient(135deg, #0d7377, #2dd4bf);
+        transform: translateY(-2px);
+        box-shadow: 0 8px 25px rgba(17, 153, 142, 0.4);
+    }
+    
+    .payment-actions .btn-outline-secondary:hover {
+        background: #6c757d;
+        border-color: transparent;
+        transform: translateY(-1px);
+    }
+    
+    .security-badge {
+        color: #6c757d;
+        font-size: 0.9rem;
+    }
+    
+    .security-badge i {
+        color: #28a745;
+    }
+    
+    @media (max-width: 768px) {
+        .payment-hero {
+            padding: 2rem 0 1rem;
+        }
+        
+        .payment-hero h1 {
+            font-size: 2rem;
+        }
+        
+        .plan-summary-card {
+            margin-bottom: 2rem;
+        }
+        
+        .plan-header {
+            flex-direction: column;
+            text-align: center;
+        }
+        
+        .plan-icon-large {
+            margin-right: 0;
+            margin-bottom: 1rem;
+        }
+    }
+</style>
+{% endblock %}

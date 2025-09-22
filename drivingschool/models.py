@@ -10,6 +10,7 @@ class Student(models.Model):
     permit_no = models.CharField(max_length=50, blank=True)
     license_status = models.CharField(max_length=50, default="Learner's Permit")
     total_credits = models.IntegerField(default=0)
+    available_credits = models.IntegerField(default=0)
     documents = models.FileField(upload_to='students/docs/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
@@ -25,6 +26,10 @@ class Instructor(models.Model):
     is_available = models.BooleanField(default=True)
     photo = models.ImageField(upload_to='instructors/', null=True, blank=True)
 
+    @property
+    def experience(self):
+        return self.experience_years
+
     def __str__(self):
         return f"{self.user.first_name} {self.user.last_name}"
 
@@ -33,10 +38,63 @@ class LessonPlan(models.Model):
     hours = models.IntegerField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
     is_popular = models.BooleanField(default=False)
-    description = models.TextField(blank=True)
+    includes_test = models.BooleanField(default=False)
 
     def __str__(self):
         return self.name
+
+class PlanFeature(models.Model):
+    plan = models.ForeignKey(LessonPlan, on_delete=models.CASCADE, related_name='features')
+    feature_text = models.CharField(max_length=200)
+    order = models.PositiveIntegerField(default=0)
+    
+    class Meta:
+        ordering = ['order']
+    
+    def __str__(self):
+        return f"{self.plan.name} - {self.feature_text}"
+
+class Cart(models.Model):
+    student = models.OneToOneField(Student, on_delete=models.CASCADE)
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
+    
+    def __str__(self):
+        return f"Cart for {self.student.user.get_full_name()}"
+    
+    def get_total_price(self):
+        return sum(item.plan.price for item in self.cartitem_set.all())
+    
+    def get_total_credits(self):
+        return sum(item.plan.hours for item in self.cartitem_set.all())
+
+class CartItem(models.Model):
+    cart = models.ForeignKey(Cart, on_delete=models.CASCADE)
+    plan = models.ForeignKey(LessonPlan, on_delete=models.CASCADE)
+    added_at = models.DateTimeField(auto_now_add=True)
+    
+    class Meta:
+        unique_together = ('cart', 'plan')  # Prevent duplicate plans in cart
+    
+    def __str__(self):
+        return f"{self.cart.student.user.get_full_name()} - {self.plan.name}"
+
+class StudentPlanPurchase(models.Model):
+    PAYMENT_STATUS_CHOICES = [
+        ('pending', 'Pending'),
+        ('completed', 'Completed'),
+        ('failed', 'Failed'),
+    ]
+    
+    student = models.ForeignKey(Student, on_delete=models.CASCADE)
+    plan = models.ForeignKey(LessonPlan, on_delete=models.CASCADE)
+    payment_status = models.CharField(max_length=20, choices=PAYMENT_STATUS_CHOICES, default='pending')
+    credits_granted = models.IntegerField()
+    purchase_date = models.DateTimeField(auto_now_add=True)
+    payment_id = models.CharField(max_length=100, blank=True)  # For future payment integration
+    
+    def __str__(self):
+        return f"{self.student} - {self.plan.name} ({self.payment_status})"
 
 class Appointment(models.Model):
     STATUS_CHOICES = [
@@ -45,11 +103,21 @@ class Appointment(models.Model):
         ('Cancelled', 'Cancelled'),
         ('No-show', 'No-show'),
     ]
+    
+    LESSON_TYPE_CHOICES = [
+        ('beginner', 'Beginner Lesson'),
+        ('intermediate', 'Intermediate Lesson'),
+        ('advanced', 'Advanced Lesson'),
+        ('test_prep', 'Test Preparation'),
+    ]
+    
     student = models.ForeignKey(Student, on_delete=models.CASCADE)
     instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
     plan = models.ForeignKey(LessonPlan, on_delete=models.SET_NULL, null=True, blank=True)
     scheduled_time = models.DateTimeField()
     status = models.CharField(max_length=20, choices=STATUS_CHOICES, default='Scheduled')
+    lesson_type = models.CharField(max_length=20, choices=LESSON_TYPE_CHOICES, default='beginner')
+    special_requirements = models.TextField(blank=True)
     credits_used = models.IntegerField(default=1)
     notes = models.TextField(blank=True)
 
