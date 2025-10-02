@@ -640,7 +640,7 @@
                 <i class="fas fa-calendar-check"></i> Book Your Lesson
             </a>
             {% else %}
-            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary btn-glow">
+            <a href="{% url 'register' %}?next={% url 'pricing' %}#registration-card" class="btn btn-primary btn-glow">
                 <i class="fas fa-calendar-check"></i> Book Your Lesson
             </a>
             {% endif %}
@@ -684,40 +684,89 @@
 {% block features %}
 <!-- Features Section -->
 <section class="features" id="features">
-    <div class="container">
-        <h2 class="section-title animate-on-scroll">Why Choose <span class="highlight">Us</span></h2>
-        <div class="section-subtitle animate-on-scroll">Experience the difference with our modern approach to driving education</div>
+    <div class="container" style="
+        position: relative;
+        z-index: 2;
+    ">
         <div class="features-grid">
-            <div class="feature-card animate-on-scroll">
+            <h2 class="section-title animate-on-scroll" style="
+                color: #1f2937;
+                text-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+                font-weight: 700;
+                margin-bottom: 1rem;
+            ">Why Choose <span class="highlight">Us</span></h2>
+            <div class="section-subtitle animate-on-scroll" style="
+                color: #4b5563;
+                text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);
+            ">Experience the difference with our modern approach to driving education</div>
+        </div>
+        <div class="features-grid">
+            <div class="feature-card animate-on-scroll" style="
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            ">
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-car-side"></i>
                 </div>
-                <h3>Modern Vehicles</h3>
-                <p>Learn in our fleet of safe, dual-control vehicles equipped with the latest technology and safety features.</p>
+                <h3 style="color: #1f2937; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);">Modern Vehicles</h3>
+                <p style="color: #4b5563; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);">Learn in our fleet of safe, dual-control vehicles equipped with the latest technology and safety features.</p>
                 <div class="feature-hover-effect"></div>
             </div>
-            <div class="feature-card animate-on-scroll" data-delay="200">
+            <div class="feature-card animate-on-scroll" data-delay="200" style="
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            ">
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-user-tie"></i>
                 </div>
-                <h3>Expert Instructors</h3>
-                <p>Our certified instructors have years of experience and excellent teaching skills tailored to your learning style.</p>
+                <h3 style="color: #1f2937; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);">Expert Instructors</h3>
+                <p style="color: #4b5563; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);">Our certified instructors have years of experience and excellent teaching skills tailored to your learning style.</p>
                 <div class="feature-hover-effect"></div>
             </div>
-            <div class="feature-card animate-on-scroll" data-delay="400">
+            <div class="feature-card animate-on-scroll" data-delay="400" style="
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            ">
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-trophy"></i>
                 </div>
-                <h3>High Pass Rate</h3>
-                <p><span class="highlight-text">{{ pass_rate }}</span> of our students pass their driving test on the first attempt, well above the state average.</p>
+                <h3 style="color: #1f2937; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);">High Pass Rate</h3>
+                <p style="color: #4b5563; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);"><span class="highlight-text">{{ pass_rate }}</span> of our students pass their driving test on the first attempt, well above the state average.</p>
                 <div class="feature-hover-effect"></div>
             </div>
-            <div class="feature-card animate-on-scroll" data-delay="600">
+            <div class="feature-card animate-on-scroll" data-delay="600" style="
+                background: rgba(255, 255, 255, 0.15);
+                backdrop-filter: blur(15px);
+                -webkit-backdrop-filter: blur(15px);
+                border: 1px solid rgba(255, 255, 255, 0.3);
+                box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+                transition: all 0.3s ease;
+                position: relative;
+                overflow: hidden;
+            ">
                 <div class="feature-icon-wrapper">
                     <i class="fas fa-calendar-alt"></i>
                 </div>
-                <h3>Flexible Scheduling</h3>
-                <p>Choose from weekday, evening, and weekend lessons with our easy online booking system to fit your busy schedule.</p>
+                <h3 style="color: #1f2937; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);">Flexible Scheduling</h3>
+                <p style="color: #4b5563; text-shadow: 0 1px 2px rgba(0, 0, 0, 0.1);">Choose from weekday, evening, and weekend lessons with our easy online booking system to fit your busy schedule.</p>
                 <div class="feature-hover-effect"></div>
             </div>
         </div>
@@ -766,7 +815,7 @@
             {% endfor %}
         </div>
         <div class="plans-footer animate-on-scroll">
-            <a href="{% url 'pricing' %}" class="btn btn-secondary btn-with-icon">
+            <a href="{% url 'pricing' %}#services" class="btn btn-secondary btn-with-icon">
                 <i class="fas fa-th-list"></i> View All Packages
             </a>
         </div>

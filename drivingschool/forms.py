@@ -10,7 +10,10 @@ class RegistrationForm(forms.Form):
     username = forms.CharField(max_length=150, widget=forms.TextInput(attrs={'class': 'form-control'}))
     password = forms.CharField(widget=forms.PasswordInput(attrs={'class': 'form-control'}))
     phone = forms.CharField(max_length=15, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    address = forms.CharField(widget=forms.Textarea(attrs={'class': 'form-control', 'rows': 3}), required=False)
+    street_address = forms.CharField(max_length=255, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    city = forms.CharField(max_length=100, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    state = forms.CharField(max_length=50, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    zip_code = forms.CharField(max_length=10, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     permit_no = forms.CharField(max_length=50, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     def clean_username(self):
@@ -36,7 +39,10 @@ class RegistrationForm(forms.Form):
         Student.objects.create(
             user=user,
             phone=self.cleaned_data['phone'],
-            address=self.cleaned_data['address'],
+            street_address=self.cleaned_data['street_address'],
+            city=self.cleaned_data['city'],
+            state=self.cleaned_data['state'],
+            zip_code=self.cleaned_data['zip_code'],
             permit_no=self.cleaned_data['permit_no']
         )
         return user

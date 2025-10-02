@@ -6,7 +6,10 @@ from django.utils import timezone
 class Student(models.Model):
     user = models.OneToOneField(User, on_delete=models.CASCADE)
     phone = models.CharField(max_length=15, blank=True)
-    address = models.TextField(blank=True)
+    street_address = models.CharField(max_length=255, blank=True)
+    city = models.CharField(max_length=100, blank=True)
+    state = models.CharField(max_length=50, blank=True)
+    zip_code = models.CharField(max_length=10, blank=True)
     permit_no = models.CharField(max_length=50, blank=True)
     license_status = models.CharField(max_length=50, default="Learner's Permit")
     total_credits = models.IntegerField(default=0)
@@ -34,14 +37,32 @@ class Instructor(models.Model):
         return f"{self.user.first_name} {self.user.last_name}"
 
 class LessonPlan(models.Model):
+    PACKAGE_TYPE_CHOICES = [
+        ('standard', 'Standard Package'),
+        ('specialized', 'Specialized Package'),
+    ]
+    
     name = models.CharField(max_length=100)
+    slug = models.SlugField(max_length=100, help_text="URL-friendly name for the plan", blank=True)
+    description = models.TextField(help_text="Brief description of the package", default="Professional driving instruction package")
     hours = models.IntegerField()
     price = models.DecimalField(max_digits=8, decimal_places=2)
+    original_price = models.DecimalField(max_digits=8, decimal_places=2, null=True, blank=True, help_text="Original price before discount")
     is_popular = models.BooleanField(default=False)
     includes_test = models.BooleanField(default=False)
+    package_type = models.CharField(max_length=20, choices=PACKAGE_TYPE_CHOICES, default='standard')
+    display_order = models.PositiveIntegerField(default=0, help_text="Order in which to display the plan")
+    is_active = models.BooleanField(default=True, help_text="Whether this plan is currently available")
+    
+    class Meta:
+        ordering = ['display_order', 'name']
 
     def __str__(self):
         return self.name
+    
+    @property
+    def has_discount(self):
+        return self.original_price and self.original_price > self.price
 
 class PlanFeature(models.Model):
     plan = models.ForeignKey(LessonPlan, on_delete=models.CASCADE, related_name='features')

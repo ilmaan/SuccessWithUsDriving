@@ -27,11 +27,23 @@ class PlanFeatureInline(admin.TabularInline):
 
 @admin.register(LessonPlan)
 class LessonPlanAdmin(admin.ModelAdmin):
-    list_display = ('name', 'hours', 'price', 'is_popular', 'includes_test')
-    list_filter = ('is_popular', 'includes_test', 'hours')
-    search_fields = ('name',)
-    list_editable = ('is_popular', 'includes_test', 'price')
+    list_display = ('name', 'hours', 'price', 'original_price', 'package_type', 'is_popular', 'includes_test', 'is_active', 'display_order')
+    list_filter = ('is_popular', 'includes_test', 'package_type', 'is_active', 'hours')
+    search_fields = ('name', 'description')
+    list_editable = ('is_popular', 'includes_test', 'price', 'original_price', 'is_active', 'display_order')
+    prepopulated_fields = {'slug': ('name',)}
     inlines = [PlanFeatureInline]
+    fieldsets = (
+        ('Basic Information', {
+            'fields': ('name', 'slug', 'description', 'package_type')
+        }),
+        ('Pricing', {
+            'fields': ('price', 'original_price', 'hours')
+        }),
+        ('Settings', {
+            'fields': ('is_popular', 'includes_test', 'is_active', 'display_order')
+        }),
+    )
 
 @admin.register(PlanFeature)
 class PlanFeatureAdmin(admin.ModelAdmin):

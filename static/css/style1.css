@@ -327,7 +327,27 @@
         .features {
             padding: 6rem 0;
             background: #f8f9fa;
+
+    
+        border-top: 1px solid rgba(255, 255, 255, 0.2);
+        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+
         }
+
+        .features  {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            -webkit-backdrop-filter: blur(20px);
+            padding: 2rem;
+            border-radius: 20px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
+            margin-bottom: 3rem;
+            text-align: center;
+
+        }
+
+
 
         .container {
             max-width: 1200px;
@@ -509,6 +529,33 @@
             font-size: 1.5rem;
             margin-right: 0.25rem;
             vertical-align: top;
+        }
+
+        .price-container {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .original-price {
+            font-size: 1.2rem;
+            color: #999;
+            font-weight: 500;
+        }
+
+        .original-price .currency {
+            text-decoration: none;
+        }
+
+        .original-price .amount {
+            text-decoration: line-through;
+        }
+
+        .discounted-price {
+            font-size: 2.5rem;
+            font-weight: bold;
+            color: #333;
         }
 
         .plan-features {

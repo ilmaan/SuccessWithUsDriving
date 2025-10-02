@@ -27,7 +27,7 @@
         <div class="row justify-content-center">
             <div class="col-lg-8 col-xl-7">
                 <!-- Registration Form Card -->
-                <div class="card shadow-lg border-0 registration-card">
+                <div id="registration-card" class="card shadow-lg border-0 registration-card"> 
                     <div class="card-header bg-transparent border-0 text-center py-4">
                         <div class="registration-icon mb-3">
                             <i class="fas fa-user-plus"></i>
@@ -51,13 +51,13 @@
                         <div class="row">
                             <div class="col-md-6">
                                 <div class="form-floating mb-4">
-                                    <input type="text" class="form-control" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" placeholder="First Name" required>
+                                    <input type="text" class="form-control" id="{{ form.first_name.id_for_label }}" name="{{ form.first_name.name }}" placeholder="First Name" style="text-transform: capitalize;" required>
                                     <label for="{{ form.first_name.id_for_label }}"><i class="fas fa-user me-2"></i>First Name *</label>
                                 </div>
                             </div>
                             <div class="col-md-6">
                                 <div class="form-floating mb-4">
-                                    <input type="text" class="form-control" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}" placeholder="Last Name" required>
+                                    <input type="text" class="form-control" id="{{ form.last_name.id_for_label }}" name="{{ form.last_name.name }}" placeholder="Last Name" style="text-transform: capitalize;" required>
                                     <label for="{{ form.last_name.id_for_label }}"><i class="fas fa-user me-2"></i>Last Name *</label>
                                 </div>
                             </div>
@@ -99,8 +99,29 @@
                         </div>
                         
                         <div class="form-floating mb-4">
-                            <textarea class="form-control" id="{{ form.address.id_for_label }}" name="{{ form.address.name }}" placeholder="Address" style="height: 100px;"></textarea>
-                            <label for="{{ form.address.id_for_label }}"><i class="fas fa-map-marker-alt me-2"></i>Address</label>
+                            <input type="text" class="form-control" id="{{ form.street_address.id_for_label }}" name="{{ form.street_address.name }}" placeholder="Street Address">
+                            <label for="{{ form.street_address.id_for_label }}"><i class="fas fa-map-marker-alt me-2"></i>Street Address</label>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-md-6">
+                                <div class="form-floating mb-4">
+                                    <input type="text" class="form-control" id="{{ form.city.id_for_label }}" name="{{ form.city.name }}" placeholder="City">
+                                    <label for="{{ form.city.id_for_label }}"><i class="fas fa-city me-2"></i>City</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-floating mb-4">
+                                    <input type="text" class="form-control" id="{{ form.state.id_for_label }}" name="{{ form.state.name }}" placeholder="State">
+                                    <label for="{{ form.state.id_for_label }}"><i class="fas fa-flag me-2"></i>State</label>
+                                </div>
+                            </div>
+                            <div class="col-md-3">
+                                <div class="form-floating mb-4">
+                                    <input type="text" class="form-control" id="{{ form.zip_code.id_for_label }}" name="{{ form.zip_code.name }}" placeholder="ZIP Code">
+                                    <label for="{{ form.zip_code.id_for_label }}"><i class="fas fa-mail-bulk me-2"></i>ZIP Code</label>
+                                </div>
+                            </div>
                         </div>
                         
                         <div class="d-grid mb-4">
@@ -111,7 +132,7 @@
                         
                         <div class="text-center">
                             <p class="mb-0">Already have an account? 
-                                <a href="{% url 'login' %}" class="text-primary fw-bold text-decoration-none">Sign In</a>
+                                <a href="{% url 'login' %}#login-form" class="text-primary fw-bold text-decoration-none">Sign In</a>
                             </p>
                         </div>
                     </form>

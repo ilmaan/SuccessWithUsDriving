@@ -23,7 +23,7 @@
             <p>We offer a variety of packages designed to meet your specific needs and budget. All packages include professional instruction in our dual-control vehicles.</p>
         </div>
         
-        <div class="pricing-toggle animate-on-scroll">
+        <!-- <div class="pricing-toggle animate-on-scroll">
             <span class="toggle-label active">Standard Packages</span>
             <label class="switch">
                 <input type="checkbox" id="package-toggle">
@@ -31,264 +31,98 @@
             </label>
             <span class="toggle-label">Specialized Packages</span>
         </div>
-        
+         -->
         <!-- Standard Packages -->
         <div class="pricing-container standard-packages active">
             <div class="pricing-grid">
-                <div class="pricing-card animate-on-scroll" data-delay="100">
+                {% for plan in standard_plans %}
+                 <div class="pricing-card {% if plan.is_popular %}popular{% endif %} animate-on-scroll" data-delay="{{ forloop.counter0|add:1|add:0|add:0 }}00">
+                     {% if plan.is_popular %}
+                     <div class="popular-tag">Most Popular</div>
+                     {% endif %}
                     <div class="pricing-header">
-                        <h3>Quick Start</h3>
+                        <h3>{{ plan.name }}</h3>
                         <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">160</span>
-                            <span class="original-price">$170</span>
+                            {% if plan.original_price and plan.original_price != plan.price %}
+                                <div class="price-container">
+                                    <div class="discounted-price">
+                                        <span class="currency">$</span>{{ plan.price }}
+                                    </div>
+                                    <div class="original-price">
+                                        <span class="currency">$</span><span class="amount">{{ plan.original_price }}</span>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <span class="currency">$</span>{{ plan.price }}
+                            {% endif %}
                         </div>
-                        <p class="package-description">Perfect for quick skill building and practice</p>
+                        <p class="package-description">{{ plan.description }}</p>
                     </div>
                     <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 2 hours of instruction</li>
-                            <li><i class="fas fa-check"></i> Core maneuvers</li>
-                            <li><i class="fas fa-check"></i> Expressway practice</li>
-                            <li><i class="fas fa-check"></i> Pickup/drop-off service</li>
-                        </ul>
-                    </div>
+                         <ul>
+                             {% for feature in plan.features.all %}
+                             <li><i class="fas fa-check"></i> {{ feature.feature_text }}</li>
+                             {% endfor %}
+                         </ul>
+                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart_and_checkout' 'quick-start' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
+                            <a href="{% url 'add_to_cart' plan.id %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}
                     </div>
                 </div>
-                
-                <div class="pricing-card animate-on-scroll" data-delay="200">
-                    <div class="pricing-header">
-                        <h3>Momentum Drive</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">300</span>
-                            <span class="original-price">$340</span>
-                        </div>
-                        <p class="package-description">Build foundational skills with advanced techniques</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 4 hours of instruction</li>
-                            <li><i class="fas fa-check"></i> Foundational skills</li>
-                            <li><i class="fas fa-check"></i> Advanced techniques</li>
-                            <li><i class="fas fa-check"></i> Pickup/drop-off service</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart_and_checkout' 'momentum-drive' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
-                        {% else %}
-                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <div class="pricing-card popular animate-on-scroll" data-delay="300">
-                    <div class="popular-tag">Most Popular</div>
-                    <div class="pricing-header">
-                        <h3>Confidence Cruise</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">420</span>
-                            <span class="original-price">$510</span>
-                        </div>
-                        <p class="package-description">Master freeway driving and parking with full support</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 6 hours of instruction</li>
-                            <li><i class="fas fa-check"></i> Freeway driving</li>
-                            <li><i class="fas fa-check"></i> Parking mastery</li>
-                            <li><i class="fas fa-check"></i> Full support</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart_and_checkout' 'confidence-cruise' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
-                        {% else %}
-                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <div class="pricing-card animate-on-scroll" data-delay="400">
-                    <div class="pricing-header">
-                        <h3>Master the Road</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">560</span>
-                            <span class="original-price">$680</span>
-                        </div>
-                        <p class="package-description">Deep training with full skill set coverage</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 8 hours of instruction</li>
-                            <li><i class="fas fa-check"></i> Deep training</li>
-                            <li><i class="fas fa-check"></i> Full skill set coverage</li>
-                            <li><i class="fas fa-check"></i> Advanced techniques</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart_and_checkout' 'master-the-road' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
-                        {% else %}
-                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <div class="pricing-card animate-on-scroll" data-delay="500">
-                    <div class="pricing-header">
-                        <h3>Driven to Succeed</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">650</span>
-                            <span class="original-price">$850</span>
-                        </div>
-                        <p class="package-description">Comprehensive training for lifelong driving habits</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 10 hours of instruction</li>
-                            <li><i class="fas fa-check"></i> Comprehensive training</li>
-                            <li><i class="fas fa-check"></i> Lifelong habits development</li>
-                            <li><i class="fas fa-check"></i> Complete skill mastery</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart_and_checkout' 'driven-to-succeed' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
-                        {% else %}
-                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <div class="pricing-card animate-on-scroll" data-delay="600">
-                    <div class="pricing-header">
-                        <h3>Test Day Champion</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">280</span>
-                            <span class="original-price">$329</span>
-                        </div>
-                        <p class="package-description">DMV test preparation with road test included</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 1 hour prep + Road Test</li>
-                            <li><i class="fas fa-check"></i> DMV preparation</li>
-                            <li><i class="fas fa-check"></i> Car use for test</li>
-                            <li><i class="fas fa-check"></i> Pickup within 15 miles</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart_and_checkout' 'test-day-champion' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
-                        {% else %}
-                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
-                        {% endif %}
-                    </div>
-                </div>
+                {% empty %}
+                <p>No standard packages available at the moment.</p>
+                {% endfor %}
             </div>
         </div>
         
         <!-- Specialized Packages -->
         <div class="pricing-container specialized-packages">
             <div class="pricing-grid">
-                <div class="pricing-card animate-on-scroll" data-delay="100">
+                {% for plan in specialized_plans %}
+                 <div class="pricing-card {% if plan.is_popular %}popular{% endif %} animate-on-scroll" data-delay="{{ forloop.counter0|add:1|add:0|add:0 }}00">
+                     {% if plan.is_popular %}
+                     <div class="popular-tag">Most Popular</div>
+                     {% endif %}
                     <div class="pricing-header">
-                        <h3>Test Prep Package</h3>
+                        <h3>{{ plan.name }}</h3>
                         <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">249</span>
+                            {% if plan.original_price and plan.original_price != plan.price %}
+                                <div class="price-container">
+                                    <div class="discounted-price">
+                                        <span class="currency">$</span>{{ plan.price }}
+                                    </div>
+                                    <div class="original-price">
+                                        <span class="currency">$</span><span class="amount">{{ plan.original_price }}</span>
+                                    </div>
+                                </div>
+                            {% else %}
+                                <span class="currency">$</span>{{ plan.price }}
+                            {% endif %}
                         </div>
-                        <p class="package-description">Focused preparation for your DMV driving test</p>
+                        <p class="package-description">{{ plan.description }}</p>
                     </div>
                     <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 5 hours of test-focused training</li>
-                            <li><i class="fas fa-check"></i> Actual DMV test route practice</li>
-                            <li><i class="fas fa-check"></i> Common test maneuvers</li>
-                            <li><i class="fas fa-check"></i> Test day strategies</li>
-                            <li><i class="fas fa-check"></i> Mock driving test</li>
-                            <li><i class="fas fa-check"></i> Examiner expectations review</li>
-                            <li><i class="fas fa-times"></i> Basic skills training</li>
-                        </ul>
-                    </div>
+                         <ul>
+                             {% for feature in plan.features.all %}
+                             <li><i class="fas fa-check"></i> {{ feature.feature_text }}</li>
+                             {% endfor %}
+                         </ul>
+                     </div>
                     <div class="pricing-footer">
                         {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart_and_checkout' 'test-prep' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
+                            <a href="{% url 'add_to_cart' plan.id %}" class="btn btn-primary btn-full-width">Select This Plan</a>
                         {% else %}
                             <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
                         {% endif %}
                     </div>
                 </div>
-                
-                <div class="pricing-card animate-on-scroll" data-delay="200">
-                    <div class="pricing-header">
-                        <h3>Refresher Package</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">199</span>
-                        </div>
-                        <p class="package-description">For licensed drivers who need to rebuild confidence</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 4 hours of personalized training</li>
-                            <li><i class="fas fa-check"></i> Skills assessment</li>
-                            <li><i class="fas fa-check"></i> Confidence building</li>
-                            <li><i class="fas fa-check"></i> Updated traffic laws review</li>
-                            <li><i class="fas fa-check"></i> Defensive driving refresher</li>
-                            <li><i class="fas fa-times"></i> Basic skills training</li>
-                            <li><i class="fas fa-times"></i> Test preparation</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart_and_checkout' 'refresher' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
-                        {% else %}
-                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
-                        {% endif %}
-                    </div>
-                </div>
-                
-                <div class="pricing-card animate-on-scroll" data-delay="300">
-                    <div class="pricing-header">
-                        <h3>Defensive Driving</h3>
-                        <div class="price">
-                            <span class="currency">$</span>
-                            <span class="amount">299</span>
-                        </div>
-                        <p class="package-description">Advanced safety techniques for licensed drivers</p>
-                    </div>
-                    <div class="pricing-features">
-                        <ul>
-                            <li><i class="fas fa-check"></i> 6 hours of specialized training</li>
-                            <li><i class="fas fa-check"></i> Hazard perception</li>
-                            <li><i class="fas fa-check"></i> Space management</li>
-                            <li><i class="fas fa-check"></i> Emergency maneuvers</li>
-                            <li><i class="fas fa-check"></i> Crash avoidance techniques</li>
-                            <li><i class="fas fa-check"></i> Adverse conditions driving</li>
-                            <li><i class="fas fa-times"></i> Basic skills training</li>
-                        </ul>
-                    </div>
-                    <div class="pricing-footer">
-                        {% if user.is_authenticated %}
-                            <a href="{% url 'add_to_cart_and_checkout' 'defensive' %}" class="btn btn-primary btn-full-width">Select This Plan</a>
-                        {% else %}
-                            <a href="{% url 'register' %}?next={% url 'pricing' %}" class="btn btn-primary">Register to Select</a>
-                        {% endif %}
-                    </div>
-                </div>
+                {% empty %}
+                <p>No specialized packages available at the moment.</p>
+                {% endfor %}
             </div>
         </div>
         

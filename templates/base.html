@@ -313,30 +313,9 @@
         <div class="section-subtitle animate-on-scroll">Real experiences from our graduates</div>
         
         <div class="testimonials-carousel animate-on-scroll">
-            <div class="testimonial-card">
-                <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
-                <div class="testimonial-content">
-                    <p>"My instructor was patient and knowledgeable. I passed my test on the first try thanks to their excellent teaching! The structured approach made learning to drive much less stressful than I expected."</p>
-                </div>
-                <div class="testimonial-rating">
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                    <i class="fas fa-star"></i>
-                </div>
-                <div class="testimonial-author">
-                    <div class="testimonial-author-image">
-                        <img src="{% static 'images/testimonial-1.jpg' %}" alt="Student testimonial">
-                    </div>
-                    <div class="testimonial-author-info">
-                        <h4>Sarah Johnson</h4>
-                        <p>New Driver</p>
-                    </div>
-                </div>
-            </div>
             
-            <div class="testimonial-card">
+            
+            <div class="testimonial-card active">
                 <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
                 <div class="testimonial-content">
                     <p>"After failing my test twice with another school, I switched to Success with Us and passed on my next attempt. The instructors here truly understand how to teach driving skills effectively. Highly recommended!"</p>
@@ -350,7 +329,7 @@
                 </div>
                 <div class="testimonial-author">
                     <div class="testimonial-author-image">
-                        <img src="{% static 'images/testimonial-2.jpg' %}" alt="Student testimonial">
+                        <div class="avatar-placeholder">MC</div>
                     </div>
                     <div class="testimonial-author-info">
                         <h4>Michael Chen</h4>
@@ -373,7 +352,7 @@
                 </div>
                 <div class="testimonial-author">
                     <div class="testimonial-author-image">
-                        <img src="{% static 'images/userrating1.jpg' %}" alt="Student testimonial">
+                        <div class="avatar-placeholder">JR</div>
                     </div>
                     <div class="testimonial-author-info">
                         <h4>Jessica Rodriguez</h4>
@@ -381,16 +360,39 @@
                     </div>
                 </div>
             </div>
+            
+            <div class="testimonial-card">
+                <div class="testimonial-quote"><i class="fas fa-quote-left"></i></div>
+                <div class="testimonial-content">
+                    <p>"I was nervous about driving at first, but the patient and encouraging instructors at Success with Us made all the difference. They built my confidence step by step, and now I'm a safe and confident driver!"</p>
+                </div>
+                <div class="testimonial-rating">
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                    <i class="fas fa-star"></i>
+                </div>
+                <div class="testimonial-author">
+                    <div class="testimonial-author-image">
+                        <div class="avatar-placeholder">DT</div>
+                    </div>
+                    <div class="testimonial-author-info">
+                        <h4>David Thompson</h4>
+                        <p>New Driver</p>
+                    </div>
+                </div>
+            </div>
         </div>
         
         <div class="testimonial-controls animate-on-scroll">
-            <button class="testimonial-prev"><i class="fas fa-chevron-left"></i></button>
+            <button class="testimonial-prev" onclick="changeTestimonial(-1)"><i class="fas fa-chevron-left"></i></button>
             <div class="testimonial-dots">
-                <span class="dot active"></span>
-                <span class="dot"></span>
-                <span class="dot"></span>
+                <span class="dot active" onclick="currentTestimonial(1)"></span>
+                <span class="dot" onclick="currentTestimonial(2)"></span>
+                <span class="dot" onclick="currentTestimonial(3)"></span>
             </div>
-            <button class="testimonial-next"><i class="fas fa-chevron-right"></i></button>
+            <button class="testimonial-next" onclick="changeTestimonial(1)"><i class="fas fa-chevron-right"></i></button>
         </div>
     </div>
 </section>
@@ -632,7 +634,7 @@
 
         // WhatsApp functionality
         whatsappToggle.addEventListener('click', () => {
-            const phoneNumber = '14156906625'; // +1 562 578 8258
+            const phoneNumber = '14083045377'; // +1 562 578 8258
             const message = encodeURIComponent('Hi! I\'m interested in learning more about your driving lessons. Can you help me choose the right package?');
             const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
             window.open(whatsappUrl, '_blank');

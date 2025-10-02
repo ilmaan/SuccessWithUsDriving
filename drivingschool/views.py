@@ -50,8 +50,14 @@ def lessons(request):
     return render(request, 'lessons.html')
 
 def pricing(request):
-    plans = LessonPlan.objects.all()
-    return render(request, 'pricing.html', {'plans': plans})
+    standard_plans = LessonPlan.objects.filter(package_type='standard', is_active=True).order_by('display_order', 'name')
+    specialized_plans = LessonPlan.objects.filter(package_type='specialized', is_active=True).order_by('display_order', 'name')
+    
+    context = {
+        'standard_plans': standard_plans,
+        'specialized_plans': specialized_plans,
+    }
+    return render(request, 'pricing.html', context)
 
 def dmv_test_help(request):
     return render(request, 'dmv-test-help.html')
