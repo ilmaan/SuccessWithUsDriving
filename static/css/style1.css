@@ -16,14 +16,14 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: linear-gradient(144deg, white 84%, #DC2629 57%, #1F2980 109%); 
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             z-index: 1000;
             transition: all 0.3s ease;
         }
 
         .header.scrolled {
-            background: rgba(102, 126, 234, 0.95);
+            background: linear-gradient(144deg, white 84%, #DC2629 57%, #1F2980 109%);
             backdrop-filter: blur(10px);
         }
 
@@ -98,7 +98,7 @@
         }
 
         .nav-menu a {
-            color: white;
+            color: darkslategrey;
             text-decoration: none;
             font-weight: 500;
             transition: all 0.3s ease;
@@ -106,7 +106,7 @@
         }
 
         .nav-menu a:hover {
-            color: #ffd700;
+            color: red;
             transform: translateY(-2px);
         }
 
@@ -162,7 +162,7 @@
     
     .testimonial-quote {
         font-size: 2rem;
-        color: #667eea;
+        color: red;
         margin-bottom: 1rem;
         opacity: 0.5;
     }
@@ -223,7 +223,7 @@
     
     .testimonial-prev:hover,
     .testimonial-next:hover {
-        background: #667eea;
+        background: red;
         color: white;
     }
     
@@ -242,7 +242,7 @@
     }
     
     .dot.active {
-        background: #667eea;
+        background: red;
         transform: scale(1.3);
     }
     
@@ -250,7 +250,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, rgba(102, 126, 234, 0.8), rgba(118, 75, 162, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23764ba2" d="M0,300L50,280C100,260,200,220,300,200C400,180,500,180,600,190C700,200,800,220,900,240C1000,260,1100,280,1150,290L1200,300V600H1150C1100,600,1000,600,900,600C800,600,700,600,600,600C500,600,400,600,300,600C200,600,100,600,50,600H0V300Z"/></svg>');
+            background: linear-gradient(135deg, rgba(242, 34, 34, 0.8), rgba(144, 4, 4, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23764ba2" d="M0,300L50,280C100,260,200,220,300,200C400,180,500,180,600,190C700,200,800,220,900,240C1000,260,1100,280,1150,290L1200,300V600H1150C1100,600,1000,600,900,600C800,600,700,600,600,600C500,600,400,600,300,600C200,600,100,600,50,600H0V300Z"/></svg>');
             display: flex;
             align-items: center;
             justify-content: center;
@@ -315,11 +315,12 @@
             background: transparent;
             color: white;
             border: 2px solid white;
+            margin-top: 20px;
         }
 
         .btn-secondary:hover {
             background: white;
-            color: #667eea;
+            color: red;
             transform: translateY(-3px);
         }
 
@@ -412,7 +413,8 @@
 
         .feature-card i {
             font-size: 3rem;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            /* background: linear-gradient(45deg, red, #764ba2); */
+            background: linear-gradient(45deg, #cd2d2d, #f00c0c);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
@@ -427,7 +429,8 @@
         /* Plans Section */
         .plans {
             padding: 6rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            /* background: linear-gradient(135deg, red 0%, #764ba2 100%); */
+            background: linear-gradient(135deg, #282933 0%, #2f2e33 100%);
             color: white;
         }
 
@@ -460,7 +463,7 @@
         }
 
         .plan-card.popular {
-            border-color: #667eea;
+            border-color: red;
             transform: scale(1.05);
         }
 
@@ -469,7 +472,7 @@
             position: absolute;
             top: 0;
             right: 0;
-            background: #ffd700;
+            background: red;
             color: #333;
             padding: 0.5rem 1rem;
             font-size: 0.8rem;
@@ -488,7 +491,7 @@
             position: absolute;
             top: 0;
             right: 0;
-            background: #ffd700;
+            background: red;
             color: #333;
             padding: 0.5rem 1rem;
             font-size: 0.8rem;
@@ -577,7 +580,8 @@
         }
 
         .plan-features i {
-            color: #667eea;
+            /* color: red; */
+            color: red;
             margin-right: 0.75rem;
             font-size: 1.1rem;
         }
@@ -636,7 +640,7 @@
         .stat-number {
             font-size: 2rem;
             font-weight: bold;
-            color: #667eea;
+            color: red;
         }
 
         .stat-label {
@@ -670,7 +674,7 @@
 
         .contact-item i {
             font-size: 1.5rem;
-            color: #667eea;
+            color: red;
             margin-right: 1rem;
             width: 30px;
         }
@@ -706,7 +710,7 @@
         .form-group input:focus,
         .form-group textarea:focus {
             outline: none;
-            border-color: #667eea;
+            border-color: red;
         }
 
         /* Footer */
@@ -750,7 +754,7 @@
             justify-content: center;
             width: 40px;
             height: 40px;
-            background: #667eea;
+            background: red;
             border-radius: 50%;
             transition: all 0.3s ease;
         }
@@ -870,7 +874,7 @@
             right: 20px;
             width: 60px;
             height: 60px;
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, #e61717, #764ba2);
             border-radius: 50%;
             display: flex;
             align-items: center;
@@ -903,7 +907,7 @@
         }
 
         .chatbot-header {
-            background: linear-gradient(45deg, #667eea, #764ba2);
+            background: linear-gradient(45deg, red, #764ba2);
             color: white;
             padding: 1rem;
             border-radius: 20px 20px 0 0;
@@ -932,7 +936,7 @@
         }
 
         .message.user {
-            background: #667eea;
+            background: red;
             color: white;
             align-self: flex-end;
             margin-left: auto;
@@ -953,7 +957,7 @@
         }
 
         .chatbot-input button {
-            background: #667eea;
+            background: red;
             color: white;
             border: none;
             border-radius: 50%;
