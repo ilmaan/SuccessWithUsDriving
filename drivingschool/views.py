@@ -145,7 +145,7 @@ def plan_selection(request):
     if request.method == 'POST':
         plan_id = request.POST.get('plan_id')
         if plan_id:
-            return redirect('checkout', plan_id=plan_id)
+            return redirect('purchase_plan', plan_id=plan_id)
     
     selected_plan_name = request.session.get('selected_plan_name', None)
     
@@ -243,8 +243,32 @@ def student_portal(request):
 
 @login_required
 @user_passes_test(is_student)
+def add_to_cart(request, plan_id):
+    """Add a plan to the student's cart"""
+    plan = get_object_or_404(LessonPlan, id=plan_id)
+    student = request.user.student
+    
+    # Get or create cart for the student
+    cart, created = Cart.objects.get_or_create(student=student)
+    
+    # Try to add the plan to cart (will fail if already exists due to unique constraint)
+    try:
+        CartItem.objects.create(cart=cart, plan=plan)
+        messages.success(request, f'{plan.name} has been added to your cart!')
+    except:
+        messages.info(request, f'{plan.name} is already in your cart.')
+    
+    # Redirect to checkout instead of student portal
+    return redirect('checkout_cart')
+
+@login_required
+@user_passes_test(is_student)
 def booking_page(request):
     """Display the calendar-based booking interface"""
+    student = request.user.student
+    if student.available_credits < 1:
+        messages.error(request, 'You need to purchase a plan before booking a lesson.')
+        return redirect('plan_selection')
     instructors = Instructor.objects.filter(is_available=True)
     return render(request, 'booking.html', {'instructors': instructors})
 
@@ -253,6 +277,11 @@ def booking_page(request):
 def book_lesson(request):
     student = request.user.student
     if request.method == 'POST':
+        # Require at least 1 available credit to book
+        if student.available_credits < 1:
+            messages.error(request, 'You have no available credits. Please purchase a plan first.')
+            return redirect('plan_selection')
+        
         # Handle calendar-based booking form
         selected_date = request.POST.get('selected_date')
         selected_time = request.POST.get('selected_time')
@@ -287,17 +316,15 @@ def book_lesson(request):
                     scheduled_time=scheduled_datetime,
                     lesson_type=lesson_type,
                     special_requirements=special_requirements,
-                    status='Scheduled'
+                    status='Scheduled',
+                    credits_used=1
                 )
                 
-                # SMS Reminder (commented out for now)
-                # twilio_client.messages.create(
-                #     body=f"Hi {student.user.first_name}, your lesson is on {appointment.scheduled_time.strftime('%b %d, %I:%M %p')}. See you soon!",
-                #     from_=settings.TWILIO_PHONE,
-                #     to=f"+1{student.phone}"
-                # )
+                # Deduct one credit on booking
+                student.available_credits = max(0, student.available_credits - 1)
+                student.save()
                 
-                messages.success(request, f"Lesson booked successfully for {scheduled_datetime.strftime('%B %d, %Y at %I:%M %p')}!")
+                messages.success(request, f"Lesson booked successfully for {scheduled_datetime.strftime('%B %d, %Y at %I:%M %p')}! 1 credit has been deducted.")
                 return redirect('student_portal')
                 
             except Exception as e:
@@ -516,7 +543,7 @@ def add_to_cart(request, plan_id):
     except:
         messages.info(request, f'{plan.name} is already in your cart.')
     
-    return redirect('student_portal')
+    return redirect('checkout_cart')
 
 @login_required
 @user_passes_test(is_student)

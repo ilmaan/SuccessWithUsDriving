@@ -16,7 +16,8 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: linear-gradient(144deg, white 84%, #DC2629 57%, #1F2980 109%); 
+            /* background: linear-gradient(144deg, white 84%, #DC2629 57%, #1F2980 109%);  */
+           background: linear-gradient(174deg, white 62%, #EA1E00 74%, #1F2980 139%);
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             z-index: 1000;
             transition: all 0.3s ease;
@@ -250,7 +251,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, rgba(242, 34, 34, 0.8), rgba(144, 4, 4, 0.8)), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23764ba2" d="M0,300L50,280C100,260,200,220,300,200C400,180,500,180,600,190C700,200,800,220,900,240C1000,260,1100,280,1150,290L1200,300V600H1150C1100,600,1000,600,900,600C800,600,700,600,600,600C500,600,400,600,300,600C200,600,100,600,50,600H0V300Z"/></svg>');
+            background: linear-gradient(135deg, rgba(242, 34, 34, 0.8), #EA1E00), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23764ba2" d="M0,300L50,280C100,260,200,220,300,200C400,180,500,180,600,190C700,200,800,220,900,240C1000,260,1100,280,1150,290L1200,300V600H1150C1100,600,1000,600,900,600C800,600,700,600,600,600C500,600,400,600,300,600C200,600,100,600,50,600H0V300Z"/></svg>');
             display: flex;
             align-items: center;
             justify-content: center;
