@@ -409,30 +409,30 @@
                     <h3>Success with us Driving School</h3>
                     <p>Your trusted partner in learning to drive safely and confidently in Santa Clara, California.</p>
                     <div class="social-links">
-                        <a href="#"><i class="fab fa-facebook-f"></i></a>
-                        <a href="#"><i class="fab fa-instagram"></i></a>
-                        <a href="#"><i class="fab fa-twitter"></i></a>
-                        <a href="#"><i class="fab fa-youtube"></i></a>
+                        <a target="_blank" href="https://www.facebook.com/profile.php?id=61564810775371"><i class="fab fa-facebook-f"></i></a>
+                        <a  target="_blank" href="https://www.instagram.com/successwuds/"><i class="fab fa-instagram"></i></a>
+                        <a target="_blank" href="https://www.tiktok.com/@successwudsllc?_r=1&_t=ZS-91FCvOUWJm4"><i class="fab fa-tiktok"></i></a>
+                        <a target="_blank" href="https://www.youtube.com/@SuccessWuds"><i class="fab fa-youtube"></i></a>
                     </div>
                 </div>
                 <div class="footer-section">
                     <h3>Quick Links</h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li><a href="#home">Home</a></li>
-                        <li><a href="#about">About Us</a></li>
-                        <li><a href="#services">Services</a></li>
-                        <li><a href="#plans">Pricing Plans</a></li>
-                        <li><a href="#contact">Contact</a></li>
+                        <li><a href="{% url 'home' %}">Home</a></li>
+                        <li><a href="{% url 'about' %}">About Us</a></li>
+                        <li><a href="{% url 'lessons' %}">Services</a></li>
+                        <li><a href="{% url 'pricing' %}">Pricing Plans</a></li>
+                        <li><a href="{% url 'contact' %}">Contact</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
                     <h3>Services</h3>
                     <ul style="list-style: none; padding: 0;">
-                        <li><a href="#">Driving Lessons</a></li>
-                        <li><a href="#">DMV Test Prep</a></li>
-                        <li><a href="#">Online Resources</a></li>
-                        <li><a href="#">Instructor Training</a></li>
-                        <li><a href="/careers">Careers</a></li>
+                        <li><a href="{% url 'lessons' %}">Driving Lessons</a></li>
+                        <li><a href="{% url 'dmv_test_help' %}">DMV Test Prep</a></li>
+                        <li><a href="{% url 'about' %}">Online Resources</a></li>
+                        <li><a href="{% url 'about' %}">Instructor Training</a></li>
+                        <li><a href="{% url 'careers' %}">Careers</a></li>
                     </ul>
                 </div>
                 <div class="footer-section">
@@ -440,9 +440,9 @@
                     <ul style="list-style: none; padding: 0;">
                         <li><a href="{% url 'login' %}">Student Login</a></li>
                         <li><a href="{% url 'register' %}">Register</a></li>
-                        <li><a href="/schedule">Schedule Lesson</a></li>
-                        <li><a href="/progress">Track Progress</a></li>
-                        <li><a href="/support">Support</a></li>
+                        <li><a href="{% url 'about' %}">Schedule Lesson</a></li>
+                        <li><a href="{% url 'about' %}">Track Progress</a></li>
+                        <li><a href="{% url 'about' %}">Support</a></li>
                     </ul>
                 </div>
             </div>

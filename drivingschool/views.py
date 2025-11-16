@@ -64,7 +64,7 @@ def dmv_test_help(request):
 
 def about(request):
     instructors = Instructor.objects.all()
-    reviews = Review.objects.select_related('student', 'instructor').order_by('-created_at')[:3]
+    reviews = Review.objects.order_by('-created_at')[:3]
     return render(request, 'about.html', {'instructors': instructors, 'reviews': reviews})
 
 def contact(request):
@@ -194,6 +194,14 @@ def logout_view(request):
     return redirect('home')
 
 # ======================
+# Error Handlers
+# ======================
+
+def redirect_to_about(request, exception=None):
+    """Redirect any 404 page to the About page."""
+    return redirect('about')
+
+# ======================
 # Student Portal
 # ======================
 
@@ -270,7 +278,25 @@ def booking_page(request):
         messages.error(request, 'You need to purchase a plan before booking a lesson.')
         return redirect('plan_selection')
     instructors = Instructor.objects.filter(is_available=True)
-    return render(request, 'booking.html', {'instructors': instructors})
+
+    # Determine eligible lesson type from purchased plans
+    purchases = StudentPlanPurchase.objects.filter(
+        student=student,
+        payment_status='completed'
+    ).select_related('plan').order_by('-purchase_date')
+
+    if purchases.filter(plan__includes_test=True).exists():
+        eligible_lesson_type = 'test_prep'
+        eligible_lesson_type_label = 'Test Preparation'
+    else:
+        eligible_lesson_type = 'beginner'
+        eligible_lesson_type_label = 'Beginner Lesson'
+
+    return render(request, 'booking.html', {
+        'instructors': instructors,
+        'eligible_lesson_type': eligible_lesson_type,
+        'eligible_lesson_type_label': eligible_lesson_type_label,
+    })
 
 @login_required
 @user_passes_test(is_student)
@@ -286,7 +312,6 @@ def book_lesson(request):
         selected_date = request.POST.get('selected_date')
         selected_time = request.POST.get('selected_time')
         selected_instructor_id = request.POST.get('selected_instructor')
-        lesson_type = request.POST.get('lesson_type')
         special_requirements = request.POST.get('special_requirements', '')
         
         if selected_date and selected_time and selected_instructor_id:
@@ -308,16 +333,31 @@ def book_lesson(request):
                 if Appointment.objects.filter(instructor=instructor, scheduled_time=scheduled_datetime).exists():
                     messages.error(request, "Instructor not available at this time.")
                     return redirect('booking_page')
+
+                # Determine eligible lesson type and plan from purchases
+                purchases = StudentPlanPurchase.objects.filter(
+                    student=student,
+                    payment_status='completed'
+                ).select_related('plan').order_by('-purchase_date')
+
+                test_purchase = purchases.filter(plan__includes_test=True).first()
+                if test_purchase:
+                    enforced_lesson_type = 'test_prep'
+                    enforced_plan = test_purchase.plan
+                else:
+                    enforced_lesson_type = 'beginner'
+                    enforced_plan = purchases.first().plan if purchases.exists() else None
                 
                 # Create appointment
                 appointment = Appointment.objects.create(
                     student=student,
                     instructor=instructor,
                     scheduled_time=scheduled_datetime,
-                    lesson_type=lesson_type,
+                    lesson_type=enforced_lesson_type,
                     special_requirements=special_requirements,
                     status='Scheduled',
-                    credits_used=1
+                    credits_used=1,
+                    plan=enforced_plan
                 )
                 
                 # Deduct one credit on booking

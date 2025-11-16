@@ -62,9 +62,9 @@ class AppointmentAdmin(admin.ModelAdmin):
 
 @admin.register(Review)
 class ReviewAdmin(admin.ModelAdmin):
-    list_display = ('student', 'instructor', 'rating', 'created_at')
+    list_display = ('student', 'instructor', 'rating', 'created_at', 'image')
     list_filter = ('rating', 'created_at')
-    search_fields = ('student__user__username', 'instructor__user__username')
+    search_fields = ('student', 'instructor', 'comment')
     readonly_fields = ('created_at',)
 
 @admin.register(JobApplication)

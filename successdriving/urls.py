@@ -28,3 +28,6 @@ urlpatterns = [
 if settings.DEBUG:
     urlpatterns += static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
     urlpatterns += static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+
+# Redirect any 404 (missing route) to the About page
+handler404 = 'drivingschool.views.redirect_to_about'

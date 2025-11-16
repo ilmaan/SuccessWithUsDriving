@@ -146,10 +146,11 @@ class Appointment(models.Model):
         return f"{self.student} - {self.scheduled_time}"
 
 class Review(models.Model):
-    student = models.ForeignKey(Student, on_delete=models.CASCADE)
-    instructor = models.ForeignKey(Instructor, on_delete=models.CASCADE)
+    student = models.CharField(max_length=100)
+    instructor = models.CharField(max_length=100)
     rating = models.IntegerField(choices=[(i, i) for i in range(1, 6)])
     comment = models.TextField()
+    image = models.ImageField(upload_to='reviews/', null=True, blank=True)
     created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):

@@ -117,35 +117,9 @@
                     </div>
                 </div>
                 
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="{% static 'images/userrating1.jpeg' %}" alt="David Rodriguez - Instructor">
-                    </div>
-                    <div class="member-info">
-                        <h3>David Rodriguez</h3>
-                        <p class="member-title">Instructor</p>
-                        <p class="member-bio">David excels at working with teenage drivers, combining a friendly approach with clear instruction to help young drivers develop good habits from the start.</p>
-                        <div class="member-credentials">
-                            <span><i class="fas fa-certificate"></i> Certified Driving Instructor</span>
-                            <span><i class="fas fa-graduation-cap"></i> Youth Education Specialist</span>
-                        </div>
-                    </div>
-                </div>
                 
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="{% static 'images/userrating1.jpeg' %}" alt="Lisa Patel - Instructor">
-                    </div>
-                    <div class="member-info">
-                        <h3>Lisa Patel</h3>
-                        <p class="member-title">Instructor</p>
-                        <p class="member-bio">Lisa specializes in working with anxious adult learners and those returning to driving after a long break. Her patient, methodical approach builds confidence step by step.</p>
-                        <div class="member-credentials">
-                            <span><i class="fas fa-certificate"></i> Certified Driving Instructor</span>
-                            <span><i class="fas fa-brain"></i> Specialized in Anxiety Management</span>
-                        </div>
-                    </div>
-                </div>
+                
+                
                 
                 <div class="team-member">
                     <div class="member-image">
@@ -161,20 +135,8 @@
                         </div>
                     </div>
                 </div>
-                
-                <div class="team-member">
-                    <div class="member-image">
-                        <img src="{% static 'images/userrating1.jpeg' %}" alt="Emily Zhang - Office Manager">
-                    </div>
-                    <div class="member-info">
-                        <h3>Emily Zhang</h3>
-                        <p class="member-title">Office Manager</p>
-                        <p class="member-bio">Emily keeps our operations running smoothly, handling scheduling, customer service, and administrative tasks with efficiency and a friendly smile.</p>
-                        <div class="member-credentials">
-                            <span><i class="fas fa-clock"></i> 10+ Years in Customer Service</span>
-                            <span><i class="fas fa-calendar-check"></i> Scheduling Specialist</span>
-                        </div>
-                    </div>
+               
+                    
                 </div>
             </div>
         </div>
@@ -245,58 +207,52 @@
                 <h2>What Our Students Say</h2>
             </div>
             <div class="testimonial-carousel">
-                <div class="testimonial-slide">
+                {% for review in reviews %}
+                <div class="testimonial-slide {% if forloop.first %}active{% endif %}">
                     <div class="testimonial-content">
-                        <p>"I was terrified of driving before I came to Success with Us. Michael was incredibly patient and helped me build confidence step by step. I went from being afraid to get behind the wheel to passing my test with flying colors!"</p>
+                        <p>"{{ review.comment }}"</p>
                     </div>
                     <div class="testimonial-author">
-                        <img src="{% static 'images/userrating1.jpeg' %}" alt="Jennifer L.">
+                        {% if review.image %}
+                            <img src="{{ review.image.url }}" alt="{{ review.student }}">
+                        {% else %}
+                            <img src="{% static 'images/userrating1.jpeg' %}" alt="{{ review.student }}">
+                        {% endif %}
                         <div>
-                            <h4>Jennifer L.</h4>
-                            <p>Adult Learner</p>
+                            <h4>{{ review.student }}</h4>
+                            <div class="rating-stars">
+                                <i class="{% if review.rating >= 1 %}fas{% else %}far{% endif %} fa-star"></i>
+                                <i class="{% if review.rating >= 2 %}fas{% else %}far{% endif %} fa-star"></i>
+                                <i class="{% if review.rating >= 3 %}fas{% else %}far{% endif %} fa-star"></i>
+                                <i class="{% if review.rating >= 4 %}fas{% else %}far{% endif %} fa-star"></i>
+                                <i class="{% if review.rating >= 5 %}fas{% else %}far{% endif %} fa-star"></i>
+                            </div>
                         </div>
                     </div>
                 </div>
-                
+                {% empty %}
                 <div class="testimonial-slide">
                     <div class="testimonial-content">
-                        <p>"As a parent, I was concerned about finding the right driving school for my teenager. The instructors at Success with Us were professional, thorough, and genuinely cared about teaching safe driving habits. My son passed his test on the first try!"</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="{% static 'images/userrating1.jpeg' %}" alt="Robert T.">
-                        <div>
-                            <h4>Robert Trans.</h4>
-                            <p>Parent of Teen Driver</p>
-                        </div>
+                        <p>No testimonials yet. Check back soon!</p>
                     </div>
                 </div>
-                
-                <div class="testimonial-slide">
-                    <div class="testimonial-content">
-                        <p>"After not driving for over 10 years, I needed to refresh my skills. Lisa was amazing at helping me regain my confidence and update my knowledge of current road rules. The personalized approach made all the difference."</p>
-                    </div>
-                    <div class="testimonial-author">
-                        <img src="{% static 'images/userrating1.jpeg' %}" alt="Maria G.">
-                        <div>
-                            <h4>Maria G.</h4>
-                            <p>Returning Driver</p>
-                        </div>
-                    </div>
-                </div>
+                {% endfor %}
             </div>
             <div class="testimonial-controls">
                 <button class="prev-btn"><i class="fas fa-chevron-left"></i></button>
                 <div class="testimonial-dots">
-                    <span class="dot active"></span>
-                    <span class="dot"></span>
-                    <span class="dot"></span>
+                    {% for review in reviews %}
+                        <span class="dot {% if forloop.first %}active{% endif %}"></span>
+                    {% empty %}
+                        <span class="dot active"></span>
+                    {% endfor %}
                 </div>
                 <button class="next-btn"><i class="fas fa-chevron-right"></i></button>
             </div>
         </div>
         
         <!-- Community Involvement -->
-        <div class="about-community animate-on-scroll">
+        <div class="container about-community animate-on-scroll">
             <div class="section-title">
                 <h2>Community Involvement</h2>
             </div>
@@ -336,8 +292,8 @@
                     </ul>
                 </div>
                 <div class="community-images">
-                    <img src="{% static 'images/community-1.jpg' %}" alt="Community Workshop">
-                    <img src="{% static 'images/community-2.jpg' %}" alt="Safety Fair">
+                    <img src="{% static 'images/safety_fair1.jpg' %}" alt="Community Workshop">
+                    <img src="{% static 'images/safety_fair.jpg' %}" alt="Safety Faisr">
                 </div>
             </div>
         </div>
@@ -637,6 +593,13 @@
     .testimonial-author p {
         color: #666;
         margin: 0;
+    }
+    .rating-stars {
+        color: #f5c518;
+        margin-top: 0.25rem;
+    }
+    .rating-stars .fa-star {
+        margin-right: 2px;
     }
     
     .testimonial-controls {

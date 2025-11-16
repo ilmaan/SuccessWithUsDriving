@@ -348,7 +348,7 @@ p {
 }
 
 .btn-secondary {
-    background: transparent;
+    background: black;
     color: var(--white);
     border: 2px solid var(--white);
 }
