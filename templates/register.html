@@ -111,16 +111,59 @@
                                 </div>
                             </div>
                             <div class="col-md-3">
-                                <div class="form-floating mb-4">
-                                    <input type="text" class="form-control" id="{{ form.state.id_for_label }}" name="{{ form.state.name }}" placeholder="State">
+                                <div class="form-floating mb-2">
+                                    <input type="text" class="form-control" id="{{ form.state.id_for_label }}" name="{{ form.state.name }}" placeholder="State" value="California" readonly required>
                                     <label for="{{ form.state.id_for_label }}"><i class="fas fa-flag me-2"></i>State</label>
                                 </div>
+                                {% if form.state.errors %}
+                                    <div class="text-danger small mb-3">{{ form.state.errors.0 }}</div>
+                                {% endif %}
                             </div>
                             <div class="col-md-3">
-                                <div class="form-floating mb-4">
-                                    <input type="text" class="form-control" id="{{ form.zip_code.id_for_label }}" name="{{ form.zip_code.name }}" placeholder="ZIP Code">
+                                <div class="form-floating mb-2">
+                                    <input type="text" inputmode="numeric" maxlength="5" list="allowed-zips" class="form-control" id="{{ form.zip_code.id_for_label }}" name="{{ form.zip_code.name }}" placeholder="ZIP Code" required>
                                     <label for="{{ form.zip_code.id_for_label }}"><i class="fas fa-mail-bulk me-2"></i>ZIP Code</label>
                                 </div>
+                                <datalist id="allowed-zips">
+                                    <option value="95050"></option>
+                                    <option value="95051"></option>
+                                    <option value="95054"></option>
+                                    <option value="95110"></option>
+                                    <option value="95112"></option>
+                                    <option value="95117"></option>
+                                    <option value="95126"></option>
+                                    <option value="95128"></option>
+                                    <option value="95129"></option>
+                                    <option value="95130"></option>
+                                    <option value="95131"></option>
+                                    <option value="95132"></option>
+                                    <option value="95133"></option>
+                                    <option value="95134"></option>
+                                    <option value="95136"></option>
+                                    <option value="95014"></option>
+                                    <option value="95015"></option>
+                                    <option value="94085"></option>
+                                    <option value="94086"></option>
+                                    <option value="94087"></option>
+                                    <option value="94089"></option>
+                                    <option value="94040"></option>
+                                    <option value="94041"></option>
+                                    <option value="94043"></option>
+                                    <option value="95035"></option>
+                                    <option value="95008"></option>
+                                    <option value="95009"></option>
+                                    <option value="95030"></option>
+                                    <option value="95032"></option>
+                                    <option value="95070"></option>
+                                    <option value="95002"></option>
+                                    <option value="94301"></option>
+                                    <option value="94303"></option>
+                                    <option value="94304"></option>
+                                    <option value="94306"></option>
+                                </datalist>
+                                {% if form.zip_code.errors %}
+                                    <div class="text-danger small mb-3">{{ form.zip_code.errors.0 }}</div>
+                                {% endif %}
                             </div>
                         </div>
                         
@@ -143,6 +186,49 @@
     </div>
     </section>
 </div>
+
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const zipInput = document.getElementById('{{ form.zip_code.id_for_label }}');
+    const form = document.querySelector('.registration-form');
+    const allowedZips = new Set([
+        '95050','95051','95054','95110','95112','95117','95126','95128','95129','95130',
+        '95131','95132','95133','95134','95136','95014','95015','94085','94086','94087',
+        '94089','94040','94041','94043','95035','95008','95009','95030','95032','95070',
+        '95002','94301','94303','94304','94306'
+    ]);
+
+    function sanitize(val) {
+        return (val || '').replace(/\D/g, '').slice(0, 5);
+    }
+
+    function validateZip() {
+        const z = sanitize(zipInput.value);
+        zipInput.value = z;
+        const valid = (z.length === 5) && allowedZips.has(z);
+        if (!valid) {
+            zipInput.setCustomValidity('Not serving this area at the moment');
+        } else {
+            zipInput.setCustomValidity('');
+        }
+        return valid;
+    }
+
+    zipInput.addEventListener('input', validateZip);
+    zipInput.addEventListener('blur', function() {
+        if (!validateZip()) {
+            zipInput.reportValidity();
+        }
+    });
+
+    form.addEventListener('submit', function(e) {
+        if (!validateZip()) {
+            e.preventDefault();
+            zipInput.reportValidity();
+        }
+    });
+});
+</script>
 
 <style>
     .registration-form-section {

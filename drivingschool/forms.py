@@ -12,8 +12,8 @@ class RegistrationForm(forms.Form):
     phone = forms.CharField(max_length=15, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     street_address = forms.CharField(max_length=255, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
     city = forms.CharField(max_length=100, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    state = forms.CharField(max_length=50, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
-    zip_code = forms.CharField(max_length=10, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    state = forms.CharField(max_length=50, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
+    zip_code = forms.CharField(max_length=10, required=True, widget=forms.TextInput(attrs={'class': 'form-control'}))
     permit_no = forms.CharField(max_length=50, required=False, widget=forms.TextInput(attrs={'class': 'form-control'}))
 
     def clean_username(self):
@@ -27,6 +27,31 @@ class RegistrationForm(forms.Form):
         if User.objects.filter(email=email).exists():
             raise forms.ValidationError('Email already registered. Please use a different email or login.')
         return email
+
+    def clean_state(self):
+        state = (self.cleaned_data.get('state') or '').strip().lower()
+        # Enforce California only
+        if state not in ['california', 'ca']:
+            raise forms.ValidationError('Sorry currently we do not serve in your area')
+        # Normalize display value
+        return 'California'
+
+    def clean_zip_code(self):
+        raw_zip = (self.cleaned_data.get('zip_code') or '').strip()
+        # Accept only digits
+        if not raw_zip.isdigit():
+            raise forms.ValidationError('Sorry currently we do not serve in your area')
+        zip_str = f"{int(raw_zip):05d}"
+        # Allowed ZIP codes only
+        allowed_zips = {
+            '95050','95051','95054','95110','95112','95117','95126','95128','95129','95130',
+            '95131','95132','95133','95134','95136','95014','95015','94085','94086','94087',
+            '94089','94040','94041','94043','95035','95008','95009','95030','95032','95070',
+            '95002','94301','94303','94304','94306'
+        }
+        if zip_str not in allowed_zips:
+            raise forms.ValidationError('Sorry currently we do not serve in your area')
+        return zip_str
 
     def save(self):
         user = User.objects.create_user(
