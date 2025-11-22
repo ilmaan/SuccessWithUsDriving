@@ -62,8 +62,8 @@
                     <li><a href="{% url 'login' %}">Login</a></li>
                 {% endif %}
             </ul>
-            <div class="mobile-menu-toggle" id="mobile-menu-toggle">
-                <i class="fas fa-bars"></i>
+            <div class="mobile-menu-toggle" id="mobile-menu-toggle" role="button" aria-label="Toggle navigation" aria-controls="nav-menu" aria-expanded="false">
+                <i class="fas fa-bars" aria-hidden="true"></i>
             </div>
         </nav>
     </header>
@@ -484,12 +484,40 @@
     </div>
 
     <script>
-        // Mobile menu toggle
+        // Mobile menu toggle with accessibility and close behaviors
         const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
         const navMenu = document.getElementById('nav-menu');
+        const navContainer = document.querySelector('.nav-container');
+
+        function setExpanded(isOpen) {
+            mobileMenuToggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+        }
 
         mobileMenuToggle.addEventListener('click', () => {
-            navMenu.classList.toggle('active');
+            const isOpen = navMenu.classList.toggle('active');
+            setExpanded(isOpen);
+        });
+
+        // Close menu after clicking a link (on mobile)
+        navMenu.querySelectorAll('a').forEach(a => {
+            a.addEventListener('click', () => {
+                if (window.innerWidth <= 768) {
+                    navMenu.classList.remove('active');
+                    setExpanded(false);
+                }
+            });
+        });
+
+        // Close menu when clicking outside nav (on mobile)
+        document.addEventListener('click', (e) => {
+            if (window.innerWidth <= 768) {
+                if (!navContainer.contains(e.target)) {
+                    if (navMenu.classList.contains('active')) {
+                        navMenu.classList.remove('active');
+                        setExpanded(false);
+                    }
+                }
+            }
         });
 
         // Header scroll effect
