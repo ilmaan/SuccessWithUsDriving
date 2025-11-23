@@ -189,6 +189,8 @@
         box-shadow: 0 5px 15px rgba(0,0,0,0.1);
         margin-bottom: 1rem;
         transition: all 0.3s ease;
+        cursor: pointer;
+        height: 100%;
     }
     
     .instructor-card:hover {
@@ -207,6 +209,30 @@
         color: white;
         font-size: 1.5rem;
         margin-right: 1rem;
+    }
+
+    /* Instructors grid layout: 3 per row on desktop */
+    #instructorsList {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(0, 1fr));
+        gap: 1rem;
+    }
+
+    @media (max-width: 992px) { /* md */
+        #instructorsList {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+        }
+    }
+
+    @media (max-width: 576px) { /* sm */
+        #instructorsList {
+            grid-template-columns: 1fr;
+        }
+    }
+
+    .instructor-card.selected {
+        box-shadow: 0 10px 25px rgba(40, 167, 69, 0.25);
+        border: 2px solid #28a745;
     }
 </style>
 {% endblock %}
