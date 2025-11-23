@@ -304,13 +304,16 @@
                                     <input type="text" class="form-control" id="displayInstructor" readonly>
                                 </div>
                                 <div class="col-md-6 mb-3">
-                                    <label class="form-label">Lesson Type</label>
-                                    <div class="form-floating">
-                                        <input type="text" class="form-control" id="lesson_type_display" value="{{ eligible_lesson_type_label }}" readonly>
-                                        <label for="lesson_type_display">Lesson Type (auto-selected)</label>
-                                        <input type="hidden" name="lesson_type" value="{{ eligible_lesson_type }}">
-                                        <small class="text-muted">Lesson type is set based on your purchased plan.</small>
+                                    <label class="form-label">Credits Overview</label>
+                                    <div class="form-floating mb-3">
+                                        <input type="text" class="form-control" id="total_credits_display" value="{{ total_credits }}" readonly>
+                                        <label for="total_credits_display">Total Credits</label>
                                     </div>
+                                    <div class="form-floating">
+                                        <input type="text" class="form-control" id="hours_remaining_display" value="{{ available_credits }}" readonly>
+                                        <label for="hours_remaining_display">Hours Remaining</label>
+                                    </div>
+                                    <input type="hidden" name="lesson_type" value="{{ eligible_lesson_type }}">
                                 </div>
                             </div>
                             
@@ -619,6 +622,13 @@ class BookingCalendar {
 // Initialize calendar when page loads
 document.addEventListener('DOMContentLoaded', () => {
     new BookingCalendar();
+    if (window.location.hash === '#bookingForm') {
+        const form = document.getElementById('bookingForm');
+        if (form) {
+            form.style.display = 'block';
+            form.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+    }
 });
 </script>
 {% endblock %}

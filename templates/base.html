@@ -89,7 +89,7 @@
             <p>Professional driving instruction in Santa Clara, California. Get your license faster with our expert instructors and proven teaching methods.</p>
             <div class="cta-buttons">
                 {% if user.is_authenticated %}
-                <a href="{% url 'booking_page' %}" class="btn btn-primary">
+                <a href="{% url 'booking_page' %}#bookingForm" class="btn btn-primary">
                     <i class="fas fa-calendar-plus"></i>
                     Book Your Lesson
                 </a>
@@ -725,3 +725,5 @@
   {% block extra_js %}{% endblock %}
 </body>
 </html>
+
+

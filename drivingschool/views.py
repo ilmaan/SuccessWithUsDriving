@@ -296,6 +296,8 @@ def booking_page(request):
         'instructors': instructors,
         'eligible_lesson_type': eligible_lesson_type,
         'eligible_lesson_type_label': eligible_lesson_type_label,
+        'total_credits': student.total_credits,
+        'available_credits': student.available_credits,
     })
 
 @login_required

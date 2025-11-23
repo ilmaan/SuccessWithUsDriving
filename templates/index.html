@@ -639,7 +639,7 @@
         <p class="animate-slide-up-delay">Professional driving instruction in Santa Clara, CA</p>
         <div class="hero-buttons animate-slide-up-delay-2">
             {% if user.is_authenticated %}
-            <a href="{% url 'pricing' %}" class="btn btn-primary btn-glow">
+            <a href="{% url 'booking_page' %}#bookingForm" class="btn btn-primary btn-glow">
                 <i class="fas fa-calendar-check"></i> Book Your Lesson
             </a>
             {% else %}
