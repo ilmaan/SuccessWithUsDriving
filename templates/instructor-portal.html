@@ -1,0 +1,115 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<section class="dashboard-section py-5">
+  <div class="container">
+    <div class="row mb-4">
+      <div class="col-12">
+        <h2 class="section-title"><i class="fas fa-chalkboard-teacher me-2"></i>Instructor Portal</h2>
+        <p class="text-muted">Manage your schedule, availability, and bookings.</p>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-lg-7">
+        <div class="dashboard-card p-3 mb-4">
+          <h5 class="mb-3"><i class="fas fa-calendar-check me-2"></i>Your Appointments</h5>
+          {% if appointments %}
+          <div class="table-responsive">
+            <table class="table modern-table mb-0">
+              <thead>
+                <tr>
+                  <th>Date & Time</th>
+                  <th>Student</th>
+                  <th>Status</th>
+                  <th>Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+                {% for appt in appointments %}
+                <tr>
+                  <td>{{ appt.scheduled_time|date:'M d, Y h:i A' }}</td>
+                  <td>{{ appt.student.user.get_full_name }}</td>
+                  <td>
+                    <span class="status-badge bg-{% if appt.status == 'Completed' %}success{% elif appt.status == 'Confirmed' %}info{% elif appt.status == 'Scheduled' %}primary{% elif appt.status == 'Cancelled' %}danger{% else %}secondary{% endif %}">
+                      {{ appt.status }}
+                    </span>
+                  </td>
+                  <td>
+                    {% if appt.status == 'Scheduled' %}
+                      <form method="post" action="{% url 'confirm_appointment' appt.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-info me-2">
+                          <i class="fas fa-check-double me-1"></i>Confirm
+                        </button>
+                      </form>
+                    {% endif %}
+                    {% if appt.status == 'Scheduled' or appt.status == 'Confirmed' %}
+                      <form method="post" action="{% url 'mark_complete' appt.id %}" class="d-inline">
+                        {% csrf_token %}
+                        <button type="submit" class="btn btn-sm btn-outline-success">
+                          <i class="fas fa-check me-1"></i>Complete
+                        </button>
+                      </form>
+                    {% endif %}
+                  </td>
+                </tr>
+                {% endfor %}
+              </tbody>
+            </table>
+          </div>
+          {% else %}
+            <p class="text-muted">No appointments yet.</p>
+          {% endif %}
+        </div>
+      </div>
+
+      <div class="col-lg-5">
+        <div class="dashboard-card p-3 mb-4">
+          <h5 class="mb-3"><i class="fas fa-clock me-2"></i>Set Availability</h5>
+          <form method="post" action="{% url 'set_availability' %}">
+            {% csrf_token %}
+            <div class="mb-3">
+              <label class="form-label" for="availability_date">Date</label>
+              <input type="date" class="form-control" id="availability_date" name="date" required>
+            </div>
+            <div class="mb-3">
+              <label class="form-label">Time Slots</label>
+              <div class="row">
+                {% for slot in default_slots %}
+                  <div class="col-6 mb-2">
+                    <div class="form-check">
+                      <input class="form-check-input" type="checkbox" name="slots" value="{{ slot }}" id="slot_{{ slot }}">
+                      <label class="form-check-label" for="slot_{{ slot }}">{{ slot }}</label>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+            <button type="submit" class="btn btn-primary">
+              <i class="fas fa-save me-2"></i>Save Availability
+            </button>
+          </form>
+        </div>
+
+        <div class="dashboard-card p-3">
+          <h5 class="mb-3"><i class="fas fa-list me-2"></i>Upcoming Availability</h5>
+          {% if availabilities %}
+          <ul class="list-group">
+            {% for a in availabilities %}
+            <li class="list-group-item d-flex justify-content-between align-items-center">
+              <span>{{ a.date|date:'M d, Y' }}</span>
+              <span class="text-muted">{{ a.available_slots }}</span>
+            </li>
+            {% endfor %}
+          </ul>
+          {% else %}
+            <p class="text-muted">No availability set.</p>
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+{% endblock %}
