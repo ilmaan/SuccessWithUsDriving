@@ -37,7 +37,8 @@
   <!-- Header -->
     <header class="header" id="header">
         <nav class="nav-container">
-            <img src="{% static 'images/logo_success.png' %}" height="80px" alt="Success with Us Logo">
+            <a href="{% url 'home' %}"><img src="{% static 'images/logo_success.png' %}" height="80px" alt="Success with Us Logo"></a>
+            <!-- <img src="{% static 'images/logo_success.png' %}" height="80px" alt="Success with Us Logo"> -->
             <ul class="nav-menu" id="nav-menu">
                 <li><a href="{% url 'home' %}">Home</a></li>
                 <li><a href="{% url 'about' %}">About</a></li>
@@ -315,7 +316,7 @@
     <div class="cta-overlay"></div>
     <div class="container">
         <div class="cta-content animate-on-scroll">
-            <h2>Ready to Get <span class="highlight">Behind the Wheel?</span></h2>
+            <h2>Ready to Get <span class="">Behind the Wheel?</span></h2>
             <p>Start your journey to becoming a confident driver today with our expert instructors.</p>
             <div class="cta-buttons">
                 <a href="{% url 'contact' %}" class="btn btn-primary btn-large btn-glow">
