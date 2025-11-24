@@ -274,8 +274,8 @@ def add_to_cart(request, plan_id):
 def booking_page(request):
     """Display the calendar-based booking interface"""
     student = request.user.student
-    if student.available_credits < 1:
-        messages.error(request, 'You need to purchase a plan before booking a lesson.')
+    if student.available_credits < 2:
+        messages.error(request, 'You need at least 2 credits to book a 2-hour lesson.')
         return redirect('plan_selection')
     instructors = Instructor.objects.filter(is_available=True)
 
@@ -305,9 +305,9 @@ def booking_page(request):
 def book_lesson(request):
     student = request.user.student
     if request.method == 'POST':
-        # Require at least 1 available credit to book
-        if student.available_credits < 1:
-            messages.error(request, 'You have no available credits. Please purchase a plan first.')
+        # Require at least 2 available credits to book a 2-hour lesson
+        if student.available_credits < 2:
+            messages.error(request, 'You need at least 2 credits to book a 2-hour lesson.')
             return redirect('plan_selection')
         
         # Handle calendar-based booking form
@@ -327,13 +327,23 @@ def book_lesson(request):
                 # Get instructor
                 instructor = get_object_or_404(Instructor, id=selected_instructor_id, is_available=True)
                 
-                # Validate booking
+                # Validate booking for a 2-hour block
                 if scheduled_datetime < timezone.now():
                     messages.error(request, "Can't book in the past.")
                     return redirect('booking_page')
-                    
-                if Appointment.objects.filter(instructor=instructor, scheduled_time=scheduled_datetime).exists():
-                    messages.error(request, "Instructor not available at this time.")
+                
+                next_hour = scheduled_datetime + timedelta(hours=1)
+                # Conflict checks: current hour, next hour, and overlap with previous 2-hour appointments
+                if (
+                    Appointment.objects.filter(instructor=instructor, scheduled_time=scheduled_datetime).exists()
+                    or Appointment.objects.filter(instructor=instructor, scheduled_time=next_hour).exists()
+                    or Appointment.objects.filter(
+                        instructor=instructor,
+                        scheduled_time=scheduled_datetime - timedelta(hours=1),
+                        duration_minutes__gte=120
+                    ).exists()
+                ):
+                    messages.error(request, "Instructor not available for a 2-hour slot starting at the selected time.")
                     return redirect('booking_page')
 
                 # Determine eligible lesson type and plan from purchases
@@ -350,7 +360,7 @@ def book_lesson(request):
                     enforced_lesson_type = 'beginner'
                     enforced_plan = purchases.first().plan if purchases.exists() else None
                 
-                # Create appointment
+                # Create appointment (2-hour duration)
                 appointment = Appointment.objects.create(
                     student=student,
                     instructor=instructor,
@@ -358,15 +368,16 @@ def book_lesson(request):
                     lesson_type=enforced_lesson_type,
                     special_requirements=special_requirements,
                     status='Scheduled',
-                    credits_used=1,
+                    credits_used=2,
+                    duration_minutes=120,
                     plan=enforced_plan
                 )
                 
-                # Deduct one credit on booking
-                student.available_credits = max(0, student.available_credits - 1)
+                # Deduct two credits on booking
+                student.available_credits = max(0, student.available_credits - 2)
                 student.save()
                 
-                messages.success(request, f"Lesson booked successfully for {scheduled_datetime.strftime('%B %d, %Y at %I:%M %p')}! 1 credit has been deducted.")
+                messages.success(request, f"Lesson booked successfully for {scheduled_datetime.strftime('%B %d, %Y at %I:%M %p')}! 2 credits have been deducted.")
                 return redirect('student_portal')
                 
             except Exception as e:
@@ -928,13 +939,23 @@ def get_available_slots(request):
                 status__in=['Scheduled']  # Only consider scheduled appointments
             )
             
-            # Extract booked time slots
+            # Extract booked time slots, including second hour for 2-hour appointments
             booked_times = []
             for appointment in booked_appointments:
-                booked_times.append(appointment.scheduled_time.strftime('%H:%M'))
+                start_str = appointment.scheduled_time.strftime('%H:%M')
+                booked_times.append(start_str)
+                if getattr(appointment, 'duration_minutes', 60) >= 120:
+                    second_hour = (appointment.scheduled_time + timedelta(hours=1)).strftime('%H:%M')
+                    booked_times.append(second_hour)
             
-            # Filter out booked slots
-            available_slots = [slot for slot in all_slots if slot not in booked_times]
+            # Filter out booked slots and ensure 2-hour availability (consecutive slot free)
+            def next_hour_str(slot):
+                h, m = map(int, slot.split(':'))
+                return f"{h+1:02d}:{m:02d}"
+            available_slots = [
+                slot for slot in all_slots
+                if slot not in booked_times and next_hour_str(slot) in all_slots and next_hour_str(slot) not in booked_times
+            ]
             
             # Don't show past time slots for today
             if selected_date == timezone.now().date():

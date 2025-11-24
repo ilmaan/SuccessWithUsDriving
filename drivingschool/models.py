@@ -141,6 +141,7 @@ class Appointment(models.Model):
     special_requirements = models.TextField(blank=True)
     credits_used = models.IntegerField(default=1)
     notes = models.TextField(blank=True)
+    duration_minutes = models.IntegerField(default=60)
 
     def __str__(self):
         return f"{self.student} - {self.scheduled_time}"

@@ -270,7 +270,7 @@
                                 
                                 <!-- Time Slots -->
                                 <div class="time-slots-container" id="timeSlotsContainer" style="display: none;">
-                                    <h5 class="mb-3"><i class="fas fa-clock me-2"></i>Available Time Slots</h5>
+                                    <h5 class="mb-3"><i class="fas fa-clock me-2"></i>Available 2-hour starting slots</h5>
                                     <div id="timeSlots">
                                         <!-- Time slots will be loaded dynamically -->
                                     </div>
@@ -338,6 +338,9 @@
                                     <div class="form-floating">
                                         <input type="text" class="form-control" id="hours_remaining_display" value="{{ available_credits }}" readonly>
                                         <label for="hours_remaining_display">Hours Remaining</label>
+                                    </div>
+                                    <div class="mt-2">
+                                        <small class="text-muted">This booking reserves a 2-hour slot and will deduct 2 credits.</small>
                                     </div>
                                     <input type="hidden" name="lesson_type" value="{{ eligible_lesson_type }}">
                                 </div>
