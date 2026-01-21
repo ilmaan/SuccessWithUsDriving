@@ -13,7 +13,7 @@
 
         /* Header & Navigation */
         .header {
-            position: fixed;
+            /* position: fixed; */
             top: 0;
             width: 100%;
             /* background: linear-gradient(144deg, white 84%, #DC2629 57%, #1F2980 109%);  */
@@ -32,7 +32,7 @@
         }
 
         .nav-container {
-            max-width: 95%;
+            max-width: 100%;
             margin: 0 auto;
             display: flex;
             justify-content: space-between;

@@ -147,12 +147,12 @@
         
         setTimeout(typeWriter, 1000);
 
-        // Parallax effect for hero background
-        window.addEventListener('scroll', () => {
-            const scrolled = window.pageYOffset;
-            const hero = document.querySelector('.hero');
-            hero.style.transform = `translateY(${scrolled * 0.5}px)`;
-        });
+        // // Parallax effect for hero background
+        // window.addEventListener('scroll', () => {
+        //     const scrolled = window.pageYOffset;
+        //     const hero = document.querySelector('.hero');
+        //     hero.style.transform = `translateY(${scrolled * 0.5}px)`;
+        // });
 
         // Counter animation for stats
         function animateCounter(element, target) {

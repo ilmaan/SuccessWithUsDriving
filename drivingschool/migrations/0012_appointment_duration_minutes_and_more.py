@@ -15,4 +15,12 @@ class Migration(migrations.Migration):
             name='duration_minutes',
             field=models.IntegerField(default=60),
         ),
+        migrations.AlterField(
+            model_name='appointment',
+            name='status',
+            field=models.CharField(choices=[('Scheduled', 'Scheduled'), ('Completed', 'Completed'), ('Cancelled', 'Cancelled'), ('No-show', 'No-show')], default='Scheduled', max_length=20),
+        ),
+        migrations.DeleteModel(
+            name='InstructorAvailability',
+        ),
     ]
