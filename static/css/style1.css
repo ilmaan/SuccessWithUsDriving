@@ -256,7 +256,7 @@
         /* Hero Section */
         .hero {
             height: 100vh;
-            background: linear-gradient(135deg, rgba(242, 34, 34, 0.8), #EA1E00), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23764ba2" d="M0,300L50,280C100,260,200,220,300,200C400,180,500,180,600,190C700,200,800,220,900,240C1000,260,1100,280,1150,290L1200,300V600H1150C1100,600,1000,600,900,600C800,600,700,600,600,600C500,600,400,600,300,600C200,600,100,600,50,600H0V300Z"/></svg>');
+            background: linear-gradient(135deg, rgba(0, 0, 0, 0.8), #000000), url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="black" width="1200" height="600"/><path fill="black" d="M0,300L50,280C100,260,200,220,300,200C400,180,500,180,600,190C700,200,800,220,900,240C1000,260,1100,280,1150,290L1200,300V600H1150C1100,600,1000,600,900,600C800,600,700,600,600,600C500,600,400,600,300,600C200,600,100,600,50,600H0V300Z"/></svg>');
             display: flex;
             align-items: center;
             justify-content: center;
@@ -336,11 +336,8 @@
         .features {
             padding: 6rem 0;
             background: #f8f9fa;
-
-    
-        border-top: 1px solid rgba(255, 255, 255, 0.2);
-        border-bottom: 1px solid rgba(255, 255, 255, 0.2);
-
+            border-top: 1px solid rgba(255, 255, 255, 0.2);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.2);
         }
 
         .features  {
@@ -353,10 +350,7 @@
             box-shadow: 0 8px 32px rgba(0, 0, 0, 0.1);
             margin-bottom: 3rem;
             text-align: center;
-
         }
-
-
 
         .container {
             max-width: 1200px;
@@ -421,8 +415,8 @@
 
         .feature-card i {
             font-size: 3rem;
-            /* background: linear-gradient(45deg, red, #764ba2); */
-            background: linear-gradient(45deg, #cd2d2d, #f00c0c);
+            /* background: linear-gradient(45deg, red, black); */
+            background: linear-gradient(45deg, #000000, #333333);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             margin-bottom: 1rem;
@@ -437,8 +431,8 @@
         /* Plans Section */
         .plans {
             padding: 6rem 0;
-            /* background: linear-gradient(135deg, red 0%, #764ba2 100%); */
-            background: linear-gradient(135deg, #282933 0%, #2f2e33 100%);
+            /* background: linear-gradient(135deg, red 0%, black 100%); */
+            background: linear-gradient(135deg, #000000 0%, #1a1a1a 100%);
             color: white;
         }
 
@@ -765,6 +759,8 @@
             background: red;
             border-radius: 50%;
             transition: all 0.3s ease;
+            text-decoration: none;  
+            color: white;
         }
 
         .social-links a:hover {
@@ -810,15 +806,15 @@
             }
 
             .nav-menu {
-                display: none;
-                position: absolute;
-                top: 100%;
-                left: 0;
-                width: 100%;
-                background: rgba(102, 126, 234, 0.95);
-                flex-direction: column;
-                padding: 1rem;
-                gap: 1rem;
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            width: 100%;
+            background: rgba(0, 0, 0, 0.95);
+            flex-direction: column;
+            padding: 1rem;
+            gap: 1rem;
                 z-index: 1001;
                 box-shadow: 0 8px 16px rgba(0,0,0,0.15);
             }
@@ -841,223 +837,52 @@
 
             .cta-buttons {
                 flex-direction: column;
-                align-items: center;
             }
 
-            .about-content {
-                grid-template-columns: 1fr;
-            }
-
+            .about-content,
             .contact-content {
                 grid-template-columns: 1fr;
             }
-
-            .plans-grid {
-                grid-template-columns: 1fr;
-            }
-
-            .plan-card.popular {
-                transform: none;
-            }
         }
 
-        @media (max-width: 992px) {
-            .nav-container {
-                padding: 0.3rem 1rem;
-            }
-            .nav-container img {
-                height: 64px;
-            }
-            .nav-menu {
-                gap: 1rem;
-            }
-            .nav-menu a {
-                font-size: 0.95rem;
-            }
-        }
-
-        @media (max-width: 840px) {
-            .nav-container img {
-                height: 50px;
-            }
-            .nav-menu {
-                gap: 0.75rem;
-            }
-            .nav-menu a {
-                font-size: 0.85rem;
-            }
-        }
-
-        /* Chatbot Styles */
-        .whatsapp-toggle {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #25D366, #128C7E);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .savings-badge {
+            background: linear-gradient(135deg, #ff416c, #ff4b2b);
             color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .whatsapp-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(37, 211, 102, 0.4);
-        }
-
-        .chatbot-toggle {
-            position: fixed;
-            bottom: 20px;
-            right: 20px;
-            width: 60px;
-            height: 60px;
-            background: linear-gradient(45deg, #e61717, #764ba2);
-            border-radius: 50%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            box-shadow: 0 4px 15px rgba(102, 126, 234, 0.3);
-            transition: all 0.3s ease;
-            z-index: 1000;
-        }
-
-        .chatbot-toggle:hover {
-            transform: scale(1.1);
-            box-shadow: 0 6px 20px rgba(102, 126, 234, 0.4);
-        }
-
-        .chatbot {
-            position: fixed;
-            bottom: 90px;
-            right: 20px;
-            width: 350px;
-            height: 500px;
-            background: white;
-            border-radius: 20px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
-            display: none;
-            flex-direction: column;
-            z-index: 1000;
-        }
-
-        .chatbot-header {
-            background: linear-gradient(45deg, red, #764ba2);
-            color: white;
-            padding: 1rem;
-            border-radius: 20px 20px 0 0;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
-
-        .chatbot-messages {
-            flex: 1;
-            padding: 1rem;
-            overflow-y: auto;
-            background: #f8f9fa;
-        }
-
-        .message {
-            margin-bottom: 1rem;
-            padding: 0.5rem 1rem;
-            border-radius: 15px;
-            max-width: 80%;
-        }
-
-        .message.bot {
-            background: #e9ecef;
-            align-self: flex-start;
-        }
-
-        .message.user {
-            background: red;
-            color: white;
-            align-self: flex-end;
-            margin-left: auto;
-        }
-
-        .chatbot-input {
-            display: flex;
-            padding: 1rem;
-            border-top: 1px solid #e9ecef;
-        }
-
-        .chatbot-input input {
-            flex: 1;
-            padding: 0.5rem;
-            border: 1px solid #ddd;
-            border-radius: 20px;
-            margin-right: 0.5rem;
-        }
-
-        .chatbot-input button {
-            background: red;
-            color: white;
-            border: none;
-            border-radius: 50%;
-            width: 40px;
-            height: 40px;
-            cursor: pointer;
-        }
-
-        /* Cart Button Styling */
-        .cart-link {
+            font-weight: 800;
+            padding: 0.5rem 1.0rem;
+            border-radius: 50px;
+            margin-top: 10px;
+            display: inline-block;
+            font-size: 0.9rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            box-shadow: 0 4px 15px rgba(255, 65, 108, 0.4);
             position: relative;
-            display: inline-flex;
-            align-items: center;
-            gap: 0.5rem;
-            color: white !important;
-            text-decoration: none;
-            padding: 0.5rem 1rem;
-            border-radius: 25px;
-            transition: all 0.3s ease;
-            background: black ;
+            overflow: hidden;
         }
 
-        .cart-link:hover {
-            background: rgba(255, 255, 255, 0.8);
-            background: black ;
-            color: white    !important;
-            text-decoration: none;
-        }
-
-        .cart-count {
-            background: #ff4757;
-            color: white;
-            border-radius: 50%;
-            padding: 0.2rem 0.5rem;
-            font-size: 0.75rem;
-            font-weight: bold;
-            min-width: 20px;
-            height: 20px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+        .savings-badge::before {
+            content: '';
             position: absolute;
-            top: -5px;
-            right: -5px;
-            animation: pulse 2s infinite;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.4), transparent);
+            animation: shine 2s infinite;
         }
 
         @keyframes pulse {
-            0% {
-                transform: scale(1);
-            }
-            50% {
-            transform: scale(1.1);
-            }
-            100% {
-                transform: scale(1);
-            }
+            0% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 65, 108, 0.7); }
+            70% { transform: scale(1.05); box-shadow: 0 0 0 10px rgba(255, 65, 108, 0); }
+            100% { transform: scale(1); box-shadow: 0 0 0 0 rgba(255, 65, 108, 0); }
+        }
+
+        @keyframes shine {
+            0% { left: -100%; }
+            100% { left: 100%; }
+        }
+
+        .animate-pulse {
+            animation: pulse 2s infinite;
         }

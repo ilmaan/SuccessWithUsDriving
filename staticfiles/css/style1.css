@@ -16,7 +16,7 @@
             position: fixed;
             top: 0;
             width: 100%;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: black;
             box-shadow: 0 2px 20px rgba(0,0,0,0.1);
             z-index: 1000;
             transition: all 0.3s ease;
@@ -251,7 +251,7 @@
         /* Plans Section */
         .plans {
             padding: 6rem 0;
-            background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+            background: black;
             color: white;
         }
 

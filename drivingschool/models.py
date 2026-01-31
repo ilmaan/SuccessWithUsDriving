@@ -64,6 +64,12 @@ class LessonPlan(models.Model):
     def has_discount(self):
         return self.original_price and self.original_price > self.price
 
+    @property
+    def savings(self):
+        if self.has_discount:
+            return self.original_price - self.price
+        return 0
+
 class PlanFeature(models.Model):
     plan = models.ForeignKey(LessonPlan, on_delete=models.CASCADE, related_name='features')
     feature_text = models.CharField(max_length=200)

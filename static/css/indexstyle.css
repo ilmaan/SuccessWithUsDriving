@@ -11,7 +11,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
         z-index: 1;
     }
     
@@ -176,7 +176,7 @@
     .feature-icon-wrapper {
         width: 70px;
         height: 70px;
-        background: linear-gradient(135deg, #667eea, #764ba2);
+        background: black;
         border-radius: 50%;
         display: flex;
         align-items: center;
@@ -200,7 +200,7 @@
         right: -100px;
         width: 200px;
         height: 200px;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.1), rgba(118, 75, 162, 0.1));
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.1));
         border-radius: 50%;
         z-index: -1;
         transition: all 0.5s ease;
@@ -213,7 +213,7 @@
     }
     
     .highlight-text {
-        color: #764ba2;
+        color: black;
         font-weight: bold;
     }
     
@@ -288,7 +288,7 @@
     }
     
     .plan-features i {
-        color: #667eea;
+        color: black;
         margin-right: 0.75rem;
     }
     
@@ -321,7 +321,7 @@
     .stat-number {
         font-size: 2.5rem;
         font-weight: bold;
-        color: #667eea;
+        color: black;
         margin-bottom: 0.5rem;
     }
     
@@ -426,7 +426,7 @@
     
     .testimonial-quote {
         font-size: 2rem;
-        color: #667eea;
+        color: black;
         margin-bottom: 1rem;
         opacity: 0.5;
     }
@@ -487,7 +487,7 @@
     
     .testimonial-prev:hover,
     .testimonial-next:hover {
-        background: #667eea;
+        background: black;
         color: white;
     }
     
@@ -506,7 +506,7 @@
     }
     
     .dot.active {
-        background: #667eea;
+        background: black;
         transform: scale(1.3);
     }
     
@@ -514,7 +514,7 @@
     .cta {
         position: relative;
         padding: 5rem 0;
-        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="%23667eea" width="1200" height="600"/><path fill="%23764ba2" d="M0,300L50,280C100,260,200,220,300,200C400,180,500,180,600,190C700,200,800,220,900,240C1000,260,1100,280,1150,290L1200,300V600H1150C1100,600,1000,600,900,600C800,600,700,600,600,600C500,600,400,600,300,600C200,600,100,600,50,600H0V300Z"/></svg>');
+        background: url('data:image/svg+xml,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 600"><rect fill="black" width="1200" height="600"/><path fill="black" d="M0,300L50,280C100,260,200,220,300,200C400,180,500,180,600,190C700,200,800,220,900,240C1000,260,1100,280,1150,290L1200,300V600H1150C1100,600,1000,600,900,600C800,600,700,600,600,600C500,600,400,600,300,600C200,600,100,600,50,600H0V300Z"/></svg>');
         background-size: cover;
         color: white;
         text-align: center;
@@ -526,7 +526,7 @@
         left: 0;
         width: 100%;
         height: 100%;
-        background: linear-gradient(135deg, rgba(102, 126, 234, 0.9), rgba(118, 75, 162, 0.9));
+        background: linear-gradient(135deg, rgba(0, 0, 0, 0.9), rgba(0, 0, 0, 0.9));
     }
     
     .cta-content {
